@@ -10,11 +10,11 @@ interface FooterProps {
 const Footer: React.FC<FooterProps> = ({ setView, navigateToContact }) => {
   return (
     <footer className="w-full bg-[#07080a] border-t border-[#0091ff] pt-20 pb-16">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
-          {/* Brand, Description and Address Column */}
-          <div className="col-span-12 md:col-span-6 lg:col-span-4 space-y-6">
+          {/* Brand and Description Column */}
+          <div className="col-span-12 md:col-span-6 lg:col-span-3 space-y-6">
             <a href="#logo" onClick={(e) => { e.preventDefault(); setView('other'); }} className="hover:opacity-90 transition-opacity inline-block">
               <img 
                 src={logoImg} 
@@ -25,29 +25,6 @@ const Footer: React.FC<FooterProps> = ({ setView, navigateToContact }) => {
             <p className="text-slate-400 text-[15px] leading-relaxed max-w-sm">
               Architects of digital order. Building intelligent enterprise solutions for the modern era.
             </p>
-            
-            {/* Address Details */}
-            <div className="space-y-2.5 border-t border-slate-900/50 pt-6 text-left">
-              <h4 className="text-white text-[13px] font-bold tracking-wider uppercase">
-                OFFICE LOCATION
-              </h4>
-              <p className="text-slate-400 text-[14px] leading-relaxed">
-                Galletrix Innovations,<br />
-                GOG Tower, Kazhakkoottam<br />
-                (Opposite to Technopark Phase - 1),<br />
-                Thiruvananthapuram, Kerala - 695582
-              </p>
-              <div className="mt-4 pt-4 border-t border-slate-900/50">
-                <h4 className="text-white text-[13px] font-bold tracking-wider uppercase mb-2.5">
-                  CONTACT
-                </h4>
-                <p className="text-slate-400 text-[14px] leading-relaxed">
-                  <a href="tel:+917305870929" className="hover:text-white transition-colors duration-200">
-                    +91 73058 70929
-                  </a>
-                </p>
-              </div>
-            </div>
             
             {/* Social Icons */}
             <div className="flex items-center space-x-6 pt-2">
@@ -72,7 +49,7 @@ const Footer: React.FC<FooterProps> = ({ setView, navigateToContact }) => {
           </div>
 
           {/* Links Columns */}
-          <div className="col-span-12 md:col-span-6 lg:col-span-5 grid grid-cols-3 gap-6 md:gap-8">
+          <div className="col-span-12 md:col-span-6 lg:col-span-4 grid grid-cols-3 gap-4 md:gap-6">
             {/* SOLUTIONS */}
             <div className="space-y-5">
               <h3 className="text-white text-[13px] font-bold tracking-wider uppercase">
@@ -114,7 +91,7 @@ const Footer: React.FC<FooterProps> = ({ setView, navigateToContact }) => {
           </div>
 
           {/* Google Map Column */}
-          <div className="col-span-12 lg:col-span-3 space-y-4 text-left">
+          <div className="col-span-12 md:col-span-6 lg:col-span-3 space-y-4 text-left">
             <h3 className="text-white text-[13px] font-bold tracking-wider uppercase">
               FIND US ON MAP
             </h3>
@@ -129,10 +106,36 @@ const Footer: React.FC<FooterProps> = ({ setView, navigateToContact }) => {
               ></iframe>
             </div>
           </div>
+
+          {/* Address & Contact Column */}
+          <div className="col-span-12 md:col-span-6 lg:col-span-2 space-y-8 text-left">
+            <div className="space-y-2.5">
+              <h4 className="text-white text-[13px] font-bold tracking-wider uppercase">
+                OFFICE LOCATION
+              </h4>
+              <p className="text-slate-400 text-[14px] leading-relaxed">
+                Galletrix Innovations,<br />
+                GOG Tower, Kazhakkoottam<br />
+                (Opposite to Technopark Phase - 1),<br />
+                Thiruvananthapuram, Kerala - 695582
+              </p>
+            </div>
+            
+            <div className="space-y-2.5">
+              <h4 className="text-white text-[13px] font-bold tracking-wider uppercase">
+                CONTACT
+              </h4>
+              <p className="text-slate-400 text-[14px] leading-relaxed">
+                <a href="tel:+917305870929" className="hover:text-white transition-colors duration-200">
+                  +91 73058 70929
+                </a>
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Copyright Line */}
-        <div className="mt-16 md:mt-24 pt-6 border-t border-slate-900/50 flex justify-start">
+        <div className="mt-16 md:mt-24 pt-6 border-t border-slate-900/50 flex justify-center text-center w-full">
           <span className="text-slate-500 text-[11px] font-medium tracking-[0.1em] uppercase">
             @ {new Date().getFullYear()} GALLETRIX . ALL RIGHTS RESERVED
           </span>

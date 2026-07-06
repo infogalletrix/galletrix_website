@@ -15,8 +15,7 @@ interface OtherProps {
   navigateToContact: (page: 1 | 2 | 3) => void;
 }
 
-const heroSentences = [
-  <React.Fragment key="1">We build systems that <span className="text-[#cc6f2a] transition-colors duration-700">move business forward</span></React.Fragment>,
+const subheadings = [
   <React.Fragment key="2"><span className="text-[#cc6f2a] transition-colors duration-700">UI/UX</span> Design</React.Fragment>,
   <React.Fragment key="3"><span className="text-[#cc6f2a] transition-colors duration-700">Web Application</span> Development</React.Fragment>,
   <React.Fragment key="4"><span className="text-[#cc6f2a] transition-colors duration-700">Mobile App</span> Development</React.Fragment>,
@@ -52,31 +51,72 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
   const [projects, setProjects] = useState<Project[]>([])
   const [textIndex, setTextIndex] = useState(0)
   const [fade, setFade] = useState(true)
+  const [isLoaded, setIsLoaded] = useState(false)
 
-  // Scroll-linked parallax refs
-  const scrollRef1 = useRef<HTMLDivElement>(null)
-  const scrollRef2 = useRef<HTMLDivElement>(null)
-  const scrollRef3 = useRef<HTMLDivElement>(null)
+  // Scroll-linked sticky refs
+  const trackRef = useRef<HTMLDivElement>(null)
+  const stickyContainerRef = useRef<HTMLDivElement>(null)
+  const img1Ref = useRef<HTMLImageElement>(null)
+  const img2Ref = useRef<HTMLImageElement>(null)
+  const vid3Ref = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
-    const refs = [scrollRef1, scrollRef2, scrollRef3]
-    const OFFSET = 150 // pixels to travel upward
+    let ticking = false;
+
+    const updateScroll = () => {
+      if (!trackRef.current || !stickyContainerRef.current) return;
+      
+      const trackRect = trackRef.current.getBoundingClientRect();
+      const stickyHeight = stickyContainerRef.current.offsetHeight;
+      const windowH = window.innerHeight;
+      
+      // Pin when the card is perfectly centered in the viewport
+      let pinOffset = (windowH - stickyHeight) / 2;
+      // Ensure it never pins higher than the navbar (approx 100px) so the top is always visible
+      pinOffset = Math.max(100, pinOffset);
+      
+      let progress = 0;
+      
+      if (trackRect.top <= pinOffset) {
+        const maxTranslate = trackRect.height - stickyHeight;
+        const scrollDistance = pinOffset - trackRect.top;
+        
+        const translate = Math.max(0, Math.min(maxTranslate, scrollDistance));
+        // Use translate3d to force GPU acceleration
+        stickyContainerRef.current.style.transform = `translate3d(0, ${translate}px, 0)`;
+        
+        progress = maxTranslate > 0 ? translate / maxTranslate : 0;
+      } else {
+        stickyContainerRef.current.style.transform = `translate3d(0, 0px, 0)`;
+      }
+      
+      // Add dead zones so the user can see the pinned card before the animation starts
+      if (img2Ref.current) {
+        // img2 slides up between 10% and 50% of the scroll track
+        const p2 = Math.min(1, Math.max(0, (progress - 0.10) / 0.40));
+        img2Ref.current.style.transform = `translate3d(0, ${(1 - p2) * 100}%, 0)`;
+        img2Ref.current.style.opacity = p2 > 0 ? "1" : "0";
+      }
+      
+      if (vid3Ref.current) {
+        // vid3 slides up between 55% and 95% of the scroll track
+        const p3 = Math.min(1, Math.max(0, (progress - 0.55) / 0.40));
+        vid3Ref.current.style.transform = `translate3d(0, ${(1 - p3) * 100}%, 0)`;
+        vid3Ref.current.style.opacity = p3 > 0 ? "1" : "0";
+      }
+      
+      ticking = false;
+    };
 
     const handleScroll = () => {
-      refs.forEach((ref) => {
-        if (!ref.current) return
-        const rect = ref.current.getBoundingClientRect()
-        const windowH = window.innerHeight
-        // progress: 0 when element bottom edge enters viewport, 1 when element top reaches center
-        const progress = Math.min(1, Math.max(0, (windowH - rect.top) / (windowH * 0.8)))
-        const translateY = OFFSET * (1 - progress)
-        ref.current.style.transform = `translateY(${translateY}px)`
-        ref.current.style.opacity = `${progress}`
-      })
+      if (!ticking) {
+        window.requestAnimationFrame(updateScroll);
+        ticking = true;
+      }
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll() // initial check
+    updateScroll() // initial check
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -90,10 +130,11 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
   }, [])
 
   useEffect(() => {
+    setIsLoaded(true)
     const interval = setInterval(() => {
       setFade(false)
       setTimeout(() => {
-        setTextIndex((prev) => (prev + 1) % heroSentences.length)
+        setTextIndex((prev) => (prev + 1) % subheadings.length)
         setFade(true)
       }, 500)
     }, 3000)
@@ -118,13 +159,23 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
         
         {/* Overlay Content */}
         <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 mt-16 w-full max-w-6xl mx-auto">
-          {/* Animated Text */}
-          <div className="h-32 md:h-40 flex items-center justify-center w-full">
-            <h1 className={`text-[32px] sm:text-[42px] md:text-[56px] lg:text-[76px] font-serif font-bold text-white/70 transition-all duration-700 ease-in-out ${
-              fade ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          {/* Core Heading */}
+          <div className="w-full mb-4">
+            <h1 className={`text-[36px] sm:text-[48px] md:text-[64px] lg:text-[80px] font-['Space_Grotesk'] font-bold text-white tracking-tighter leading-[1.1] transition-all duration-1000 ease-out delay-100 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
             }`}>
-              {heroSentences[textIndex]}
+              We build systems that <br className="hidden sm:block" />
+              <span className="text-[#cc6f2a]">move business forward</span>
             </h1>
+          </div>
+
+          {/* Animated Subheading Text */}
+          <div className="h-16 md:h-20 flex items-center justify-center w-full mt-2">
+            <h2 className={`text-[24px] sm:text-[32px] md:text-[40px] font-sans font-medium text-white/80 transition-all duration-700 ease-in-out ${
+              fade ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-6 scale-95'
+            }`}>
+              {subheadings[textIndex]}
+            </h2>
           </div>
           
           {/* Action Buttons */}
@@ -154,7 +205,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
       </section>
 
       {/* Page 2: Who We Are Section */}
-      <section id="other-page-2" className="w-full bg-[#021327] py-24 md:py-32 lg:py-40 border-t border-slate-900/60 min-h-screen flex items-center">
+      <section id="other-page-2" className="w-full bg-black py-24 md:py-32 lg:py-40 border-t border-slate-900/60 min-h-screen flex items-center">
         <div className="max-w-7xl mx-auto px-6 md:px-12 w-full flex flex-col items-start animate-fade-in">
           {/* Heading */}
           <h2 className="font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-medium leading-[1.12] text-white tracking-tight mb-6">
@@ -187,7 +238,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
                 ].map((text, idx) => (
                   <div 
                     key={idx} 
-                    className="border border-slate-700/60 bg-[#021327]/40 px-6 py-4.5 rounded-xl text-[16px] font-medium text-slate-300 transition-all duration-300 hover:border-[#cc6f2a]/60 hover:text-white"
+                    className="border border-slate-700/60 bg-black/40 px-6 py-4.5 rounded-xl text-[16px] font-medium text-slate-300 transition-all duration-300 hover:border-[#cc6f2a]/60 hover:text-white"
                   >
                     {text}
                   </div>
@@ -208,80 +259,50 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
       </section>
 
       {/* Page 3: Real Business Problems Section */}
-      <section id="other-page-3" className="w-full bg-[#07080a] pt-32 md:pt-40 border-t border-slate-900/60 min-h-screen flex flex-col justify-between overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 w-full flex-1 flex flex-col items-start justify-between">
-          {/* Heading */}
-          <h2 className="font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-medium leading-[1.12] text-white tracking-tight mb-16">
+      <section id="other-page-3" className="w-full bg-[#07080a] border-t border-slate-900/60 relative">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 w-full pt-24 md:pt-32 pb-12">
+          {/* Heading - scrolls normally */}
+          <h2 className="font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[60px] font-medium leading-[1.12] text-white tracking-tight shrink-0">
             Built to solve real business problems
           </h2>
+        </div>
 
-          {/* Mockup Image - scroll up animation */}
-          <div
-            ref={scrollRef1}
-            className="w-full flex-1 flex items-end justify-center"
+        {/* Scroll Track for Sticky Mockup Container */}
+        <div ref={trackRef} className="w-full h-[250vh] relative px-6 md:px-12 pb-24">
+          {/* The Pinned Container - controlled height to prevent taking up the whole screen */}
+          <div 
+            ref={stickyContainerRef} 
+            className="w-full max-w-6xl mx-auto relative h-[65vh] md:h-[85vh] max-h-[850px] rounded-[24px] md:rounded-[32px] overflow-hidden border border-slate-800/60 shadow-2xl bg-[#07080a] will-change-transform"
           >
+            {/* Image 1 */}
             <img 
+              ref={img1Ref}
               src={l3Img} 
               alt="Built to solve real business problems" 
-              className="w-full h-auto object-cover rounded-t-[24px] md:rounded-t-[32px] border-t border-x border-slate-800/60 shadow-2xl"
+              className="absolute inset-0 w-full h-full object-cover object-center z-10"
+            />
+            
+            {/* Image 2 (Overlays Image 1) */}
+            <img 
+              ref={img2Ref}
+              src={g3Img} 
+              alt="Workflow Solution" 
+              className="absolute inset-0 w-full h-full object-cover object-center z-20 will-change-transform"
+              style={{ transform: 'translate3d(0, 100%, 0)', opacity: 0 }}
+            />
+
+            {/* Video 3 (Overlays Image 2) */}
+            <video 
+              ref={vid3Ref}
+              src={maVid} 
+              autoPlay 
+              loop 
+              muted 
+              playsInline 
+              className="absolute inset-0 w-full h-full object-cover object-center z-30 will-change-transform"
+              style={{ transform: 'translate3d(0, 100%, 0)', opacity: 0 }}
             />
           </div>
-        </div>
-      </section>
-
-      {/* Page 4: Intelligent Tools Section (Full Page Image) */}
-      <section
-        ref={scrollRef2}
-        id="other-page-4"
-        className="w-full relative lg:aspect-[3/2] bg-[#07080a] flex flex-col justify-between min-h-[calc(100vh-6rem)] lg:min-h-0 border-t border-slate-900/60 overflow-hidden"
-      >
-        {/* Desktop Background Image */}
-        <div className="absolute inset-0 hidden lg:block">
-          <img 
-            src={g3Img} 
-            alt="Galletrix Workflow Asset Solution Mockup" 
-            className="w-full h-full object-cover"
-          />
-        </div>
-
-        {/* Mobile Block Image */}
-        <div className="w-full lg:hidden my-6">
-          <img 
-            src={g3Img} 
-            alt="Galletrix Workflow Asset Solution Mockup" 
-            className="w-full h-auto object-cover"
-          />
-        </div>
-      </section>
-
-      {/* Page 5: System Orchestration Section (Full Page Video) */}
-      <section
-        ref={scrollRef3}
-        id="other-page-5"
-        className="w-full relative lg:aspect-[3/2] bg-[#07080a] flex flex-col justify-between min-h-[calc(100vh-6rem)] lg:min-h-0 border-t border-slate-900/60 overflow-hidden"
-      >
-        {/* Desktop Background Video */}
-        <div className="absolute inset-0 hidden lg:block">
-          <video 
-            src={maVid} 
-            autoPlay 
-            loop 
-            muted 
-            playsInline 
-            className="w-full h-full object-cover"
-          />
-        </div>
-
-        {/* Mobile Block Video */}
-        <div className="w-full lg:hidden my-6">
-          <video 
-            src={maVid} 
-            autoPlay 
-            loop 
-            muted 
-            playsInline 
-            className="w-full h-auto object-cover"
-          />
         </div>
       </section>
 

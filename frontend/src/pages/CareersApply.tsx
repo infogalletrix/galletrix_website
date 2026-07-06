@@ -120,7 +120,7 @@ const CareersApply: React.FC<CareersApplyProps> = ({ navigateToContact }) => {
     formData.append('resume', resume)
 
     try {
-      const response = await fetch('http://localhost:5252/api/careers', {
+      const response = await fetch('http://localhost:5000/api/careers', {
         method: 'POST',
         body: formData
       })
