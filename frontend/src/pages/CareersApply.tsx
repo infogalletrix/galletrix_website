@@ -168,7 +168,7 @@ const CareersApply: React.FC<CareersApplyProps> = ({ navigateToContact }) => {
           </span>
 
           {/* Heading */}
-          <h1 className="font-serif text-[42px] sm:text-[52px] md:text-[68px] font-bold leading-[1.12] text-white tracking-tight mb-8 max-w-4xl">
+          <h1 className="font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-bold leading-[1.12] text-white tracking-tight mb-8 max-w-4xl">
             Build Your Future With Galletrix
           </h1>
 
@@ -436,7 +436,7 @@ const CareersApply: React.FC<CareersApplyProps> = ({ navigateToContact }) => {
             Get In Touch
           </span>
           
-          <h2 className="font-serif text-[42px] sm:text-[52px] md:text-[68px] font-bold leading-[1.15] text-[#07080a] tracking-tight mb-8 max-w-3xl">
+          <h2 className="font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-bold leading-[1.15] text-[#07080a] tracking-tight mb-8 max-w-3xl">
             Ready to transform <br />
             your business <br />
             <span className="text-[#1b5ea3] font-medium">digitally?</span>

@@ -120,7 +120,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
         <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 mt-16 w-full max-w-6xl mx-auto">
           {/* Animated Text */}
           <div className="h-32 md:h-40 flex items-center justify-center w-full">
-            <h1 className={`text-[36px] sm:text-[48px] md:text-[64px] lg:text-[76px] font-serif font-bold text-white/70 transition-all duration-700 ease-in-out ${
+            <h1 className={`text-[32px] sm:text-[42px] md:text-[56px] lg:text-[76px] font-serif font-bold text-white/70 transition-all duration-700 ease-in-out ${
               fade ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
               {heroSentences[textIndex]}
@@ -157,7 +157,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
       <section id="other-page-2" className="w-full bg-[#021327] py-24 md:py-32 lg:py-40 border-t border-slate-900/60 min-h-screen flex items-center">
         <div className="max-w-7xl mx-auto px-6 md:px-12 w-full flex flex-col items-start animate-fade-in">
           {/* Heading */}
-          <h2 className="font-serif text-[42px] sm:text-[52px] md:text-[68px] font-medium leading-[1.12] text-white tracking-tight mb-6">
+          <h2 className="font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-medium leading-[1.12] text-white tracking-tight mb-6">
             WHO WE ARE
           </h2>
 
@@ -211,7 +211,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
       <section id="other-page-3" className="w-full bg-[#07080a] pt-32 md:pt-40 border-t border-slate-900/60 min-h-screen flex flex-col justify-between overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 md:px-12 w-full flex-1 flex flex-col items-start justify-between">
           {/* Heading */}
-          <h2 className="font-serif text-[42px] sm:text-[52px] md:text-[68px] font-medium leading-[1.12] text-white tracking-tight mb-16">
+          <h2 className="font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-medium leading-[1.12] text-white tracking-tight mb-16">
             Built to solve real business problems
           </h2>
 
@@ -303,7 +303,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
           </span>
           
           {/* Heading */}
-          <h2 className="font-serif text-[42px] sm:text-[52px] md:text-[68px] font-medium leading-[1.12] text-white tracking-tight mb-20">
+          <h2 className="font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-medium leading-[1.12] text-white tracking-tight mb-20">
             Enterprise Solutions, Engineered
           </h2>
 
@@ -436,7 +436,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
             <span className="font-serif text-[24px] md:text-[28px] text-slate-500 mb-2">
               A snapshot of
             </span>
-            <h2 className="font-serif text-[32px] md:text-[38px] font-bold text-[#07080a] mb-16 text-center">
+            <h2 className="font-serif text-[28px] md:text-[38px] font-bold text-[#07080a] mb-16 text-center">
               What We deliver
             </h2>
 
@@ -520,7 +520,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
             {/* Content (Title, Description, CTA Buttons) */}
             <div className="relative z-10 flex flex-col justify-between h-full space-y-8">
               <div className="space-y-6">
-                <h2 className="font-serif text-[32px] md:text-[38px] lg:text-[42px] font-medium leading-[1.2] text-white tracking-tight">
+                <h2 className="font-serif text-[28px] md:text-[38px] lg:text-[42px] font-medium leading-[1.2] text-white tracking-tight">
                   Looking for a trusted technology partner ? Let's build smarter syystems together.
                 </h2>
                 <p className="font-sans text-[15px] md:text-[16px] leading-[1.65] text-slate-200/90 max-w-lg">
@@ -564,7 +564,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
               <span className="font-sans text-[15px] font-medium tracking-wide text-slate-400">
                 Selected Work
               </span>
-              <h2 className="font-serif text-[42px] sm:text-[52px] md:text-[68px] font-medium leading-[1.12] text-white tracking-tight">
+              <h2 className="font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-medium leading-[1.12] text-white tracking-tight">
                 Projects That Define Us
               </h2>
             </div>
@@ -625,7 +625,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
             <span className="font-sans text-[15px] font-semibold tracking-wide text-white">
               Testimonials
             </span>
-            <h2 className="font-serif text-[42px] sm:text-[52px] md:text-[68px] font-medium leading-[1.12] text-white tracking-tight">
+            <h2 className="font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-medium leading-[1.12] text-white tracking-tight">
               What Our Clients Say
             </h2>
           </div>
@@ -688,7 +688,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
             Get In Touch
           </span>
           
-          <h2 className="font-serif text-[42px] sm:text-[52px] md:text-[68px] font-medium leading-[1.15] text-slate-900 tracking-tight mb-6 max-w-3xl">
+          <h2 className="font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-medium leading-[1.15] text-slate-900 tracking-tight mb-6 max-w-3xl">
             Ready to transform <br />
             your business <br />
             <span className="text-[#1b5ea3] font-medium">digitally?</span>

@@ -159,7 +159,7 @@ const Marketing: React.FC<MarketingProps> = ({ navigateToContact }) => {
       <section className="w-full min-h-[calc(100vh-6rem)] bg-white text-slate-900 flex flex-col justify-center items-center py-12">
         <div className="max-w-4xl mx-auto px-6 flex flex-col items-center text-center">
           <span className="text-[15px] font-semibold tracking-wide text-slate-500 mb-5 uppercase font-sans">Get In Touch</span>
-          <h2 className="font-serif text-[42px] sm:text-[52px] md:text-[68px] font-medium leading-[1.15] text-slate-900 tracking-tight mb-6 max-w-3xl">Ready to transform <br/>your business <br/><span className="text-[#1b5ea3] font-medium">digitally?</span></h2>
+          <h2 className="font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-medium leading-[1.15] text-slate-900 tracking-tight mb-6 max-w-3xl">Ready to transform <br/>your business <br/><span className="text-[#1b5ea3] font-medium">digitally?</span></h2>
           <p className="font-sans text-[16px] sm:text-[17px] leading-relaxed text-slate-500 max-w-2xl mb-10">Let us architect the digital infrastructure your business deserves.</p>
           <button onClick={() => navigateToContact(1)} className="bg-[#1b5ea3] hover:bg-blue-800 text-white px-9 py-4 rounded-full text-[15px] font-semibold flex items-center gap-2.5 transition-colors cursor-pointer shadow-md">
             Contact Us

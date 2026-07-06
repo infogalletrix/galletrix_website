@@ -130,7 +130,7 @@ const Contact: React.FC<ContactProps> = () => {
           </span>
 
           {/* Heading */}
-          <h1 className="font-serif text-[42px] sm:text-[52px] md:text-[68px] font-bold leading-[1.12] text-white tracking-tight mb-8 max-w-4xl">
+          <h1 className="font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-bold leading-[1.12] text-white tracking-tight mb-8 max-w-4xl">
             Let's Build Together
           </h1>
 
@@ -159,7 +159,7 @@ const Contact: React.FC<ContactProps> = () => {
           <div className="lg:col-span-5 space-y-6">
             {/* Ready Card */}
             <div className="border border-slate-800/80 bg-slate-950/20 p-8 rounded-2xl">
-              <h2 className="font-serif text-[28px] md:text-[32px] font-medium leading-tight text-white mb-4">
+              <h2 className="font-serif text-[24px] md:text-[32px] font-medium leading-tight text-white mb-4">
                 Ready to transform your business?
               </h2>
               <p className="text-slate-400 text-[15px] leading-relaxed mb-8">
@@ -225,7 +225,7 @@ const Contact: React.FC<ContactProps> = () => {
 
           {/* Right Side: Message Form */}
           <div className="lg:col-span-7 space-y-8">
-            <h2 className="font-serif text-[28px] md:text-[34px] font-medium text-white">
+            <h2 className="font-serif text-[24px] md:text-[34px] font-medium text-white">
               Send US a Message
             </h2>
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -395,7 +395,7 @@ const Contact: React.FC<ContactProps> = () => {
             Get In Touch
           </span>
           
-          <h2 className="font-serif text-[42px] sm:text-[52px] md:text-[68px] font-medium leading-[1.15] text-[#07080a] tracking-tight mb-6 max-w-3xl">
+          <h2 className="font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-medium leading-[1.15] text-[#07080a] tracking-tight mb-6 max-w-3xl">
             Ready to transform <br />
             your business <br />
             <span className="text-[#1b5ea3] font-medium">digitally?</span>
