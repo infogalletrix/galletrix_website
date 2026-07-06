@@ -1,5 +1,5 @@
 import React from 'react'
-import logoImg from '../assets/logog.png'
+import logoImg from '../assets/letter_logo_nav.png'
 import type { ViewState } from '../types'
 
 interface NavbarProps {
@@ -56,8 +56,8 @@ const Navbar: React.FC<NavbarProps> = ({ view, setView, navigateToContact }) => 
   return (
     <header className={`w-full fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled 
-        ? 'bg-[#07080a]/80 backdrop-blur-md border-b border-slate-900/80 shadow-lg' 
-        : 'bg-[#07080a] border-b border-transparent'
+        ? 'bg-black border-b border-slate-900/80 shadow-lg' 
+        : 'bg-transparent border-b border-transparent'
     }`}>
       <div className="w-full px-6 md:px-12 lg:px-16 h-24 flex items-center justify-between">
         

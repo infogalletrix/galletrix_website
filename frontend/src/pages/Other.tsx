@@ -15,8 +15,43 @@ interface OtherProps {
   navigateToContact: (page: 1 | 2 | 3) => void;
 }
 
+const heroSentences = [
+  <React.Fragment key="1">We build systems that <span className="text-[#cc6f2a] transition-colors duration-700">move business forward</span></React.Fragment>,
+  <React.Fragment key="2"><span className="text-[#cc6f2a] transition-colors duration-700">UI/UX</span> Design</React.Fragment>,
+  <React.Fragment key="3"><span className="text-[#cc6f2a] transition-colors duration-700">Web Application</span> Development</React.Fragment>,
+  <React.Fragment key="4"><span className="text-[#cc6f2a] transition-colors duration-700">Mobile App</span> Development</React.Fragment>,
+  <React.Fragment key="5"><span className="text-[#cc6f2a] transition-colors duration-700">ERP & CRM</span> Solutions</React.Fragment>,
+  <React.Fragment key="6"><span className="text-[#cc6f2a] transition-colors duration-700">Digital</span> Marketing</React.Fragment>
+]
+
+const testimonialsData = [
+  {
+    quote: "Galletrix’s Billing Solutions completely transformed our revenue cycle. We’ve seen a 30% reduction in late payments thanks to their automation.",
+    initials: "SJ",
+    name: "Ganesh",
+    company: "Novel Interiors",
+    color: "bg-[#7a1a1c]"
+  },
+  {
+    quote: "The custom ERP system they built for us streamlined our entire supply chain. Our team's productivity has skyrocketed.",
+    initials: "MR",
+    name: "Meera Reddy",
+    company: "Logix Solutions",
+    color: "bg-[#1b5ea3]"
+  },
+  {
+    quote: "Outstanding web application development. The user experience is flawless, and it has significantly boosted our customer engagement.",
+    initials: "AK",
+    name: "Arjun Kumar",
+    company: "RetailTech Inc.",
+    color: "bg-[#cc6f2a]"
+  }
+];
+
 const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
   const [projects, setProjects] = useState<Project[]>([])
+  const [textIndex, setTextIndex] = useState(0)
+  const [fade, setFade] = useState(true)
 
   // Scroll-linked parallax refs
   const scrollRef1 = useRef<HTMLDivElement>(null)
@@ -54,18 +89,68 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
     setProjects(featured.slice(0, 6))
   }, [])
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade(false)
+      setTimeout(() => {
+        setTextIndex((prev) => (prev + 1) % heroSentences.length)
+        setFade(true)
+      }, 500)
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <>
       {/* Page 1: Hero Section (v.mp4) */}
-      <section id="other-page" className="w-full h-[calc(100vh-6rem)] mt-24 relative bg-[#07080a] flex items-center justify-center overflow-hidden animate-fade-in">
-        <video 
-          src={vMp4} 
-          autoPlay 
-          loop 
-          muted 
-          playsInline 
-          className="w-full h-full object-fill"
-        />
+      <section id="other-page" className="w-full h-screen relative bg-[#07080a] flex items-center justify-center overflow-hidden animate-fade-in">
+        {/* Background Video */}
+        <div className="absolute inset-0 z-0">
+          <video 
+            src={vMp4} 
+            autoPlay 
+            loop 
+            muted 
+            playsInline 
+            className="w-full h-full object-cover opacity-10"
+          />
+        </div>
+        
+        {/* Overlay Content */}
+        <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 mt-16 w-full max-w-6xl mx-auto">
+          {/* Animated Text */}
+          <div className="h-32 md:h-40 flex items-center justify-center w-full">
+            <h1 className={`text-[36px] sm:text-[48px] md:text-[64px] lg:text-[76px] font-serif font-bold text-white/70 transition-all duration-700 ease-in-out ${
+              fade ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}>
+              {heroSentences[textIndex]}
+            </h1>
+          </div>
+          
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-5 mt-32 md:mt-40 w-full transition-opacity duration-1000 ease-in delay-300 opacity-100">
+            <a 
+              href="#services"
+              onClick={(e) => {
+                e.preventDefault()
+                setView('services')
+              }}
+              className="bg-[#cc6f2a] hover:bg-[#b86120] text-white px-8 py-4 rounded-full text-[15px] md:text-[16px] font-semibold transition-all duration-300 shadow-lg hover:scale-105 min-w-[200px]"
+            >
+              Explore Services
+            </a>
+            <a 
+              href="#contact-page-2"
+              onClick={(e) => {
+                e.preventDefault()
+                navigateToContact(2)
+              }}
+              className="bg-transparent border border-white/40 hover:border-white hover:bg-white/10 text-white px-8 py-4 rounded-full text-[15px] md:text-[16px] font-semibold transition-all duration-300 shadow-lg hover:scale-105 min-w-[200px]"
+            >
+              Book Free Consultation
+            </a>
+          </div>
+        </div>
       </section>
 
       {/* Page 2: Who We Are Section */}
@@ -429,7 +514,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
                 alt="" 
                 className="w-full h-full object-cover object-center"
               />
-              <div className="absolute inset-0 bg-blue-950/20 mix-blend-multiply" />
+              <div className="absolute inset-0 bg-black/20 mix-blend-multiply" />
             </div>
 
             {/* Content (Title, Description, CTA Buttons) */}
@@ -547,7 +632,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
 
           {/* Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 w-full">
-            {[...Array(3)].map((_, idx) => (
+            {testimonialsData.map((t, idx) => (
               <div key={idx} className="bg-white text-slate-800 p-8 md:p-10 rounded-[28px] shadow-2xl flex flex-col justify-between min-h-[340px] hover:scale-[1.01] transition-all duration-300 relative">
                 <div className="space-y-6">
                   {/* Top Row: Stars and Quote Mark */}
@@ -569,24 +654,24 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
 
                   {/* Testimonial text */}
                   <p className="font-sans text-[15px] sm:text-[16px] leading-[1.65] text-slate-700">
-                    “Galletrix’s Billing Solutions completely transformed our revenue cycle. We’ve seen a 30% reduction in late payments thanks to their automation.”
+                    “{t.quote}”
                   </p>
                 </div>
 
                 {/* Bottom Profile Row */}
                 <div className="flex items-center gap-4 mt-6">
                   {/* Avatar circular badge */}
-                  <div className="w-12 h-12 rounded-full bg-[#7a1a1c] flex items-center justify-center text-white font-bold text-[15px] shadow-sm select-none">
-                    SJ
+                  <div className={`w-12 h-12 rounded-full ${t.color} flex items-center justify-center text-white font-bold text-[15px] shadow-sm select-none`}>
+                    {t.initials}
                   </div>
 
                   {/* Name & Title */}
                   <div className="flex flex-col">
                     <span className="text-[16px] font-semibold text-[#07080a]">
-                      Ganesh
+                      {t.name}
                     </span>
                     <span className="text-[13px] font-medium text-slate-400">
-                      Novel Interiors
+                      {t.company}
                     </span>
                   </div>
                 </div>

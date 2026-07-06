@@ -35,7 +35,7 @@ const Web: React.FC<WebProps> = ({ navigateToContact }) => {
                 alt="Web Application Development" 
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#021627]/60 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-black/60 to-transparent"></div>
             </div>
           </div>
         </div>
@@ -73,7 +73,7 @@ const Web: React.FC<WebProps> = ({ navigateToContact }) => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
               {/* Card 1: Custom Web Applications */}
-              <div className="border border-[#022e54]/80 bg-[#021627]/40 p-8 rounded-[24px] flex flex-col justify-start text-left items-start hover:border-blue-800/40 hover:bg-[#021627]/60 transition-all duration-300 hover:scale-[1.01]">
+              <div className="border border-[#022e54]/80 bg-black/40 p-8 rounded-[24px] flex flex-col justify-start text-left items-start hover:border-blue-800/40 hover:bg-black/60 transition-all duration-300 hover:scale-[1.01]">
                 <div className="w-12 h-12 rounded-[14px] bg-[#02223c]/60 flex items-center justify-center text-[#539be2] mb-6">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
                 </div>
@@ -81,7 +81,7 @@ const Web: React.FC<WebProps> = ({ navigateToContact }) => {
                 <p className="font-sans text-[14px] sm:text-[15px] leading-relaxed text-slate-400">Tailored web platforms built to solve specific business challenges and support growth.</p>
               </div>
               {/* Card 2: Admin Dashboards */}
-              <div className="border border-[#022e54]/80 bg-[#021627]/40 p-8 rounded-[24px] flex flex-col justify-start text-left items-start hover:border-blue-800/40 hover:bg-[#021627]/60 transition-all duration-300 hover:scale-[1.01]">
+              <div className="border border-[#022e54]/80 bg-black/40 p-8 rounded-[24px] flex flex-col justify-start text-left items-start hover:border-blue-800/40 hover:bg-black/60 transition-all duration-300 hover:scale-[1.01]">
                 <div className="w-12 h-12 rounded-[14px] bg-[#02223c]/60 flex items-center justify-center text-[#539be2] mb-6">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>
                 </div>
@@ -89,7 +89,7 @@ const Web: React.FC<WebProps> = ({ navigateToContact }) => {
                 <p className="font-sans text-[14px] sm:text-[15px] leading-relaxed text-slate-400">Powerful admin panels to manage content, users, data, and business operations.</p>
               </div>
               {/* Card 3: Responsive Design */}
-              <div className="border border-[#022e54]/80 bg-[#021627]/40 p-8 rounded-[24px] flex flex-col justify-start text-left items-start hover:border-blue-800/40 hover:bg-[#021627]/60 transition-all duration-300 hover:scale-[1.01]">
+              <div className="border border-[#022e54]/80 bg-black/40 p-8 rounded-[24px] flex flex-col justify-start text-left items-start hover:border-blue-800/40 hover:bg-black/60 transition-all duration-300 hover:scale-[1.01]">
                 <div className="w-12 h-12 rounded-[14px] bg-[#02223c]/60 flex items-center justify-center text-[#539be2] mb-6">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
                 </div>
@@ -97,7 +97,7 @@ const Web: React.FC<WebProps> = ({ navigateToContact }) => {
                 <p className="font-sans text-[14px] sm:text-[15px] leading-relaxed text-slate-400">Pixel-perfect interfaces that work flawlessly across desktop, tablet, and mobile devices.</p>
               </div>
               {/* Card 4: Secure Architecture */}
-              <div className="border border-[#022e54]/80 bg-[#021627]/40 p-8 rounded-[24px] flex flex-col justify-start text-left items-start hover:border-blue-800/40 hover:bg-[#021627]/60 transition-all duration-300 hover:scale-[1.01]">
+              <div className="border border-[#022e54]/80 bg-black/40 p-8 rounded-[24px] flex flex-col justify-start text-left items-start hover:border-blue-800/40 hover:bg-black/60 transition-all duration-300 hover:scale-[1.01]">
                 <div className="w-12 h-12 rounded-[14px] bg-[#02223c]/60 flex items-center justify-center text-[#539be2] mb-6">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
                 </div>
@@ -105,7 +105,7 @@ const Web: React.FC<WebProps> = ({ navigateToContact }) => {
                 <p className="font-sans text-[14px] sm:text-[15px] leading-relaxed text-slate-400">Enterprise-grade security with encrypted data, authentication, and access controls.</p>
               </div>
               {/* Card 5: API Integration */}
-              <div className="border border-[#022e54]/80 bg-[#021627]/40 p-8 rounded-[24px] flex flex-col justify-start text-left items-start hover:border-blue-800/40 hover:bg-[#021627]/60 transition-all duration-300 hover:scale-[1.01]">
+              <div className="border border-[#022e54]/80 bg-black/40 p-8 rounded-[24px] flex flex-col justify-start text-left items-start hover:border-blue-800/40 hover:bg-black/60 transition-all duration-300 hover:scale-[1.01]">
                 <div className="w-12 h-12 rounded-[14px] bg-[#02223c]/60 flex items-center justify-center text-[#539be2] mb-6">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>
                 </div>
@@ -113,7 +113,7 @@ const Web: React.FC<WebProps> = ({ navigateToContact }) => {
                 <p className="font-sans text-[14px] sm:text-[15px] leading-relaxed text-slate-400">Seamless integration with third-party services, payment gateways, and business tools.</p>
               </div>
               {/* Card 6: Performance Optimization */}
-              <div className="border border-[#022e54]/80 bg-[#021627]/40 p-8 rounded-[24px] flex flex-col justify-start text-left items-start hover:border-blue-800/40 hover:bg-[#021627]/60 transition-all duration-300 hover:scale-[1.01]">
+              <div className="border border-[#022e54]/80 bg-black/40 p-8 rounded-[24px] flex flex-col justify-start text-left items-start hover:border-blue-800/40 hover:bg-black/60 transition-all duration-300 hover:scale-[1.01]">
                 <div className="w-12 h-12 rounded-[14px] bg-[#02223c]/60 flex items-center justify-center text-[#539be2] mb-6">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                 </div>
@@ -146,7 +146,7 @@ const Web: React.FC<WebProps> = ({ navigateToContact }) => {
                 "Better customer engagement",
                 "Easy business management"
               ].map((benefit, i) => (
-                <div key={i} className="border border-[#022e54]/80 bg-[#021627]/40 px-6 py-5 rounded-[18px] flex items-center gap-4 hover:border-blue-800/40 hover:bg-[#021627]/60 transition-all duration-300">
+                <div key={i} className="border border-[#022e54]/80 bg-black/40 px-6 py-5 rounded-[18px] flex items-center gap-4 hover:border-blue-800/40 hover:bg-black/60 transition-all duration-300">
                   <svg className="w-6 h-6 text-[#539be2] flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75" /></svg>
                   <span className="font-sans text-[16px] sm:text-[17px] font-medium text-slate-200">{benefit}</span>
                 </div>
@@ -178,7 +178,7 @@ const Web: React.FC<WebProps> = ({ navigateToContact }) => {
                   <div className="w-11 h-11 rounded-full border border-[#539be2]/60 bg-[#07080a] flex items-center justify-center text-[#539be2] font-semibold text-[16px] shadow-[0_0_15px_rgba(83,155,226,0.15)] select-none">
                     {item.step}
                   </div>
-                  <div className="w-full border border-[#022e54]/80 bg-[#021627]/40 px-4 py-4 rounded-[18px] min-h-[96px] flex items-center justify-center hover:border-blue-800/40 hover:bg-[#021627]/60 transition-all duration-300">
+                  <div className="w-full border border-[#022e54]/80 bg-black/40 px-4 py-4 rounded-[18px] min-h-[96px] flex items-center justify-center hover:border-blue-800/40 hover:bg-black/60 transition-all duration-300">
                     <p className="font-sans text-[13px] sm:text-[14px] leading-relaxed font-medium text-slate-200">
                       {item.text}
                     </p>

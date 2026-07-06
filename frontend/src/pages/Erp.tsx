@@ -44,7 +44,7 @@ const Erp: React.FC<ErpProps> = ({ navigateToContact }) => {
       </section>
 
       {/* Page 2: ERP Overview & Capabilities */}
-      <section id="erp-page-2" className="w-full bg-gradient-to-b from-[#000000] to-[#021627] py-24 md:py-32 lg:py-40 border-t border-slate-900/60 min-h-screen flex items-center">
+      <section id="erp-page-2" className="w-full bg-gradient-to-b from-[#000000] to-black py-24 md:py-32 lg:py-40 border-t border-slate-900/60 min-h-screen flex items-center">
         <div className="max-w-7xl mx-auto px-6 md:px-12 w-full flex flex-col animate-fade-in">
           {/* Top Grid: Overview */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 w-full mb-32 items-start">
@@ -76,7 +76,7 @@ const Erp: React.FC<ErpProps> = ({ navigateToContact }) => {
           {/* Grid of 6 Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 w-full">
             {/* Card 1: Employee Management */}
-            <div className="border border-[#022e54]/80 bg-[#021627]/40 p-8 rounded-[24px] flex flex-col justify-start text-left items-start hover:border-blue-800/40 hover:bg-[#021627]/60 transition-all duration-300 hover:scale-[1.01]">
+            <div className="border border-[#022e54]/80 bg-black/40 p-8 rounded-[24px] flex flex-col justify-start text-left items-start hover:border-blue-800/40 hover:bg-black/60 transition-all duration-300 hover:scale-[1.01]">
               <div className="w-12 h-12 rounded-[14px] bg-[#02223c]/60 flex items-center justify-center text-[#539be2] mb-6">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a6 6 0 00-10.8 0M12 10a4 4 0 100-8 4 4 0 000 8z" />
@@ -91,7 +91,7 @@ const Erp: React.FC<ErpProps> = ({ navigateToContact }) => {
             </div>
 
             {/* Card 2: Department Management */}
-            <div className="border border-[#022e54]/80 bg-[#021627]/40 p-8 rounded-[24px] flex flex-col justify-start text-left items-start hover:border-blue-800/40 hover:bg-[#021627]/60 transition-all duration-300 hover:scale-[1.01]">
+            <div className="border border-[#022e54]/80 bg-black/40 p-8 rounded-[24px] flex flex-col justify-start text-left items-start hover:border-blue-800/40 hover:bg-black/60 transition-all duration-300 hover:scale-[1.01]">
               <div className="w-12 h-12 rounded-[14px] bg-[#02223c]/60 flex items-center justify-center text-[#539be2] mb-6">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
@@ -106,7 +106,7 @@ const Erp: React.FC<ErpProps> = ({ navigateToContact }) => {
             </div>
 
             {/* Card 3: Payroll & Attendance */}
-            <div className="border border-[#022e54]/80 bg-[#021627]/40 p-8 rounded-[24px] flex flex-col justify-start text-left items-start hover:border-blue-800/40 hover:bg-[#021627]/60 transition-all duration-300 hover:scale-[1.01]">
+            <div className="border border-[#022e54]/80 bg-black/40 p-8 rounded-[24px] flex flex-col justify-start text-left items-start hover:border-blue-800/40 hover:bg-black/60 transition-all duration-300 hover:scale-[1.01]">
               <div className="w-12 h-12 rounded-[14px] bg-[#02223c]/60 flex items-center justify-center text-[#539be2] mb-6">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.22.029a3.075 3.075 0 002.456-1.047 3.072 3.072 0 00-.724-4.226l-.08-.057a3.075 3.075 0 01-1.047-2.456 3.072 3.072 0 014.226.724l.057.08m-3 12.905l.321-.016A3.073 3.073 0 0015 15.031a3.071 3.071 0 00-.759-4.214l-.067-.048a3.075 3.075 0 01-1.048-2.456 3.072 3.072 0 014.214.759l.048.067" />
@@ -121,7 +121,7 @@ const Erp: React.FC<ErpProps> = ({ navigateToContact }) => {
             </div>
 
             {/* Card 4: Workflow Tracking */}
-            <div className="border border-[#022e54]/80 bg-[#021627]/40 p-8 rounded-[24px] flex flex-col justify-start text-left items-start hover:border-blue-800/40 hover:bg-[#021627]/60 transition-all duration-300 hover:scale-[1.01]">
+            <div className="border border-[#022e54]/80 bg-black/40 p-8 rounded-[24px] flex flex-col justify-start text-left items-start hover:border-blue-800/40 hover:bg-black/60 transition-all duration-300 hover:scale-[1.01]">
               <div className="w-12 h-12 rounded-[14px] bg-[#02223c]/60 flex items-center justify-center text-[#539be2] mb-6">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.64a3 3 0 110-5.28 3 3 0 010 5.28zM6 10.64a3 3 0 110-5.28 3 3 0 010 5.28zM18 6.64a3 3 0 110-5.28 3 3 0 010 5.28z" />
@@ -137,7 +137,7 @@ const Erp: React.FC<ErpProps> = ({ navigateToContact }) => {
             </div>
 
             {/* Card 5: Role-Based Access */}
-            <div className="border border-[#022e54]/80 bg-[#021627]/40 p-8 rounded-[24px] flex flex-col justify-start text-left items-start hover:border-blue-800/40 hover:bg-[#021627]/60 transition-all duration-300 hover:scale-[1.01]">
+            <div className="border border-[#022e54]/80 bg-black/40 p-8 rounded-[24px] flex flex-col justify-start text-left items-start hover:border-blue-800/40 hover:bg-black/60 transition-all duration-300 hover:scale-[1.01]">
               <div className="w-12 h-12 rounded-[14px] bg-[#02223c]/60 flex items-center justify-center text-[#539be2] mb-6">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
@@ -152,7 +152,7 @@ const Erp: React.FC<ErpProps> = ({ navigateToContact }) => {
             </div>
 
             {/* Card 6: Reports & Analytics */}
-            <div className="border border-[#022e54]/80 bg-[#021627]/40 p-8 rounded-[24px] flex flex-col justify-start text-left items-start hover:border-blue-800/40 hover:bg-[#021627]/60 transition-all duration-300 hover:scale-[1.01]">
+            <div className="border border-[#022e54]/80 bg-black/40 p-8 rounded-[24px] flex flex-col justify-start text-left items-start hover:border-blue-800/40 hover:bg-black/60 transition-all duration-300 hover:scale-[1.01]">
               <div className="w-12 h-12 rounded-[14px] bg-[#02223c]/60 flex items-center justify-center text-[#539be2] mb-6">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
@@ -194,7 +194,7 @@ const Erp: React.FC<ErpProps> = ({ navigateToContact }) => {
             ].map((benefit, i) => (
               <div 
                 key={i} 
-                className="border border-[#022e54]/80 bg-[#021627]/40 px-6 py-5 rounded-[18px] flex items-center gap-4 hover:border-blue-800/40 hover:bg-[#021627]/60 transition-all duration-300"
+                className="border border-[#022e54]/80 bg-black/40 px-6 py-5 rounded-[18px] flex items-center gap-4 hover:border-blue-800/40 hover:bg-black/60 transition-all duration-300"
               >
                 {/* Checkmark outline SVG */}
                 <svg className="w-6 h-6 text-[#539be2] flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
@@ -239,7 +239,7 @@ const Erp: React.FC<ErpProps> = ({ navigateToContact }) => {
                   </div>
 
                   {/* Text Pill Box */}
-                  <div className="w-full border border-[#022e54]/80 bg-[#021627]/40 px-4 py-4 rounded-[18px] min-h-[96px] flex items-center justify-center hover:border-blue-800/40 hover:bg-[#021627]/60 transition-all duration-300">
+                  <div className="w-full border border-[#022e54]/80 bg-black/40 px-4 py-4 rounded-[18px] min-h-[96px] flex items-center justify-center hover:border-blue-800/40 hover:bg-black/60 transition-all duration-300">
                     <p className="font-sans text-[13px] sm:text-[14px] leading-relaxed font-medium text-slate-200">
                       {item.text}
                     </p>

@@ -156,6 +156,9 @@ function App() {
   useEffect(() => {
     if (view !== 'contact') {
       window.scrollTo(0, 0)
+      // Force scroll to top to override native browser hash navigation
+      const timers = [10, 50, 100].map(t => setTimeout(() => window.scrollTo(0, 0), t))
+      return () => timers.forEach(clearTimeout)
     }
   }, [view])
 

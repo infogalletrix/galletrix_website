@@ -38,7 +38,7 @@ const LogisticsSupplyChain: React.FC<LogisticsSupplyChainProps> = ({ navigateToC
                 alt="Logistics & Supply Chain Solutions" 
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#021627]/60 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-black/60 to-transparent"></div>
             </div>
           </div>
         </div>

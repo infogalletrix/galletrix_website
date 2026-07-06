@@ -117,7 +117,7 @@ const Careers: React.FC<CareersProps> = ({ navigateToContact }) => {
           {/* Right Column: Pill Cards */}
           <div className="flex flex-col justify-center gap-6">
             {/* Card 1 */}
-            <div className="border border-[#022e54]/80 bg-[#021627]/40 p-6 rounded-[24px] flex items-center gap-6 hover:border-blue-800/40 hover:bg-[#021627]/60 transition-all duration-300">
+            <div className="border border-[#022e54]/80 bg-black/40 p-6 rounded-[24px] flex items-center gap-6 hover:border-blue-800/40 hover:bg-black/60 transition-all duration-300">
               <div className="w-12 h-12 rounded-[14px] bg-[#02223c]/60 flex items-center justify-center text-[#539be2] shrink-0">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
@@ -126,7 +126,7 @@ const Careers: React.FC<CareersProps> = ({ navigateToContact }) => {
               <span className="font-sans text-[17px] sm:text-[18px] font-semibold text-white tracking-tight">Collaborative Team</span>
             </div>
             {/* Card 2 */}
-            <div className="border border-[#022e54]/80 bg-[#021627]/40 p-6 rounded-[24px] flex items-center gap-6 hover:border-blue-800/40 hover:bg-[#021627]/60 transition-all duration-300">
+            <div className="border border-[#022e54]/80 bg-black/40 p-6 rounded-[24px] flex items-center gap-6 hover:border-blue-800/40 hover:bg-black/60 transition-all duration-300">
               <div className="w-12 h-12 rounded-[14px] bg-[#02223c]/60 flex items-center justify-center text-[#539be2] shrink-0">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
@@ -135,7 +135,7 @@ const Careers: React.FC<CareersProps> = ({ navigateToContact }) => {
               <span className="font-sans text-[17px] sm:text-[18px] font-semibold text-white tracking-tight">Modern Work Culture</span>
             </div>
             {/* Card 3 */}
-            <div className="border border-[#022e54]/80 bg-[#021627]/40 p-6 rounded-[24px] flex items-center gap-6 hover:border-blue-800/40 hover:bg-[#021627]/60 transition-all duration-300">
+            <div className="border border-[#022e54]/80 bg-black/40 p-6 rounded-[24px] flex items-center gap-6 hover:border-blue-800/40 hover:bg-black/60 transition-all duration-300">
               <div className="w-12 h-12 rounded-[14px] bg-[#02223c]/60 flex items-center justify-center text-[#539be2] shrink-0">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -180,7 +180,7 @@ const Careers: React.FC<CareersProps> = ({ navigateToContact }) => {
                   </div>
 
                   {/* Text Pill Box */}
-                  <div className="w-full border border-[#022e54]/80 bg-[#021627]/40 px-5 py-6 rounded-[18px] min-h-[140px] flex flex-col items-center justify-start hover:border-blue-800/40 hover:bg-[#021627]/60 transition-all duration-300">
+                  <div className="w-full border border-[#022e54]/80 bg-black/40 px-5 py-6 rounded-[18px] min-h-[140px] flex flex-col items-center justify-start hover:border-blue-800/40 hover:bg-black/60 transition-all duration-300">
                     <h4 className="font-sans text-[16px] sm:text-[17px] font-semibold text-white tracking-tight mb-2">
                       {item.title}
                     </h4>
@@ -214,7 +214,7 @@ const Careers: React.FC<CareersProps> = ({ navigateToContact }) => {
               ].map((value, i) => (
                 <div 
                   key={i} 
-                  className="border border-[#022e54]/80 bg-[#021627]/40 px-6 py-5 rounded-[18px] flex items-center gap-4 hover:border-blue-800/40 hover:bg-[#021627]/60 transition-all duration-300"
+                  className="border border-[#022e54]/80 bg-black/40 px-6 py-5 rounded-[18px] flex items-center gap-4 hover:border-blue-800/40 hover:bg-black/60 transition-all duration-300"
                 >
                   {/* Checkmark outline SVG */}
                   <svg className="w-6 h-6 text-[#539be2] flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
