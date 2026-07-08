@@ -25,7 +25,7 @@ services:
     container_name: galletrix_backend
     restart: always
     ports:
-      - "5252:5000"
+      - "5252:5007"
     environment:
       - ConnectionStrings__DefaultConnection=Server=db;Port=3306;Database=galletrix_db;User=root;Password=root_password;
     depends_on:

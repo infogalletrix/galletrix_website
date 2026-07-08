@@ -15,8 +15,8 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
 COPY --from=build /app .
 
-# Expose port 5000 for network communication
-EXPOSE 5000
+# Expose port 5007 for network communication
+EXPOSE 5007
 
 # Start the application
 ENTRYPOINT ["dotnet", "backend.dll"]

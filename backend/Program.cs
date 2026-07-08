@@ -82,5 +82,5 @@ catch (Exception ex)
 app.UseAuthorization();
 app.MapControllers();
 
-// Listen on all network interfaces inside container on port 5000
-app.Run("http://0.0.0.0:5000");
+var url = Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? "http://0.0.0.0:5007";
+app.Run(url);
