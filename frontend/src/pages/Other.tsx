@@ -279,7 +279,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
               ref={img1Ref}
               src={l3Img} 
               alt="Built to solve real business problems" 
-              className="absolute inset-0 w-full h-full object-cover object-center z-10"
+              className="absolute inset-0 w-full h-full object-contain md:object-cover object-center z-10"
             />
             
             {/* Image 2 (Overlays Image 1) */}
@@ -287,7 +287,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
               ref={img2Ref}
               src={g3Img} 
               alt="Workflow Solution" 
-              className="absolute inset-0 w-full h-full object-cover object-center z-20 will-change-transform"
+              className="absolute inset-0 w-full h-full object-contain md:object-cover object-center z-20 will-change-transform"
               style={{ transform: 'translate3d(0, 100%, 0)', opacity: 0 }}
             />
 
@@ -298,8 +298,8 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
               autoPlay 
               loop 
               muted 
-              playsInline 
-              className="absolute inset-0 w-full h-full object-cover object-center z-30 will-change-transform"
+              playsInline
+              className="absolute inset-0 w-full h-full object-contain md:object-cover object-center z-30 will-change-transform"
               style={{ transform: 'translate3d(0, 100%, 0)', opacity: 0 }}
             />
           </div>

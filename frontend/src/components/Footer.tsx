@@ -49,7 +49,7 @@ const Footer: React.FC<FooterProps> = ({ setView, navigateToContact }) => {
           </div>
 
           {/* Links Columns */}
-          <div className="col-span-12 md:col-span-6 lg:col-span-4 grid grid-cols-3 gap-4 md:gap-6">
+          <div className="col-span-12 md:col-span-6 lg:col-span-4 grid grid-cols-2 sm:grid-cols-3 gap-8 md:gap-6">
             {/* SOLUTIONS */}
             <div className="space-y-5">
               <h3 className="text-white text-[13px] font-bold tracking-wider uppercase">
