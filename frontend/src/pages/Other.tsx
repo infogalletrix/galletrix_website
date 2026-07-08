@@ -272,7 +272,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
           {/* The Pinned Container - controlled height to prevent taking up the whole screen */}
           <div 
             ref={stickyContainerRef} 
-            className="w-full max-w-6xl mx-auto relative h-[65vh] md:h-[85vh] max-h-[850px] rounded-[24px] md:rounded-[32px] overflow-hidden border border-white/20 shadow-2xl bg-black will-change-transform"
+            className="w-full max-w-6xl mx-auto relative aspect-video md:aspect-auto md:h-[85vh] max-h-[850px] rounded-[24px] md:rounded-[32px] overflow-hidden border border-white/20 shadow-2xl bg-black will-change-transform"
           >
             {/* Image 1 */}
             <img loading="lazy" 

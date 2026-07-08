@@ -99,8 +99,10 @@ const Footer: React.FC<FooterProps> = ({ setView, navigateToContact }) => {
               <iframe
                 title="Galletrix Innovations Location Map"
                 src="https://maps.google.com/maps?q=GOG%20Tower,%20Kazhakkoottam,%20Thiruvananthapuram,%20Kerala%20695582&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                className="absolute inset-0 w-full h-full border-0 filter invert grayscale opacity-70 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-300"
+                className="absolute inset-0 w-full h-full max-w-full box-border border-0 filter invert grayscale opacity-70 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-300"
                 allowFullScreen
+                width="100%"
+                height="100%"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               ></iframe>

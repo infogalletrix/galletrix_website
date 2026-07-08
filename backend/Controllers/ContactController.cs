@@ -35,9 +35,11 @@ namespace backend.Controllers
             _context.ContactSubmissions.Add(submission);
             await _context.SaveChangesAsync();
 
-            // Try to send email notification
-            try
+            // Try to send email notification in the background
+            _ = Task.Run(() =>
             {
+                try
+                {
                 var smtpHost = _configuration["SmtpSettings:Host"];
                 var smtpPortStr = _configuration["SmtpSettings:Port"];
                 var smtpUser = _configuration["SmtpSettings:Username"];
@@ -91,6 +93,7 @@ namespace backend.Controllers
                     Console.WriteLine($"Inner Exception: {ex.InnerException.Message}");
                 }
             }
+            });
 
             return Ok(new { message = "Message submitted successfully!", id = submission.Id });
         }
