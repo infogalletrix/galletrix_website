@@ -12,10 +12,10 @@ const Services: React.FC<ServicesProps> = ({ setView, navigateToContact }) => {
   return (
     <>
       {/* Services Section with desktop background image overlay */}
-      <section id="services" className="w-full relative lg:aspect-[3/2] bg-[#07080a] flex flex-col justify-between lg:justify-center min-h-[calc(100vh-6rem)] lg:min-h-0 animate-fade-in">
+      <section id="services" className="w-full relative lg:aspect-[3/2] bg-black flex flex-col justify-between lg:justify-center min-h-[calc(100vh-6rem)] lg:min-h-0 animate-fade-in">
         {/* Desktop Background Image */}
         <div className="absolute inset-0 hidden lg:block">
-          <img 
+          <img loading="lazy" 
             src={servicesImg} 
             alt="Galletrix Services - Precision-Engineered Digital Solutions" 
             className="w-full h-full object-cover object-center"
@@ -25,24 +25,24 @@ const Services: React.FC<ServicesProps> = ({ setView, navigateToContact }) => {
         {/* Text Content */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 py-12 flex flex-col items-start">
           {/* Subtitle */}
-          <span className="text-[15px] font-medium tracking-wide text-slate-400 mb-5">
+          <span className="text-[15px] font-medium tracking-wide text-white/50 mb-5">
             Our Services
           </span>
 
           {/* Heading */}
-          <h1 className="font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-bold leading-[1.12] text-white tracking-tight mb-8 max-w-4xl">
+          <h1 className="scroll-reveal-target font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-bold leading-[1.12] text-white tracking-tight mb-8 max-w-4xl">
             Precision-Engineered Digital Solutions
           </h1>
 
           {/* Description */}
-          <p className="font-sans text-[16px] sm:text-[18px] md:text-[19px] leading-[1.65] text-slate-400 max-w-3xl mb-14">
+          <p className="scroll-reveal-target font-sans text-[16px] sm:text-[18px] md:text-[19px] leading-[1.65] text-white max-w-3xl mb-14">
             Every service we offer is built on deep enterprise expertise, modern technology, and a commitment to results that matter.
           </p>
         </div>
 
         {/* Mobile Block Image */}
         <div className="w-full lg:hidden my-6">
-          <img 
+          <img loading="lazy" 
             src={servicesImg} 
             alt="Galletrix Services - Precision-Engineered Digital Solutions" 
             className="w-full h-auto object-cover"
@@ -51,7 +51,7 @@ const Services: React.FC<ServicesProps> = ({ setView, navigateToContact }) => {
       </section>
 
       {/* Page 2: Services Cards Grid Section */}
-      <section id="services-page-2" className="w-full bg-[#07080a] pt-16 pb-12 md:pt-24 md:pb-16 border-t border-slate-900/60">
+      <section id="services-page-2" className="w-full bg-black pt-16 pb-12 md:pt-24 md:pb-16 border-t border-slate-900/60">
         <div className="max-w-7xl mx-auto px-6 md:px-12 w-full animate-fade-in">
           {/* Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
@@ -59,17 +59,17 @@ const Services: React.FC<ServicesProps> = ({ setView, navigateToContact }) => {
             <a 
               href="#erp"
               onClick={() => setView('erp')}
-              className="block border border-slate-800/80 bg-slate-950/20 p-8 md:p-10 rounded-[24px] hover:border-[#cc6f2a] hover:bg-[#cc6f2a]/5 hover:scale-[1.01] transition-all duration-300 group cursor-pointer text-left"
+              className="block border border-white/20 bg-black p-8 md:p-10 rounded-[24px] hover:border-[#cc6f2a] hover:bg-[#cc6f2a]/5 hover:scale-[1.01] transition-all duration-300 group cursor-pointer text-left"
             >
-              <div className="text-slate-300 mb-6 group-hover:text-[#cc6f2a] transition-colors">
+              <div className="text-white mb-6 group-hover:text-[#cc6f2a] transition-colors">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4 7c0-1.657 3.582-3 8-3s8 1.343 8 3M4 7c0 1.657 3.582 3 8 3s8-1.343 8-3M4 7v10c0 1.657 3.582 3 8 3s8-1.343 8-3V7M4 12c0 1.657 3.582 3 8 3s8-1.343 8-3" />
                 </svg>
               </div>
-              <h3 className="font-sans text-[20px] md:text-[22px] font-semibold text-white tracking-tight mb-4">
+              <h3 className="scroll-reveal-target font-sans text-[20px] md:text-[22px] font-semibold text-white tracking-tight mb-4">
                 ERP Solutions
               </h3>
-              <p className="font-sans text-[14px] sm:text-[15px] leading-[1.65] text-slate-400">
+              <p className="scroll-reveal-target font-sans text-[14px] sm:text-[15px] leading-[1.65] text-white">
                 Unified enterprise resource planning systems that integrate every facet of your operations into a single, intelligent platform.
               </p>
             </a>
@@ -78,17 +78,17 @@ const Services: React.FC<ServicesProps> = ({ setView, navigateToContact }) => {
             <a 
               href="#automation" 
               onClick={() => setView('automation')} 
-              className="block border border-slate-800/80 bg-slate-950/20 p-8 md:p-10 rounded-[24px] hover:border-[#cc6f2a] hover:bg-[#cc6f2a]/5 hover:scale-[1.01] transition-all duration-300 group cursor-pointer text-left"
+              className="block border border-white/20 bg-black p-8 md:p-10 rounded-[24px] hover:border-[#cc6f2a] hover:bg-[#cc6f2a]/5 hover:scale-[1.01] transition-all duration-300 group cursor-pointer text-left"
             >
-              <div className="text-slate-300 mb-6 group-hover:text-[#cc6f2a] transition-colors">
+              <div className="text-white mb-6 group-hover:text-[#cc6f2a] transition-colors">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v4M12 10H5v4M12 10h7v4M12 10v4M10 2h4v4h-4zM3 14h4v4H3zM10 14h4v4h-4zM17 14h4v4h-4z" />
                 </svg>
               </div>
-              <h3 className="font-sans text-[20px] md:text-[22px] font-semibold text-white tracking-tight mb-4">
+              <h3 className="scroll-reveal-target font-sans text-[20px] md:text-[22px] font-semibold text-white tracking-tight mb-4">
                 Business Automation
               </h3>
-              <p className="font-sans text-[14px] sm:text-[15px] leading-[1.65] text-slate-400">
+              <p className="scroll-reveal-target font-sans text-[14px] sm:text-[15px] leading-[1.65] text-white">
                 Eliminate manual processes with intelligent automation that adapts to your workflows and scales with your growth.
               </p>
             </a>
@@ -97,18 +97,18 @@ const Services: React.FC<ServicesProps> = ({ setView, navigateToContact }) => {
             <a 
               href="#web" 
               onClick={() => setView('web')} 
-              className="block border border-slate-800/80 bg-slate-950/20 p-8 md:p-10 rounded-[24px] hover:border-[#cc6f2a] hover:bg-[#cc6f2a]/5 hover:scale-[1.01] transition-all duration-300 group cursor-pointer text-left"
+              className="block border border-white/20 bg-black p-8 md:p-10 rounded-[24px] hover:border-[#cc6f2a] hover:bg-[#cc6f2a]/5 hover:scale-[1.01] transition-all duration-300 group cursor-pointer text-left"
             >
-              <div className="text-slate-300 mb-6 group-hover:text-[#cc6f2a] transition-colors">
+              <div className="text-white mb-6 group-hover:text-[#cc6f2a] transition-colors">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                   <circle cx="12" cy="12" r="10" />
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
                 </svg>
               </div>
-              <h3 className="font-sans text-[20px] md:text-[22px] font-semibold text-white tracking-tight mb-4">
+              <h3 className="scroll-reveal-target font-sans text-[20px] md:text-[22px] font-semibold text-white tracking-tight mb-4">
                 Web Application Development
               </h3>
-              <p className="font-sans text-[14px] sm:text-[15px] leading-[1.65] text-slate-400">
+              <p className="scroll-reveal-target font-sans text-[14px] sm:text-[15px] leading-[1.65] text-white">
                 Custom-built, high-performance web applications designed for scalability, security, and exceptional user experience.
               </p>
             </a>
@@ -117,17 +117,17 @@ const Services: React.FC<ServicesProps> = ({ setView, navigateToContact }) => {
             <a 
               href="#dashboard" 
               onClick={() => setView('dashboard')} 
-              className="block border border-slate-800/80 bg-slate-950/20 p-8 md:p-10 rounded-[24px] hover:border-[#cc6f2a] hover:bg-[#cc6f2a]/5 hover:scale-[1.01] transition-all duration-300 group cursor-pointer text-left"
+              className="block border border-white/20 bg-black p-8 md:p-10 rounded-[24px] hover:border-[#cc6f2a] hover:bg-[#cc6f2a]/5 hover:scale-[1.01] transition-all duration-300 group cursor-pointer text-left"
             >
-              <div className="text-slate-300 mb-6 group-hover:text-[#cc6f2a] transition-colors">
+              <div className="text-white mb-6 group-hover:text-[#cc6f2a] transition-colors">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M18 20V10M12 20V4M6 20v-6" />
                 </svg>
               </div>
-              <h3 className="font-sans text-[20px] md:text-[22px] font-semibold text-white tracking-tight mb-4">
+              <h3 className="scroll-reveal-target font-sans text-[20px] md:text-[22px] font-semibold text-white tracking-tight mb-4">
                 Dashboard & Analytics
               </h3>
-              <p className="font-sans text-[14px] sm:text-[15px] leading-[1.65] text-slate-400">
+              <p className="scroll-reveal-target font-sans text-[14px] sm:text-[15px] leading-[1.65] text-white">
                 Real-time data visualization and business intelligence tools that transform raw data into actionable insights.
               </p>
             </a>
@@ -136,17 +136,17 @@ const Services: React.FC<ServicesProps> = ({ setView, navigateToContact }) => {
             <a 
               href="#marketing" 
               onClick={() => setView('marketing')} 
-              className="block border border-slate-800/80 bg-slate-950/20 p-8 md:p-10 rounded-[24px] hover:border-[#cc6f2a] hover:bg-[#cc6f2a]/5 hover:scale-[1.01] transition-all duration-300 group cursor-pointer text-left"
+              className="block border border-white/20 bg-black p-8 md:p-10 rounded-[24px] hover:border-[#cc6f2a] hover:bg-[#cc6f2a]/5 hover:scale-[1.01] transition-all duration-300 group cursor-pointer text-left"
             >
-              <div className="text-slate-300 mb-6 group-hover:text-[#cc6f2a] transition-colors">
+              <div className="text-white mb-6 group-hover:text-[#cc6f2a] transition-colors">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 12h3l3-9 4 18 3-12h5" />
                 </svg>
               </div>
-              <h3 className="font-sans text-[20px] md:text-[22px] font-semibold text-white tracking-tight mb-4">
+              <h3 className="scroll-reveal-target font-sans text-[20px] md:text-[22px] font-semibold text-white tracking-tight mb-4">
                 Digital Marketing
               </h3>
-              <p className="font-sans text-[14px] sm:text-[15px] leading-[1.65] text-slate-400">
+              <p className="scroll-reveal-target font-sans text-[14px] sm:text-[15px] leading-[1.65] text-white">
                 Data-driven digital marketing campaigns to grow your brand, reach audiences, and maximize online visibility.
               </p>
             </a>
@@ -155,17 +155,17 @@ const Services: React.FC<ServicesProps> = ({ setView, navigateToContact }) => {
             <a 
               href="#uiux" 
               onClick={() => setView('uiux')} 
-              className="block border border-slate-800/80 bg-slate-950/20 p-8 md:p-10 rounded-[24px] hover:border-[#cc6f2a] hover:bg-[#cc6f2a]/5 hover:scale-[1.01] transition-all duration-300 group cursor-pointer text-left"
+              className="block border border-white/20 bg-black p-8 md:p-10 rounded-[24px] hover:border-[#cc6f2a] hover:bg-[#cc6f2a]/5 hover:scale-[1.01] transition-all duration-300 group cursor-pointer text-left"
             >
-              <div className="text-slate-300 mb-6 group-hover:text-[#cc6f2a] transition-colors">
+              <div className="text-white mb-6 group-hover:text-[#cc6f2a] transition-colors">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4 7c0-1.657 3.582-3 8-3s8 1.343 8 3M4 7c0 1.657 3.582 3 8 3s8-1.343 8-3M4 7v10c0 1.657 3.582 3 8 3s8-1.343 8-3V7M4 12c0 1.657 3.582 3 8 3s8-1.343 8-3" />
                 </svg>
               </div>
-              <h3 className="font-sans text-[20px] md:text-[22px] font-semibold text-white tracking-tight mb-4">
+              <h3 className="scroll-reveal-target font-sans text-[20px] md:text-[22px] font-semibold text-white tracking-tight mb-4">
                 UI/UX Design
               </h3>
-              <p className="font-sans text-[14px] sm:text-[15px] leading-[1.65] text-slate-400">
+              <p className="scroll-reveal-target font-sans text-[14px] sm:text-[15px] leading-[1.65] text-white">
                 Clean, modern, and user-friendly digital experiences optimized for seamless interaction and engagement.
               </p>
             </a>
@@ -174,15 +174,15 @@ const Services: React.FC<ServicesProps> = ({ setView, navigateToContact }) => {
       </section>
 
       {/* Page 3: How We Work Section */}
-      <section id="services-page-3" className="w-full bg-[#07080a] pt-12 pb-24 md:pt-16 md:pb-32 lg:pt-20 lg:pb-40 border-t border-slate-900/60">
+      <section id="services-page-3" className="w-full bg-black pt-12 pb-24 md:pt-16 md:pb-32 lg:pt-20 lg:pb-40 border-t border-slate-900/60">
         <div className="max-w-7xl mx-auto px-6 md:px-12 w-full flex flex-col items-start animate-fade-in">
           {/* Subtitle */}
-          <span className="font-sans text-[15px] font-medium tracking-wide text-slate-400 mb-5">
+          <span className="font-sans text-[15px] font-medium tracking-wide text-white/50 mb-5">
             Our Approach
           </span>
           
           {/* Heading */}
-          <h2 className="font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-medium leading-[1.12] text-white tracking-tight mb-24">
+          <h2 className="scroll-reveal-target font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-medium leading-[1.12] text-white tracking-tight mb-24">
             How We Work
           </h2>
 
@@ -190,40 +190,40 @@ const Services: React.FC<ServicesProps> = ({ setView, navigateToContact }) => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 w-full">
             {/* Column 1 */}
             <div className="flex flex-col items-center text-center space-y-4">
-              <h3 className="font-sans text-[18px] sm:text-[20px] font-semibold text-white tracking-wide">
+              <h3 className="scroll-reveal-target font-sans text-[18px] sm:text-[20px] font-semibold text-white tracking-wide">
                 Discovery
               </h3>
-              <p className="font-sans text-[14px] sm:text-[15px] leading-relaxed text-slate-400 max-w-[240px]">
+              <p className="scroll-reveal-target font-sans text-[14px] sm:text-[15px] leading-relaxed text-white max-w-[240px]">
                 Deep-dive analysis of your operations, pain points, and objectives.
               </p>
             </div>
 
             {/* Column 2 */}
             <div className="flex flex-col items-center text-center space-y-4">
-              <h3 className="font-sans text-[18px] sm:text-[20px] font-semibold text-white tracking-wide">
+              <h3 className="scroll-reveal-target font-sans text-[18px] sm:text-[20px] font-semibold text-white tracking-wide">
                 Architecture
               </h3>
-              <p className="font-sans text-[14px] sm:text-[15px] leading-relaxed text-slate-400 max-w-[240px]">
+              <p className="scroll-reveal-target font-sans text-[14px] sm:text-[15px] leading-relaxed text-white max-w-[240px]">
                 Designing the technical blueprint that solves your specific challenges.
               </p>
             </div>
 
             {/* Column 3 */}
             <div className="flex flex-col items-center text-center space-y-4">
-              <h3 className="font-sans text-[18px] sm:text-[20px] font-semibold text-white tracking-wide">
+              <h3 className="scroll-reveal-target font-sans text-[18px] sm:text-[20px] font-semibold text-white tracking-wide">
                 Deploy & Scale
               </h3>
-              <p className="font-sans text-[14px] sm:text-[15px] leading-relaxed text-slate-400 max-w-[240px]">
+              <p className="scroll-reveal-target font-sans text-[14px] sm:text-[15px] leading-relaxed text-white max-w-[240px]">
                 Seamless deployment with ongoing optimization and support.
               </p>
             </div>
 
             {/* Column 4 */}
             <div className="flex flex-col items-center text-center space-y-4">
-              <h3 className="font-sans text-[18px] sm:text-[20px] font-semibold text-white tracking-wide">
+              <h3 className="scroll-reveal-target font-sans text-[18px] sm:text-[20px] font-semibold text-white tracking-wide">
                 Build
               </h3>
-              <p className="font-sans text-[14px] sm:text-[15px] leading-relaxed text-slate-400 max-w-[240px]">
+              <p className="scroll-reveal-target font-sans text-[14px] sm:text-[15px] leading-relaxed text-white max-w-[240px]">
                 Precision engineering with continuous feedback loops and iteration..
               </p>
             </div>
@@ -234,17 +234,17 @@ const Services: React.FC<ServicesProps> = ({ setView, navigateToContact }) => {
       {/* CTA Section - Get In Touch */}
       <section className="w-full min-h-[calc(100vh-6rem)] bg-white text-slate-900 flex flex-col justify-center items-center py-12">
         <div className="max-w-4xl mx-auto px-6 flex flex-col items-center text-center">
-          <span className="text-[15px] font-semibold tracking-wide text-slate-500 mb-5 uppercase font-sans">
+          <span className="text-[15px] font-semibold tracking-wide text-white/50 mb-5 uppercase font-sans">
             Get In Touch
           </span>
           
-          <h2 className="font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-medium leading-[1.15] text-slate-900 tracking-tight mb-6 max-w-3xl">
+          <h2 className="scroll-reveal-target font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-medium leading-[1.15] text-slate-900 tracking-tight mb-6 max-w-3xl">
             Ready to transform <br />
             your business <br />
-            <span className="text-[#1b5ea3] font-medium">digitally?</span>
+            <span className="text-white font-medium">digitally?</span>
           </h2>
           
-          <p className="font-sans text-[16px] sm:text-[17px] leading-relaxed text-slate-500 max-w-2xl mb-10">
+          <p className="scroll-reveal-target font-sans text-[16px] sm:text-[17px] leading-relaxed text-slate-500 max-w-2xl mb-10">
             Let us architect the digital infrastructure your business deserves.
           </p>
           

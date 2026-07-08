@@ -1,25 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import contactImg from '../assets/contact.png'
 
-interface Country {
-  code: string;
-  flag: string;
-  name: string;
-  maxLength: number;
-}
-
-const countries: Country[] = [
-  { code: "+91", flag: "🇮🇳", name: "India", maxLength: 10 },
-  { code: "+1", flag: "🇺🇸", name: "United States", maxLength: 10 },
-  { code: "+44", flag: "🇬🇧", name: "United Kingdom", maxLength: 10 },
-  { code: "+61", flag: "🇦🇺", name: "Australia", maxLength: 9 },
-  { code: "+971", flag: "🇦🇪", name: "United Arab Emirates", maxLength: 9 },
-  { code: "+65", flag: "🇸🇬", name: "Singapore", maxLength: 8 },
-  { code: "+81", flag: "🇯🇵", name: "Japan", maxLength: 10 },
-  { code: "+49", flag: "🇩🇪", name: "Germany", maxLength: 11 },
-  { code: "+33", flag: "🇫🇷", name: "France", maxLength: 9 },
-  { code: "+1", flag: "🇨🇦", name: "Canada", maxLength: 10 },
-];
+import { countries, type Country } from '../data/countries'
 
 interface ContactProps {
   navigateToContact: (page: 1 | 2 | 3) => void;
@@ -33,7 +15,9 @@ const Contact: React.FC<ContactProps> = () => {
   const [serviceOfInterest, setServiceOfInterest] = useState('')
   const [message, setMessage] = useState('')
 
-  const [selectedCountry, setSelectedCountry] = useState<Country>(countries[0]) // Default is India (+91)
+  const [selectedCountry, setSelectedCountry] = useState<Country>(
+    countries.find(c => c.name === "India") || countries[0]
+  )
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
@@ -74,7 +58,7 @@ const Contact: React.FC<ContactProps> = () => {
     setErrorMessage('')
 
     try {
-      const response = await fetch('http://localhost:5000/api/contact', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -112,10 +96,10 @@ const Contact: React.FC<ContactProps> = () => {
   return (
     <>
       {/* Page 1: Contact Hero / Let's Build Together Section */}
-      <section id="contact-page-1" className="w-full mt-24 relative min-h-[calc(100vh-6rem)] bg-[#07080a] flex flex-col justify-center">
+      <section id="contact-page-1" className="w-full mt-24 relative min-h-[calc(100vh-6rem)] bg-black flex flex-col justify-center">
         {/* Desktop Background Image */}
         <div className="absolute inset-0 hidden lg:block">
-          <img 
+          <img loading="lazy" 
             src={contactImg} 
             alt="Galletrix Contact and Support Desk" 
             className="w-full h-full object-cover object-center"
@@ -125,24 +109,24 @@ const Contact: React.FC<ContactProps> = () => {
         {/* Text Content */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 py-12 flex flex-col items-start">
           {/* Subtitle */}
-          <span className="text-[15px] font-medium tracking-wide text-slate-400 mb-5">
+          <span className="text-[15px] font-medium tracking-wide text-white/50 mb-5">
             Contact Galletrix
           </span>
 
           {/* Heading */}
-          <h1 className="font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-bold leading-[1.12] text-white tracking-tight mb-8 max-w-4xl">
+          <h1 className="scroll-reveal-target font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-bold leading-[1.12] text-white tracking-tight mb-8 max-w-4xl">
             Let's Build Together
           </h1>
 
           {/* Description */}
-          <p className="font-sans text-[16px] sm:text-[18px] md:text-[19px] leading-[1.65] text-slate-400 max-w-3xl mb-14">
+          <p className="scroll-reveal-target font-sans text-[16px] sm:text-[18px] md:text-[19px] leading-[1.65] text-white max-w-3xl mb-14">
             Tell us about your business challenge. Our team will respond within 24 hours with a tailored assessment.
           </p>
         </div>
 
         {/* Mobile Block Image */}
         <div className="w-full lg:hidden my-6">
-          <img 
+          <img loading="lazy" 
             src={contactImg} 
             alt="Galletrix Contact and Support Desk" 
             className="w-full h-auto object-cover"
@@ -152,20 +136,20 @@ const Contact: React.FC<ContactProps> = () => {
       </section>
 
       {/* Page 2: Send Message Form Section */}
-      <section id="contact-page-2" className="w-full bg-[#07080a] py-12 border-t border-slate-900/60 min-h-[calc(100vh-6rem)] flex flex-col justify-center items-center">
+      <section id="contact-page-2" className="w-full bg-black py-12 border-t border-slate-900/60 min-h-[calc(100vh-6rem)] flex flex-col justify-center items-center">
         <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16 items-start w-full">
           
           {/* Left Side: Info and Cards */}
           <div className="lg:col-span-5 space-y-6">
             {/* Ready Card */}
-            <div className="border border-slate-800/80 bg-slate-950/20 p-8 rounded-2xl">
-              <h2 className="font-serif text-[24px] md:text-[32px] font-medium leading-tight text-white mb-4">
+            <div className="border border-white/20 bg-black p-8 rounded-2xl">
+              <h2 className="scroll-reveal-target font-serif text-[24px] md:text-[32px] font-medium leading-tight text-white mb-4">
                 Ready to transform your business?
               </h2>
-              <p className="text-slate-400 text-[15px] leading-relaxed mb-8">
+              <p className="scroll-reveal-target text-white text-[15px] leading-relaxed mb-8">
                 Whether you need a full ERP overhaul, a custom web application, or intelligent automation — we have the expertise to deliver.
               </p>
-              <div className="flex items-center gap-2 text-[14px] font-semibold text-slate-300 hover:text-white cursor-pointer group">
+              <div className="flex items-center gap-2 text-[14px] font-semibold text-white hover:text-white cursor-pointer group">
                 <span>Typical response: within 24 hours</span>
                 <svg className="w-4 h-4 transition-transform group-hover:translate-x-1 duration-200" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -176,14 +160,14 @@ const Contact: React.FC<ContactProps> = () => {
             {/* Info Cards */}
             <div className="space-y-4">
               {/* Email Card */}
-              <div className="border border-slate-800/80 bg-slate-950/10 p-6 rounded-2xl flex items-center gap-5">
-                <div className="w-12 h-12 rounded-full border border-slate-800/80 flex items-center justify-center bg-slate-950/50 shrink-0 text-slate-300">
+              <div className="border border-white/20 bg-black p-6 rounded-2xl flex items-center gap-5">
+                <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center bg-black shrink-0 text-white">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-[13px] text-slate-400 font-medium mb-0.5">Email Us</span>
+                  <span className="text-[13px] text-white font-medium mb-0.5">Email Us</span>
                   <a href="mailto:contact@galletrix.com" className="text-white text-[15px] font-semibold hover:underline">
                     contact@galletrix.com
                   </a>
@@ -191,14 +175,14 @@ const Contact: React.FC<ContactProps> = () => {
               </div>
 
               {/* Phone Card */}
-              <div className="border border-slate-800/80 bg-slate-950/10 p-6 rounded-2xl flex items-center gap-5">
-                <div className="w-12 h-12 rounded-full border border-slate-800/80 flex items-center justify-center bg-slate-950/50 shrink-0 text-slate-300">
+              <div className="border border-white/20 bg-black p-6 rounded-2xl flex items-center gap-5">
+                <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center bg-black shrink-0 text-white">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-[13px] text-slate-400 font-medium mb-0.5">Call Us</span>
+                  <span className="text-[13px] text-white font-medium mb-0.5">Call Us</span>
                   <a href="tel:+917305870929" className="text-white text-[15px] font-semibold hover:underline">
                     +91 73058 70929
                   </a>
@@ -206,15 +190,15 @@ const Contact: React.FC<ContactProps> = () => {
               </div>
 
               {/* Visit Card */}
-              <div className="border border-slate-800/80 bg-slate-950/10 p-6 rounded-2xl flex items-center gap-5">
-                <div className="w-12 h-12 rounded-full border border-slate-800/80 flex items-center justify-center bg-slate-950/50 shrink-0 text-slate-300">
+              <div className="border border-white/20 bg-black p-6 rounded-2xl flex items-center gap-5">
+                <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center bg-black shrink-0 text-white">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-[13px] text-slate-400 font-medium mb-0.5">Visit us</span>
+                  <span className="text-[13px] text-white font-medium mb-0.5">Visit us</span>
                   <span className="text-white text-[15px] font-semibold">
                     Enterprise
                   </span>
@@ -225,59 +209,59 @@ const Contact: React.FC<ContactProps> = () => {
 
           {/* Right Side: Message Form */}
           <div className="lg:col-span-7 space-y-8">
-            <h2 className="font-serif text-[24px] md:text-[34px] font-medium text-white">
+            <h2 className="scroll-reveal-target font-serif text-[24px] md:text-[34px] font-medium text-white">
               Send US a Message
             </h2>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="block text-[14px] font-medium text-slate-300">Full Name *</label>
+                  <label className="block text-[14px] font-medium text-white">Full Name *</label>
                   <input 
                     id="contact-form-name-input"
                     type="text" 
                     placeholder="John Smith" 
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
-                    className="w-full bg-[#0a0c10] border border-slate-800 rounded-xl px-5 py-4 text-[15px] text-white placeholder-slate-600 focus:outline-none focus:border-[#0091ff] focus:ring-1 focus:ring-[#0091ff] transition-all" 
+                    className="w-full bg-black border border-white/20 rounded-xl px-5 py-4 text-[15px] text-white placeholder-slate-600 focus:outline-none focus:border-[#0091ff] focus:ring-1 focus:ring-[#0091ff] transition-all" 
                     required 
                     disabled={status === 'submitting'}
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="block text-[14px] font-medium text-slate-400">Company</label>
+                  <label className="block text-[14px] font-medium text-white">Company</label>
                   <input 
                     type="text" 
                     placeholder="Your Company" 
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
-                    className="w-full bg-[#0a0c10] border border-slate-800 rounded-xl px-5 py-4 text-[15px] text-white placeholder-slate-600 focus:outline-none focus:border-[#0091ff] focus:ring-1 focus:ring-[#0091ff] transition-all" 
+                    className="w-full bg-black border border-white/20 rounded-xl px-5 py-4 text-[15px] text-white placeholder-slate-600 focus:outline-none focus:border-[#0091ff] focus:ring-1 focus:ring-[#0091ff] transition-all" 
                     disabled={status === 'submitting'}
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="block text-[14px] font-medium text-slate-300">Email *</label>
+                  <label className="block text-[14px] font-medium text-white">Email *</label>
                   <input 
                     type="email" 
                     placeholder="you@company.com" 
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full bg-[#0a0c10] border border-slate-800 rounded-xl px-5 py-4 text-[15px] text-white placeholder-slate-600 focus:outline-none focus:border-[#0091ff] focus:ring-1 focus:ring-[#0091ff] transition-all" 
+                    className="w-full bg-black border border-white/20 rounded-xl px-5 py-4 text-[15px] text-white placeholder-slate-600 focus:outline-none focus:border-[#0091ff] focus:ring-1 focus:ring-[#0091ff] transition-all" 
                     required 
                     disabled={status === 'submitting'}
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="block text-[14px] font-medium text-slate-400">Phone</label>
+                  <label className="block text-[14px] font-medium text-white">Phone</label>
                   <div className="relative flex items-center w-full" ref={dropdownRef}>
                     {/* Country Code Selector */}
                     <div className="absolute left-0 top-0 bottom-0 flex items-center z-10">
                       <button
                         type="button"
                         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                        className="flex items-center gap-1.5 px-4 h-full text-slate-300 hover:text-white rounded-l-xl focus:outline-none select-none border-r border-slate-800/80 bg-[#05070a]/50"
+                        className="flex items-center gap-1.5 px-4 h-full text-white hover:text-white rounded-l-xl focus:outline-none select-none border-r border-white/20 bg-[#05070a]/50"
                         disabled={status === 'submitting'}
                       >
-                        <span className="text-[18px]">{selectedCountry.flag}</span>
+                        <img loading="lazy" src={`https://flagcdn.com/w20/${selectedCountry.isoCode}.png`} alt={selectedCountry.name} className="w-5 object-contain rounded-sm" />
                         <span className="text-[14px] font-semibold">{selectedCountry.code}</span>
                         <svg className="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -292,13 +276,13 @@ const Contact: React.FC<ContactProps> = () => {
                       value={phone}
                       onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, selectedCountry.maxLength))}
                       maxLength={selectedCountry.maxLength}
-                      className="w-full bg-[#0a0c10] border border-slate-800 rounded-xl pl-32 pr-5 py-4 text-[15px] text-white placeholder-slate-600 focus:outline-none focus:border-[#0091ff] focus:ring-1 focus:ring-[#0091ff] transition-all" 
+                      className="w-full bg-black border border-white/20 rounded-xl pl-32 pr-5 py-4 text-[15px] text-white placeholder-slate-600 focus:outline-none focus:border-[#0091ff] focus:ring-1 focus:ring-[#0091ff] transition-all" 
                       disabled={status === 'submitting'}
                     />
 
                     {/* Dropdown Menu */}
                     {isDropdownOpen && (
-                      <div className="absolute top-full left-0 mt-2 w-72 max-h-60 overflow-y-auto bg-[#07080a] border border-slate-800 rounded-xl shadow-2xl z-50 py-1.5">
+                      <div className="absolute top-full left-0 mt-2 w-72 max-h-60 overflow-y-auto bg-black border border-white/20 rounded-xl shadow-2xl z-50 py-1.5">
                         {countries.map((c) => (
                           <button
                             key={c.code + c.name}
@@ -310,10 +294,10 @@ const Contact: React.FC<ContactProps> = () => {
                             }}
                             className="w-full flex items-center gap-3 px-4 py-3 hover:bg-slate-900/80 transition-colors text-left"
                           >
-                            <span className="text-[20px]">{c.flag}</span>
+                            <img loading="lazy" src={`https://flagcdn.com/w20/${c.isoCode}.png`} alt={c.name} className="w-6 object-contain rounded-sm" />
                             <div className="flex flex-col">
                               <span className="text-[14px] font-semibold text-white">{c.name}</span>
-                              <span className="text-[12px] text-slate-400 font-medium">{c.code}</span>
+                              <span className="text-[12px] text-white font-medium">{c.code}</span>
                             </div>
                           </button>
                         ))}
@@ -324,19 +308,23 @@ const Contact: React.FC<ContactProps> = () => {
               </div>
 
               <div className="space-y-2">
-                <label className="block text-[14px] font-medium text-slate-400">Service of Interest</label>
+                <label className="block text-[14px] font-medium text-white">Service of Interest</label>
                 <div className="relative">
                   <select 
                     value={serviceOfInterest}
                     onChange={(e) => setServiceOfInterest(e.target.value)}
-                    className="w-full bg-[#0a0c10] border border-slate-800 rounded-xl px-5 py-4 text-[15px] text-slate-300 focus:outline-none focus:border-[#0091ff] focus:ring-1 focus:ring-[#0091ff] transition-all appearance-none cursor-pointer"
+                    className="w-full bg-black border border-white/20 rounded-xl px-5 py-4 text-[15px] text-white focus:outline-none focus:border-[#0091ff] focus:ring-1 focus:ring-[#0091ff] transition-all appearance-none cursor-pointer"
                     disabled={status === 'submitting'}
                   >
                     <option value="">Select a service......</option>
+                    <option value="software">Software Development</option>
                     <option value="erp">ERP Systems</option>
                     <option value="automation">Automation & AI</option>
                     <option value="web">Web & Mobile Development</option>
+                    <option value="uiux">UI/UX Design</option>
+                    <option value="marketing">Digital Marketing</option>
                     <option value="analytics">Analytics & Consulting</option>
+                    <option value="other">Other</option>
                   </select>
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-5 text-slate-500">
                     <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -347,13 +335,13 @@ const Contact: React.FC<ContactProps> = () => {
               </div>
 
               <div className="space-y-2">
-                <label className="block text-[14px] font-medium text-slate-300">Message*</label>
+                <label className="block text-[14px] font-medium text-white">Message*</label>
                 <textarea 
                   rows={6} 
                   placeholder="Tell us about your projects, goals and challenges............." 
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className="w-full bg-[#0a0c10] border border-slate-800 rounded-xl px-5 py-4 text-[15px] text-white placeholder-slate-600 focus:outline-none focus:border-[#0091ff] focus:ring-1 focus:ring-[#0091ff] transition-all resize-none" 
+                  className="w-full bg-black border border-white/20 rounded-xl px-5 py-4 text-[15px] text-white placeholder-slate-600 focus:outline-none focus:border-[#0091ff] focus:ring-1 focus:ring-[#0091ff] transition-all resize-none" 
                   required 
                   disabled={status === 'submitting'}
                 />
@@ -391,17 +379,17 @@ const Contact: React.FC<ContactProps> = () => {
       {/* Page 3: Get In Touch White Section */}
       <section id="contact-page-3" className="w-full min-h-[calc(100vh-6rem)] bg-white text-slate-900 py-12 flex flex-col justify-center items-center border-t border-slate-200">
         <div className="max-w-4xl mx-auto px-6 flex flex-col items-center text-center animate-fade-in">
-          <span className="text-[15px] font-semibold tracking-wide text-slate-500 mb-5 uppercase font-sans">
+          <span className="text-[15px] font-semibold tracking-wide text-white/50 mb-5 uppercase font-sans">
             Get In Touch
           </span>
           
-          <h2 className="font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-medium leading-[1.15] text-[#07080a] tracking-tight mb-6 max-w-3xl">
+          <h2 className="scroll-reveal-target font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-medium leading-[1.15] text-[#07080a] tracking-tight mb-6 max-w-3xl">
             Ready to transform <br />
             your business <br />
-            <span className="text-[#1b5ea3] font-medium">digitally?</span>
+            <span className="text-white font-medium">digitally?</span>
           </h2>
           
-          <p className="font-sans text-[16px] sm:text-[17px] leading-relaxed text-slate-500 max-w-2xl">
+          <p className="scroll-reveal-target font-sans text-[16px] sm:text-[17px] leading-relaxed text-slate-500 max-w-2xl">
             Let us architect the digital infrastructure your business deserves.
           </p>
           

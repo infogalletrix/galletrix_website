@@ -90,7 +90,7 @@ const Navbar: React.FC<NavbarProps> = ({ view, setView, navigateToContact }) => 
             </a>
 
             {/* Services Dropdown Overlay */}
-            <div className="absolute top-full left-0 right-0 w-full bg-[#07080a] border-b border-slate-900 shadow-2xl py-16 z-40 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+            <div className="absolute top-full left-0 right-0 w-full bg-black border-b border-slate-900 shadow-2xl py-16 z-40 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
               <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-y-10 gap-x-16">
                 {/* ERP Solutions */}
                 <a 
@@ -259,7 +259,7 @@ const Navbar: React.FC<NavbarProps> = ({ view, setView, navigateToContact }) => 
             </a>
 
             {/* Industry Dropdown Overlay */}
-            <div className="absolute top-full left-0 right-0 w-full bg-[#07080a] border-b border-slate-900 shadow-2xl py-16 z-40 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+            <div className="absolute top-full left-0 right-0 w-full bg-black border-b border-slate-900 shadow-2xl py-16 z-40 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
               <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-4 gap-y-10 gap-x-16">
                 
                 {/* Manpower & HR */}
@@ -534,7 +534,7 @@ const Navbar: React.FC<NavbarProps> = ({ view, setView, navigateToContact }) => 
 
       {/* Mobile Drawer Overlay */}
       {view !== 'admin' && isMobileMenuOpen && (
-        <div className="md:hidden fixed inset-x-0 bottom-0 top-24 bg-[#07080a] border-t border-slate-900/80 z-40 overflow-y-auto animate-fade-in flex flex-col justify-between">
+        <div className="md:hidden fixed inset-x-0 bottom-0 top-24 bg-black border-t border-slate-900/80 z-40 overflow-y-auto animate-fade-in flex flex-col justify-between">
           <div className="px-6 py-8 space-y-6">
             {/* Services (Collapsible) */}
             <div>

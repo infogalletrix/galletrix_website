@@ -107,11 +107,9 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
   const [stage, setStage] = useState<AuthStage>('login')
   const [adminPassword, setAdminPassword] = useState('admin123')
   const [forgotEmail, setForgotEmail] = useState('')
-  const [generatedOtp, setGeneratedOtp] = useState('')
   const [otpInput, setOtpInput] = useState('')
   const [newPassword, setNewPassword] = useState('')
   const [confirmNewPassword, setConfirmNewPassword] = useState('')
-  const [showOtpToast, setShowOtpToast] = useState(false)
   const [successText, setSuccessText] = useState('')
 
   const handleLoginSubmit = (e: React.FormEvent) => {
@@ -129,7 +127,7 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
 
     // Simulate authenticating for 1.2 seconds to feel premium
     setTimeout(() => {
-      if ((email === 'admin@galletrix.com' || email === 'info@galletrix.com') && password === adminPassword) {
+      if (email === 'ceo@galletrix.com' && password === adminPassword) {
         setIsLoggedIn(true)
         setIsSubmitting(false)
       } else {
@@ -139,40 +137,66 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
     }, 1200)
   }
 
-  const handleSendOtp = (e: React.FormEvent) => {
+  const handleSendOtp = async (e: React.FormEvent) => {
     e.preventDefault()
     setErrorText('')
 
-    if (forgotEmail.trim().toLowerCase() !== 'info@galletrix.com') {
-      setErrorText('Recovery OTP can only be sent to info@galletrix.com.')
+    if (forgotEmail.trim().toLowerCase() !== 'ceo@galletrix.com') {
+      setErrorText('Recovery OTP can only be sent to ceo@galletrix.com.')
       return
     }
 
     setIsSubmitting(true)
 
-    setTimeout(() => {
-      const code = Math.floor(100000 + Math.random() * 900000).toString()
-      setGeneratedOtp(code)
-      setShowOtpToast(true)
+    try {
+      const response = await fetch('/api/auth/send-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: forgotEmail.trim() })
+      });
+
+      if (response.ok) {
+        setIsSubmitting(false)
+        setStage('forgot-otp')
+        setLogs(prev => [
+          `[SECURITY] ${new Date().toLocaleTimeString()} - Recovery OTP sent to ceo@galletrix.com`,
+          ...prev
+        ])
+      } else {
+        const errorData = await response.text();
+        setErrorText(errorData || 'Failed to send OTP. Please try again.')
+        setIsSubmitting(false)
+      }
+    } catch (err) {
+      setErrorText('A network error occurred while sending OTP.')
       setIsSubmitting(false)
-      setStage('forgot-otp')
-      setLogs(prev => [
-        `[SECURITY] ${new Date().toLocaleTimeString()} - Recovery OTP generated for info@galletrix.com`,
-        ...prev
-      ])
-    }, 1000)
+    }
   }
 
-  const handleVerifyOtp = (e: React.FormEvent) => {
+  const handleVerifyOtp = async (e: React.FormEvent) => {
     e.preventDefault()
     setErrorText('')
+    setIsSubmitting(true)
 
-    if (otpInput.trim() !== generatedOtp) {
-      setErrorText('Invalid OTP code. Please check and try again.')
-      return
+    try {
+      const response = await fetch('/api/auth/verify-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: forgotEmail.trim(), otp: otpInput.trim() })
+      });
+
+      if (response.ok) {
+        setStage('forgot-reset')
+        setIsSubmitting(false)
+      } else {
+        const errorData = await response.text();
+        setErrorText(errorData || 'Invalid OTP code. Please check and try again.')
+        setIsSubmitting(false)
+      }
+    } catch (err) {
+      setErrorText('A network error occurred while verifying OTP.')
+      setIsSubmitting(false)
     }
-
-    setStage('forgot-reset')
   }
 
   const handleResetPassword = (e: React.FormEvent) => {
@@ -195,11 +219,9 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
       setSuccessText('Password reset successfully. Log in using your new credentials.')
       
       setForgotEmail('')
-      setGeneratedOtp('')
       setOtpInput('')
       setNewPassword('')
       setConfirmNewPassword('')
-      setShowOtpToast(false)
       setIsSubmitting(false)
       setStage('login')
 
@@ -237,7 +259,7 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
 
   if (isLoggedIn) {
     return (
-      <div className="w-full min-h-[calc(100vh-6rem)] mt-24 py-12 px-6 md:px-12 lg:px-16 bg-[#07080a] animate-fade-in">
+      <div className="w-full min-h-[calc(100vh-6rem)] mt-24 py-12 px-6 md:px-12 lg:px-16 bg-black animate-fade-in">
         <div className="max-w-7xl mx-auto space-y-10">
           
           {/* Dashboard Header */}
@@ -246,18 +268,18 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
               <span className="text-[13px] font-semibold tracking-wider text-[#cc6f2a] uppercase font-sans">
                 Galletrix Admin Portal
               </span>
-              <h1 className="font-serif text-[36px] sm:text-[42px] font-bold text-white tracking-tight mt-1">
+              <h1 className="scroll-reveal-target font-serif text-[36px] sm:text-[42px] font-bold text-white tracking-tight mt-1">
                 Control Hub
               </h1>
             </div>
             <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-950/80 border border-slate-800 text-[13px] text-slate-300">
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black border border-white/20 text-[13px] text-white">
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
                 Admin session active
               </div>
               <button
                 onClick={handleLogout}
-                className="bg-slate-950/80 hover:bg-slate-900 border border-slate-800 text-slate-300 hover:text-white px-5 py-2.5 rounded-xl text-[14px] font-semibold transition-all duration-200 cursor-pointer active:scale-95"
+                className="bg-black hover:bg-slate-900 border border-white/20 text-white hover:text-white px-5 py-2.5 rounded-xl text-[14px] font-semibold transition-all duration-200 cursor-pointer active:scale-95"
               >
                 Log Out
               </button>
@@ -267,8 +289,8 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
           {/* Quick Metrics Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             
-            <div className="backdrop-blur-md bg-slate-950/45 border border-slate-900 rounded-2xl p-6 flex flex-col justify-between hover:border-slate-800/80 transition-all duration-300">
-              <span className="text-[13px] font-medium text-slate-400">Total Submissions</span>
+            <div className="backdrop-blur-md bg-black border border-slate-900 rounded-2xl p-6 flex flex-col justify-between hover:border-white/20 transition-all duration-300">
+              <span className="text-[13px] font-medium text-white">Total Submissions</span>
               <div className="flex items-baseline gap-2.5 mt-4">
                 <span className="text-[32px] font-serif font-bold text-white">22</span>
                 <span className="text-[12px] font-semibold text-emerald-400 font-sans">+12%</span>
@@ -276,8 +298,8 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
               <span className="text-[11px] text-slate-500 mt-2">from last month</span>
             </div>
 
-            <div className="backdrop-blur-md bg-slate-950/45 border border-slate-900 rounded-2xl p-6 flex flex-col justify-between hover:border-slate-800/80 transition-all duration-300">
-              <span className="text-[13px] font-medium text-slate-400">Careers Applications</span>
+            <div className="backdrop-blur-md bg-black border border-slate-900 rounded-2xl p-6 flex flex-col justify-between hover:border-white/20 transition-all duration-300">
+              <span className="text-[13px] font-medium text-white">Careers Applications</span>
               <div className="flex items-baseline gap-2.5 mt-4">
                 <span className="text-[32px] font-serif font-bold text-white">8</span>
                 <span className="text-[12px] font-semibold text-emerald-400 font-sans">+25%</span>
@@ -285,8 +307,8 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
               <span className="text-[11px] text-slate-500 mt-2">active job postings</span>
             </div>
 
-            <div className="backdrop-blur-md bg-slate-950/45 border border-slate-900 rounded-2xl p-6 flex flex-col justify-between hover:border-slate-800/80 transition-all duration-300">
-              <span className="text-[13px] font-medium text-slate-400">DB Service Link</span>
+            <div className="backdrop-blur-md bg-black border border-slate-900 rounded-2xl p-6 flex flex-col justify-between hover:border-white/20 transition-all duration-300">
+              <span className="text-[13px] font-medium text-white">DB Service Link</span>
               <div className="flex items-baseline gap-2.5 mt-4">
                 <span className="text-[20px] font-semibold text-white">MySQL DB</span>
               </div>
@@ -295,8 +317,8 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
               </span>
             </div>
 
-            <div className="backdrop-blur-md bg-slate-950/45 border border-slate-900 rounded-2xl p-6 flex flex-col justify-between hover:border-slate-800/80 transition-all duration-300">
-              <span className="text-[13px] font-medium text-slate-400">Avg API Response</span>
+            <div className="backdrop-blur-md bg-black border border-slate-900 rounded-2xl p-6 flex flex-col justify-between hover:border-white/20 transition-all duration-300">
+              <span className="text-[13px] font-medium text-white">Avg API Response</span>
               <div className="flex items-baseline gap-2.5 mt-4">
                 <span className="text-[32px] font-serif font-bold text-white">84ms</span>
               </div>
@@ -309,10 +331,10 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             
             {/* Live Submissions Table */}
-            <div className="lg:col-span-8 backdrop-blur-md bg-slate-950/45 border border-slate-900 rounded-2xl p-6 space-y-6">
+            <div className="lg:col-span-8 backdrop-blur-md bg-black border border-slate-900 rounded-2xl p-6 space-y-6">
               <div className="flex justify-between items-center">
-                <h2 className="text-[18px] font-semibold text-white">Recent Inbox Submissions</h2>
-                <span className="text-[12px] text-slate-400">{submissions.length} pending items</span>
+                <h2 className="scroll-reveal-target text-[18px] font-semibold text-white">Recent Inbox Submissions</h2>
+                <span className="text-[12px] text-white">{submissions.length} pending items</span>
               </div>
 
               {submissions.length === 0 ? (
@@ -324,7 +346,7 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
                   {submissions.map(sub => (
                     <div
                       key={sub.id}
-                      className="p-4 rounded-xl bg-slate-950/80 border border-slate-900 hover:border-slate-800/80 transition-all flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
+                      className="p-4 rounded-xl bg-black border border-slate-900 hover:border-white/20 transition-all flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
                     >
                       <div className="space-y-1">
                         <div className="flex items-center gap-2.5">
@@ -338,7 +360,7 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
                             <span className="w-1.5 h-1.5 rounded-full bg-[#cc6f2a]"></span>
                           )}
                         </div>
-                        <p className="text-[13px] text-slate-400 leading-relaxed">{sub.detail}</p>
+                        <p className="scroll-reveal-target text-[13px] text-white leading-relaxed">{sub.detail}</p>
                         <span className="text-[11px] text-slate-500 block">{sub.time}</span>
                       </div>
 
@@ -346,7 +368,7 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
                         {sub.status === 'new' && (
                           <button
                             onClick={() => handleMarkReviewed(sub.id)}
-                            className="bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 text-slate-300 hover:text-white px-3.5 py-1.5 rounded-lg text-[12px] font-medium transition-all duration-200 cursor-pointer"
+                            className="bg-slate-900 hover:bg-slate-800 border border-white/20 hover:border-slate-700 text-white hover:text-white px-3.5 py-1.5 rounded-lg text-[12px] font-medium transition-all duration-200 cursor-pointer"
                           >
                             Mark Reviewed
                           </button>
@@ -365,10 +387,10 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
             </div>
 
             {/* System Log Console */}
-            <div className="lg:col-span-4 backdrop-blur-md bg-slate-950/45 border border-slate-900 rounded-2xl p-6 flex flex-col justify-between space-y-6">
+            <div className="lg:col-span-4 backdrop-blur-md bg-black border border-slate-900 rounded-2xl p-6 flex flex-col justify-between space-y-6">
               <div className="space-y-4">
-                <h2 className="text-[18px] font-semibold text-white">System Console</h2>
-                <div className="bg-[#050608] border border-slate-900 rounded-xl p-4 font-mono text-[12px] text-slate-400 space-y-2.5 h-[280px] overflow-y-auto custom-scrollbar">
+                <h2 className="scroll-reveal-target text-[18px] font-semibold text-white">System Console</h2>
+                <div className="bg-[#050608] border border-slate-900 rounded-xl p-4 font-mono text-[12px] text-white space-y-2.5 h-[280px] overflow-y-auto custom-scrollbar">
                   {logs.map((log, index) => (
                     <div key={index} className="leading-relaxed break-all">
                       <span className={log.includes('[ACTION]') ? 'text-[#cc6f2a]' : 'text-slate-500'}>
@@ -380,7 +402,7 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
               </div>
               <button
                 onClick={() => setLogs([`[INFO] ${new Date().toLocaleTimeString()} - Console cleared`, ...logs])}
-                className="w-full bg-slate-950 hover:bg-slate-900 border border-slate-900 text-slate-400 hover:text-slate-300 py-3 rounded-xl text-[13px] font-medium transition-colors cursor-pointer"
+                className="w-full bg-slate-950 hover:bg-slate-900 border border-slate-900 text-white hover:text-white py-3 rounded-xl text-[13px] font-medium transition-colors cursor-pointer"
               >
                 Clear Log View
               </button>
@@ -392,10 +414,10 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 border-t border-slate-900 pt-10">
             
             {/* List and Delete Options */}
-            <div className="lg:col-span-7 backdrop-blur-md bg-slate-950/45 border border-slate-900 rounded-2xl p-6 space-y-6">
+            <div className="lg:col-span-7 backdrop-blur-md bg-black border border-slate-900 rounded-2xl p-6 space-y-6">
               <div className="flex justify-between items-center pb-2 border-b border-slate-900">
-                <h2 className="text-[18px] font-semibold text-white">Project Portfolio Manager</h2>
-                <span className="text-[12px] text-slate-400">{projectsList.length} total works</span>
+                <h2 className="scroll-reveal-target text-[18px] font-semibold text-white">Project Portfolio Manager</h2>
+                <span className="text-[12px] text-white">{projectsList.length} total works</span>
               </div>
 
               {projectsList.length === 0 ? (
@@ -407,11 +429,11 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
                   {projectsList.map(proj => (
                     <div
                       key={proj.id}
-                      className="p-4 rounded-xl bg-slate-950/80 border border-slate-900 hover:border-slate-800/80 transition-all flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
+                      className="p-4 rounded-xl bg-black border border-slate-900 hover:border-white/20 transition-all flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
                     >
                       <div className="space-y-1 max-w-[80%] text-left">
                         <div className="flex items-center gap-2.5">
-                          <span className="text-[11px] px-2 py-0.5 rounded-full font-bold uppercase bg-slate-900 text-slate-400 border border-slate-800">
+                          <span className="text-[11px] px-2 py-0.5 rounded-full font-bold uppercase bg-slate-900 text-white border border-white/20">
                             {proj.tag}
                           </span>
                           {proj.selectedWork && (
@@ -421,7 +443,7 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
                           )}
                         </div>
                         <h4 className="text-[15px] font-semibold text-white">{proj.title}</h4>
-                        <p className="text-[13px] text-slate-400 line-clamp-2 leading-relaxed">{proj.description}</p>
+                        <p className="scroll-reveal-target text-[13px] text-white line-clamp-2 leading-relaxed">{proj.description}</p>
                         {proj.metrics && proj.metrics.length > 0 && (
                           <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-[#cc6f2a] pt-1">
                             {proj.metrics.map((m, i) => (
@@ -446,71 +468,71 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
             </div>
 
             {/* Add Project Form */}
-            <div className="lg:col-span-5 backdrop-blur-md bg-slate-950/45 border border-slate-900 rounded-2xl p-6 space-y-6">
+            <div className="lg:col-span-5 backdrop-blur-md bg-black border border-slate-900 rounded-2xl p-6 space-y-6">
               <div className="pb-2 border-b border-slate-900">
-                <h2 className="text-[18px] font-semibold text-white">Add New Project Work</h2>
+                <h2 className="scroll-reveal-target text-[18px] font-semibold text-white">Add New Project Work</h2>
               </div>
 
               <form onSubmit={handleAddProject} className="space-y-4 text-left">
                 <div className="space-y-1.5">
-                  <label className="block text-[12px] font-semibold text-slate-400">Project Tag *</label>
+                  <label className="block text-[12px] font-semibold text-white">Project Tag *</label>
                   <input
                     type="text"
                     placeholder="e.g. ERP System, UIUX Design"
                     value={newTag}
                     onChange={(e) => setNewTag(e.target.value)}
-                    className="w-full bg-[#0a0c10] border border-slate-800/80 rounded-xl px-4 py-2.5 text-[14px] text-white placeholder-slate-600 focus:outline-none focus:border-[#cc6f2a] focus:ring-1 focus:ring-[#cc6f2a] transition-all"
+                    className="w-full bg-black border border-white/20 rounded-xl px-4 py-2.5 text-[14px] text-white placeholder-slate-600 focus:outline-none focus:border-[#cc6f2a] focus:ring-1 focus:ring-[#cc6f2a] transition-all"
                     required
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="block text-[12px] font-semibold text-slate-400">Project Title *</label>
+                  <label className="block text-[12px] font-semibold text-white">Project Title *</label>
                   <input
                     type="text"
                     placeholder="e.g. Enterprise Resource Planning Platform"
                     value={newTitle}
                     onChange={(e) => setNewTitle(e.target.value)}
-                    className="w-full bg-[#0a0c10] border border-slate-800/80 rounded-xl px-4 py-2.5 text-[14px] text-white placeholder-slate-600 focus:outline-none focus:border-[#cc6f2a] focus:ring-1 focus:ring-[#cc6f2a] transition-all"
+                    className="w-full bg-black border border-white/20 rounded-xl px-4 py-2.5 text-[14px] text-white placeholder-slate-600 focus:outline-none focus:border-[#cc6f2a] focus:ring-1 focus:ring-[#cc6f2a] transition-all"
                     required
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="block text-[12px] font-semibold text-slate-400">Description *</label>
+                  <label className="block text-[12px] font-semibold text-white">Description *</label>
                   <textarea
                     rows={3}
                     placeholder="Enter short description of the solution..."
                     value={newDescription}
                     onChange={(e) => setNewDescription(e.target.value)}
-                    className="w-full bg-[#0a0c10] border border-slate-800/80 rounded-xl px-4 py-2.5 text-[14px] text-white placeholder-slate-600 focus:outline-none focus:border-[#cc6f2a] focus:ring-1 focus:ring-[#cc6f2a] transition-all resize-none"
+                    className="w-full bg-black border border-white/20 rounded-xl px-4 py-2.5 text-[14px] text-white placeholder-slate-600 focus:outline-none focus:border-[#cc6f2a] focus:ring-1 focus:ring-[#cc6f2a] transition-all resize-none"
                     required
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="block text-[12px] font-semibold text-slate-400">Project Metrics (Optional)</label>
+                  <label className="block text-[12px] font-semibold text-white">Project Metrics (Optional)</label>
                   <div className="space-y-2">
                     <input
                       type="text"
                       placeholder="Metric 1: e.g. 80% reduction in manual data entry"
                       value={newMetric1}
                       onChange={(e) => setNewMetric1(e.target.value)}
-                      className="w-full bg-[#0a0c10] border border-slate-800/80 rounded-xl px-4 py-2 text-[13px] text-white placeholder-slate-600 focus:outline-none focus:border-[#cc6f2a] transition-all"
+                      className="w-full bg-black border border-white/20 rounded-xl px-4 py-2 text-[13px] text-white placeholder-slate-600 focus:outline-none focus:border-[#cc6f2a] transition-all"
                     />
                     <input
                       type="text"
                       placeholder="Metric 2: e.g. 6-week implementation timeline"
                       value={newMetric2}
                       onChange={(e) => setNewMetric2(e.target.value)}
-                      className="w-full bg-[#0a0c10] border border-slate-800/80 rounded-xl px-4 py-2 text-[13px] text-white placeholder-slate-600 focus:outline-none focus:border-[#cc6f2a] transition-all"
+                      className="w-full bg-black border border-white/20 rounded-xl px-4 py-2 text-[13px] text-white placeholder-slate-600 focus:outline-none focus:border-[#cc6f2a] transition-all"
                     />
                     <input
                       type="text"
                       placeholder="Metric 3: e.g. 500+ active daily users"
                       value={newMetric3}
                       onChange={(e) => setNewMetric3(e.target.value)}
-                      className="w-full bg-[#0a0c10] border border-slate-800/80 rounded-xl px-4 py-2 text-[13px] text-white placeholder-slate-600 focus:outline-none focus:border-[#cc6f2a] transition-all"
+                      className="w-full bg-black border border-white/20 rounded-xl px-4 py-2 text-[13px] text-white placeholder-slate-600 focus:outline-none focus:border-[#cc6f2a] transition-all"
                     />
                   </div>
                 </div>
@@ -521,9 +543,9 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
                     id="selectedWork"
                     checked={newSelectedWork}
                     onChange={(e) => setNewSelectedWork(e.target.checked)}
-                    className="w-4.5 h-4.5 rounded border-slate-800 bg-[#0a0c10] text-[#cc6f2a] focus:ring-0 cursor-pointer"
+                    className="w-4.5 h-4.5 rounded border-white/20 bg-black text-[#cc6f2a] focus:ring-0 cursor-pointer"
                   />
-                  <label htmlFor="selectedWork" className="text-[13px] text-slate-300 font-medium cursor-pointer select-none">
+                  <label htmlFor="selectedWork" className="text-[13px] text-white font-medium cursor-pointer select-none">
                     Feature on Landing Page (Selected Work)
                   </label>
                 </div>
@@ -548,7 +570,7 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
   }
 
   return (
-    <div className="w-full min-h-[calc(100vh-6rem)] mt-24 flex items-center justify-center py-12 px-6 bg-[#07080a]">
+    <div className="w-full min-h-[calc(100vh-6rem)] mt-24 flex items-center justify-center py-12 px-6 bg-black">
       
       {/* Decorative Glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] sm:w-[500px] sm:h-[500px] bg-[#cc6f2a]/10 rounded-full blur-[100px] pointer-events-none z-0"></div>
@@ -560,21 +582,21 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
           <span className="text-[12px] font-semibold tracking-[0.2em] text-[#cc6f2a] uppercase font-sans">
             Secure Terminal Access
           </span>
-          <h1 className="font-serif text-[32px] sm:text-[36px] font-bold text-white tracking-tight leading-tight">
+          <h1 className="scroll-reveal-target font-serif text-[32px] sm:text-[36px] font-bold text-white tracking-tight leading-tight">
             {stage === 'login' ? 'Administrator Login' : stage === 'forgot-email' || stage === 'forgot-otp' ? 'Recovery Verification' : 'Reset Password'}
           </h1>
-          <p className="text-[14px] text-slate-400 leading-normal max-w-xs mx-auto">
+          <p className="scroll-reveal-target text-[14px] text-white leading-normal max-w-xs mx-auto">
             {stage === 'login' ? 'Authorized personnel only. Sessions are encrypted and monitored.' : 'Verify authorization credentials to proceed with password recovery.'}
           </p>
         </div>
 
         {/* Login Card */}
-        <div className="backdrop-blur-xl bg-slate-950/45 border border-slate-900/90 shadow-2xl rounded-2xl p-6 sm:p-8">
+        <div className="backdrop-blur-xl bg-black border border-slate-900/90 shadow-2xl rounded-2xl p-6 sm:p-8">
           {stage === 'login' && (
             <form onSubmit={handleLoginSubmit} className="space-y-6">
               
               <div className="space-y-2">
-                <label className="block text-[13px] font-semibold text-slate-300 font-sans tracking-wide">
+                <label className="block text-[13px] font-semibold text-white font-sans tracking-wide">
                   Email Address
                 </label>
                 <input
@@ -582,14 +604,14 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
                   placeholder="admin@galletrix.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-[#0a0c10] border border-slate-800/80 rounded-xl px-5 py-4 text-[15px] text-white placeholder-slate-600 focus:outline-none focus:border-[#cc6f2a] focus:ring-1 focus:ring-[#cc6f2a] transition-all animate-fade-in"
+                  className="w-full bg-black border border-white/20 rounded-xl px-5 py-4 text-[15px] text-white placeholder-slate-600 focus:outline-none focus:border-[#cc6f2a] focus:ring-1 focus:ring-[#cc6f2a] transition-all animate-fade-in"
                   required
                   disabled={isSubmitting}
                 />
               </div>
 
               <div className="space-y-2">
-                <label className="block text-[13px] font-semibold text-slate-300 font-sans tracking-wide">
+                <label className="block text-[13px] font-semibold text-white font-sans tracking-wide">
                   Secure Password
                 </label>
                 <input
@@ -597,7 +619,7 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full bg-[#0a0c10] border border-slate-800/80 rounded-xl px-5 py-4 text-[15px] text-white placeholder-slate-600 focus:outline-none focus:border-[#cc6f2a] focus:ring-1 focus:ring-[#cc6f2a] transition-all animate-fade-in"
+                  className="w-full bg-black border border-white/20 rounded-xl px-5 py-4 text-[15px] text-white placeholder-slate-600 focus:outline-none focus:border-[#cc6f2a] focus:ring-1 focus:ring-[#cc6f2a] transition-all animate-fade-in"
                   required
                   disabled={isSubmitting}
                 />
@@ -660,18 +682,18 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
           {stage === 'forgot-email' && (
             <form onSubmit={handleSendOtp} className="space-y-6">
               <div className="space-y-2 text-left">
-                <label className="block text-[13px] font-semibold text-slate-300 font-sans tracking-wide">
+                <label className="block text-[13px] font-semibold text-white font-sans tracking-wide">
                   Recovery Email Address
                 </label>
-                <p className="text-[12px] text-slate-400">
+                <p className="scroll-reveal-target text-[12px] text-white">
                   OTP recovery emails will be sent to the administrator recovery address.
                 </p>
                 <input
                   type="email"
-                  placeholder="info@galletrix.com"
+                  placeholder="admin@galletrix.com"
                   value={forgotEmail}
                   onChange={(e) => setForgotEmail(e.target.value)}
-                  className="w-full bg-[#0a0c10] border border-slate-800/80 rounded-xl px-5 py-4 text-[15px] text-white placeholder-slate-600 focus:outline-none focus:border-[#cc6f2a] focus:ring-1 focus:ring-[#cc6f2a] transition-all animate-fade-in"
+                  className="w-full bg-black border border-white/20 rounded-xl px-5 py-4 text-[15px] text-white placeholder-slate-600 focus:outline-none focus:border-[#cc6f2a] focus:ring-1 focus:ring-[#cc6f2a] transition-all animate-fade-in"
                   required
                   disabled={isSubmitting}
                 />
@@ -700,7 +722,7 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
                     setStage('login')
                     setErrorText('')
                   }}
-                  className="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 py-3.5 rounded-xl text-[14px] font-semibold transition-colors cursor-pointer"
+                  className="w-full bg-slate-900 hover:bg-slate-800 border border-white/20 text-white py-3.5 rounded-xl text-[14px] font-semibold transition-colors cursor-pointer"
                 >
                   Back to Login
                 </button>
@@ -711,11 +733,11 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
           {stage === 'forgot-otp' && (
             <form onSubmit={handleVerifyOtp} className="space-y-6">
               <div className="space-y-2 text-left">
-                <label className="block text-[13px] font-semibold text-slate-300 font-sans tracking-wide">
+                <label className="block text-[13px] font-semibold text-white font-sans tracking-wide">
                   Enter Verification OTP
                 </label>
-                <p className="text-[12px] text-slate-400">
-                  Please enter the 6-digit recovery code sent to <code className="text-white">info@galletrix.com</code>.
+                <p className="scroll-reveal-target text-[12px] text-white">
+                  Please enter the 6-digit recovery code sent to <code className="text-white">your authorized email address</code>.
                 </p>
                 <input
                   type="text"
@@ -723,7 +745,7 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
                   value={otpInput}
                   onChange={(e) => setOtpInput(e.target.value.replace(/\D/g, '').slice(0, 6))}
                   maxLength={6}
-                  className="w-full bg-[#0a0c10] border border-slate-800/80 rounded-xl px-5 py-4 text-[18px] text-white placeholder-slate-600 focus:outline-none focus:border-[#cc6f2a] focus:ring-1 focus:ring-[#cc6f2a] transition-all text-center tracking-[0.3em] font-mono animate-fade-in"
+                  className="w-full bg-black border border-white/20 rounded-xl px-5 py-4 text-[18px] text-white placeholder-slate-600 focus:outline-none focus:border-[#cc6f2a] focus:ring-1 focus:ring-[#cc6f2a] transition-all text-center tracking-[0.3em] font-mono animate-fade-in"
                   required
                   disabled={isSubmitting}
                 />
@@ -750,9 +772,8 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
                   onClick={() => {
                     setStage('forgot-email')
                     setErrorText('')
-                    setShowOtpToast(false)
                   }}
-                  className="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 py-3.5 rounded-xl text-[14px] font-semibold transition-colors cursor-pointer"
+                  className="w-full bg-slate-900 hover:bg-slate-800 border border-white/20 text-white py-3.5 rounded-xl text-[14px] font-semibold transition-colors cursor-pointer"
                 >
                   Change Email
                 </button>
@@ -764,7 +785,7 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
             <form onSubmit={handleResetPassword} className="space-y-6">
               <div className="space-y-4 text-left">
                 <div className="space-y-2">
-                  <label className="block text-[13px] font-semibold text-slate-300 font-sans tracking-wide">
+                  <label className="block text-[13px] font-semibold text-white font-sans tracking-wide">
                     New Secure Password
                   </label>
                   <input
@@ -772,14 +793,14 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
                     placeholder="••••••••"
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
-                    className="w-full bg-[#0a0c10] border border-slate-800/80 rounded-xl px-5 py-4 text-[15px] text-white placeholder-slate-600 focus:outline-none focus:border-[#cc6f2a] focus:ring-1 focus:ring-[#cc6f2a] transition-all animate-fade-in"
+                    className="w-full bg-black border border-white/20 rounded-xl px-5 py-4 text-[15px] text-white placeholder-slate-600 focus:outline-none focus:border-[#cc6f2a] focus:ring-1 focus:ring-[#cc6f2a] transition-all animate-fade-in"
                     required
                     disabled={isSubmitting}
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <label className="block text-[13px] font-semibold text-slate-300 font-sans tracking-wide">
+                  <label className="block text-[13px] font-semibold text-white font-sans tracking-wide">
                     Confirm New Password
                   </label>
                   <input
@@ -787,7 +808,7 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
                     placeholder="••••••••"
                     value={confirmNewPassword}
                     onChange={(e) => setConfirmNewPassword(e.target.value)}
-                    className="w-full bg-[#0a0c10] border border-slate-800/80 rounded-xl px-5 py-4 text-[15px] text-white placeholder-slate-600 focus:outline-none focus:border-[#cc6f2a] focus:ring-1 focus:ring-[#cc6f2a] transition-all animate-fade-in"
+                    className="w-full bg-black border border-white/20 rounded-xl px-5 py-4 text-[15px] text-white placeholder-slate-600 focus:outline-none focus:border-[#cc6f2a] focus:ring-1 focus:ring-[#cc6f2a] transition-all animate-fade-in"
                     required
                     disabled={isSubmitting}
                   />
@@ -815,39 +836,6 @@ const AdminLogin: React.FC<AdminLoginProps> = () => {
 
         </div>
       </div>
-
-      {/* Floating OTP Debug Notice */}
-      {showOtpToast && (
-        <div className="fixed bottom-6 right-6 z-50 max-w-sm backdrop-blur-md bg-slate-900/90 border border-[#cc6f2a]/60 text-slate-100 p-5 rounded-2xl shadow-2xl animate-fade-in flex flex-col gap-2.5">
-          <div className="flex items-center gap-2 text-amber-500 font-semibold text-[13px]">
-            <svg className="w-4.5 h-4.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-            </svg>
-            <span>[DEBUG] Email sent to info@galletrix.com</span>
-          </div>
-          <p className="text-[12px] text-slate-300 leading-normal">
-            A recovery verification OTP code has been generated. Use the code below to reset the administrator password:
-          </p>
-          <div className="flex items-center justify-between bg-black/50 border border-slate-800 rounded-xl px-4 py-2 font-mono text-[16px] text-white select-text">
-            <span>{generatedOtp}</span>
-            <button
-              onClick={() => {
-                navigator.clipboard.writeText(generatedOtp)
-                alert('OTP code copied to clipboard!')
-              }}
-              className="text-[11px] font-bold text-[#cc6f2a] hover:underline uppercase tracking-wide cursor-pointer focus:outline-none"
-            >
-              Copy
-            </button>
-          </div>
-          <button
-            onClick={() => setShowOtpToast(false)}
-            className="text-[11px] text-slate-500 hover:text-slate-400 self-end mt-1 cursor-pointer focus:outline-none"
-          >
-            Dismiss
-          </button>
-        </div>
-      )}
 
     </div>
   )

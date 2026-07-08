@@ -120,7 +120,7 @@ const CareersApply: React.FC<CareersApplyProps> = ({ navigateToContact }) => {
     formData.append('resume', resume)
 
     try {
-      const response = await fetch('http://localhost:5000/api/careers', {
+      const response = await fetch('/api/careers', {
         method: 'POST',
         body: formData
       })
@@ -150,10 +150,10 @@ const CareersApply: React.FC<CareersApplyProps> = ({ navigateToContact }) => {
   return (
     <>
       {/* Page 1: Hero Section */}
-      <section id="careers-apply-hero" className="w-full mt-24 relative min-h-[calc(100vh-6rem)] bg-[#07080a] flex flex-col justify-center">
+      <section id="careers-apply-hero" className="w-full mt-24 relative min-h-[calc(100vh-6rem)] bg-black flex flex-col justify-center">
         {/* Desktop Background Image */}
         <div className="absolute inset-0 hidden lg:block">
-          <img 
+          <img loading="lazy" 
             src={caplImg} 
             alt="Build Your Future With Galletrix" 
             className="w-full h-full object-cover object-center"
@@ -163,24 +163,24 @@ const CareersApply: React.FC<CareersApplyProps> = ({ navigateToContact }) => {
         {/* Text Content */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 py-12 flex flex-col items-start">
           {/* Subtitle */}
-          <span className="text-[15px] font-medium tracking-wide text-slate-400 mb-5">
+          <span className="text-[15px] font-medium tracking-wide text-white/50 mb-5">
             Contact Galletrix
           </span>
 
           {/* Heading */}
-          <h1 className="font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-bold leading-[1.12] text-white tracking-tight mb-8 max-w-4xl">
+          <h1 className="scroll-reveal-target font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-bold leading-[1.12] text-white tracking-tight mb-8 max-w-4xl">
             Build Your Future With Galletrix
           </h1>
 
           {/* Description */}
-          <p className="font-sans text-[16px] sm:text-[18px] md:text-[19px] leading-[1.65] text-slate-400 max-w-3xl mb-14">
+          <p className="scroll-reveal-target font-sans text-[16px] sm:text-[18px] md:text-[19px] leading-[1.65] text-white max-w-3xl mb-14">
             Tell us about your business challenge. Our team will respond within 24 hours with a tailored assessment.
           </p>
         </div>
 
         {/* Mobile Block Image */}
         <div className="w-full lg:hidden my-6">
-          <img 
+          <img loading="lazy" 
             src={caplImg} 
             alt="Build Your Future With Galletrix" 
             className="w-full h-auto object-cover"
@@ -189,32 +189,32 @@ const CareersApply: React.FC<CareersApplyProps> = ({ navigateToContact }) => {
       </section>
 
       {/* Page 2: Apply Now Form Section */}
-      <section id="careers-apply-form" className="w-full bg-[#07080a] py-24 border-t border-slate-900/60 flex flex-col items-center">
+      <section id="careers-apply-form" className="w-full bg-black py-12 md:py-24 border-t border-slate-900/60 flex flex-col items-center">
         <div className="max-w-7xl mx-auto px-6 md:px-12 w-full flex flex-col items-center animate-fade-in">
           
           {/* Section Headers */}
           <div className="flex flex-col items-center text-center mb-16">
-            <span className="font-sans text-[15px] font-medium tracking-widest text-slate-400 mb-4 uppercase flex items-center gap-4">
+            <span className="font-sans text-[15px] font-medium tracking-widest text-white/50 mb-4 uppercase flex items-center gap-4">
               <span className="h-[1px] w-8 bg-slate-700"></span>
               Applications
               <span className="h-[1px] w-8 bg-slate-700"></span>
             </span>
-            <h2 className="font-serif text-[38px] sm:text-[46px] md:text-[52px] font-bold text-white tracking-tight mb-3">
+            <h2 className="scroll-reveal-target font-serif text-[38px] sm:text-[46px] md:text-[52px] font-bold text-white tracking-tight mb-3">
               Apply Now
             </h2>
-            <p className="font-sans text-[15px] sm:text-[16px] text-slate-400">
+            <p className="scroll-reveal-target font-sans text-[15px] sm:text-[16px] text-white">
               Send your profile to our team.
             </p>
           </div>
 
           {/* Form container */}
-          <div className="w-full max-w-4xl border border-slate-800/80 bg-slate-950/20 p-8 md:p-12 rounded-[32px] shadow-2xl">
+          <div className="w-full max-w-4xl border border-white/20 bg-black p-8 md:p-12 rounded-[32px] shadow-2xl">
             <form onSubmit={handleSubmit} className="space-y-8">
               
               {/* Row 1: Full Name and Email Address */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="block text-[14px] font-semibold tracking-wider text-slate-300 uppercase">
+                  <label className="block text-[14px] font-semibold tracking-wider text-white uppercase">
                     Full NAME *
                   </label>
                   <input 
@@ -222,13 +222,13 @@ const CareersApply: React.FC<CareersApplyProps> = ({ navigateToContact }) => {
                     placeholder="Your full name" 
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
-                    className="w-full bg-[#0a0c10]/60 border border-slate-800/80 rounded-xl px-5 py-4 text-[15px] text-white placeholder-slate-600 focus:outline-none focus:border-[#e2942b] focus:ring-1 focus:ring-[#e2942b] transition-all" 
+                    className="w-full bg-black/60 border border-white/20 rounded-xl px-5 py-4 text-[15px] text-white placeholder-slate-600 focus:outline-none focus:border-[#e2942b] focus:ring-1 focus:ring-[#e2942b] transition-all" 
                     required 
                     disabled={status === 'submitting'}
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="block text-[14px] font-semibold tracking-wider text-slate-300 uppercase">
+                  <label className="block text-[14px] font-semibold tracking-wider text-white uppercase">
                     EMAIL ADDRESS *
                   </label>
                   <input 
@@ -236,7 +236,7 @@ const CareersApply: React.FC<CareersApplyProps> = ({ navigateToContact }) => {
                     placeholder="you@email.com" 
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full bg-[#0a0c10]/60 border border-slate-800/80 rounded-xl px-5 py-4 text-[15px] text-white placeholder-slate-600 focus:outline-none focus:border-[#e2942b] focus:ring-1 focus:ring-[#e2942b] transition-all" 
+                    className="w-full bg-black/60 border border-white/20 rounded-xl px-5 py-4 text-[15px] text-white placeholder-slate-600 focus:outline-none focus:border-[#e2942b] focus:ring-1 focus:ring-[#e2942b] transition-all" 
                     required 
                     disabled={status === 'submitting'}
                   />
@@ -245,11 +245,11 @@ const CareersApply: React.FC<CareersApplyProps> = ({ navigateToContact }) => {
 
               {/* Row 2: Phone Number */}
               <div className="space-y-2">
-                <label className="block text-[14px] font-semibold tracking-wider text-slate-300 uppercase">
+                <label className="block text-[14px] font-semibold tracking-wider text-white uppercase">
                   Phone Number
                 </label>
                 <div className="relative flex items-center w-full">
-                  <span className="absolute left-5 text-[15px] text-slate-400 font-semibold select-none pointer-events-none">
+                  <span className="absolute left-5 text-[15px] text-white font-semibold select-none pointer-events-none">
                     +91
                   </span>
                   <input 
@@ -258,7 +258,7 @@ const CareersApply: React.FC<CareersApplyProps> = ({ navigateToContact }) => {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
                     maxLength={10}
-                    className="w-full bg-[#0a0c10]/60 border border-slate-800/80 rounded-xl pl-16 pr-5 py-4 text-[15px] text-white placeholder-slate-600 focus:outline-none focus:border-[#e2942b] focus:ring-1 focus:ring-[#e2942b] transition-all" 
+                    className="w-full bg-black/60 border border-white/20 rounded-xl pl-16 pr-5 py-4 text-[15px] text-white placeholder-slate-600 focus:outline-none focus:border-[#e2942b] focus:ring-1 focus:ring-[#e2942b] transition-all" 
                     disabled={status === 'submitting'}
                   />
                 </div>
@@ -267,24 +267,24 @@ const CareersApply: React.FC<CareersApplyProps> = ({ navigateToContact }) => {
               {/* Row 3: Position Applying For and Experience Level */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="block text-[14px] font-semibold tracking-wider text-slate-300 uppercase">
+                  <label className="block text-[14px] font-semibold tracking-wider text-white uppercase">
                     Position Applying For *
                   </label>
                   <div className="relative">
                     <select 
                       value={position}
                       onChange={(e) => setPosition(e.target.value)}
-                      className="w-full bg-[#0a0c10]/60 border border-slate-800/80 rounded-xl px-5 py-4 text-[15px] text-slate-300 focus:outline-none focus:border-[#e2942b] focus:ring-1 focus:ring-[#e2942b] transition-all appearance-none cursor-pointer"
+                      className="w-full bg-black/60 border border-white/20 rounded-xl px-5 py-4 text-[15px] text-white focus:outline-none focus:border-[#e2942b] focus:ring-1 focus:ring-[#e2942b] transition-all appearance-none cursor-pointer"
                       required
                       disabled={status === 'submitting'}
                     >
-                      <option value="" disabled>Select a role</option>
-                      <option value="frontend">Frontend Developer</option>
-                      <option value="backend">Backend Developer</option>
-                      <option value="fullstack">Fullstack Engineer</option>
-                      <option value="uiux">UI/UX Designer</option>
-                      <option value="project-manager">Project Manager</option>
-                      <option value="devops">DevOps Engineer</option>
+                      <option className="bg-black" value="" disabled>Select a role</option>
+                      <option className="bg-black" value="frontend">Frontend Developer</option>
+                      <option className="bg-black" value="backend">Backend Developer</option>
+                      <option className="bg-black" value="fullstack">Fullstack Engineer</option>
+                      <option className="bg-black" value="uiux">UI/UX Designer</option>
+                      <option className="bg-black" value="project-manager">Project Manager</option>
+                      <option className="bg-black" value="devops">DevOps Engineer</option>
                     </select>
                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-5 text-slate-500">
                       <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -295,22 +295,22 @@ const CareersApply: React.FC<CareersApplyProps> = ({ navigateToContact }) => {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="block text-[14px] font-semibold tracking-wider text-slate-300 uppercase">
+                  <label className="block text-[14px] font-semibold tracking-wider text-white uppercase">
                     Experience Level *
                   </label>
                   <div className="relative">
                     <select 
                       value={experience}
                       onChange={(e) => setExperience(e.target.value)}
-                      className="w-full bg-[#0a0c10]/60 border border-slate-800/80 rounded-xl px-5 py-4 text-[15px] text-slate-300 focus:outline-none focus:border-[#e2942b] focus:ring-1 focus:ring-[#e2942b] transition-all appearance-none cursor-pointer"
+                      className="w-full bg-black/60 border border-white/20 rounded-xl px-5 py-4 text-[15px] text-white focus:outline-none focus:border-[#e2942b] focus:ring-1 focus:ring-[#e2942b] transition-all appearance-none cursor-pointer"
                       required
                       disabled={status === 'submitting'}
                     >
-                      <option value="" disabled>Select Level</option>
-                      <option value="junior">Junior (0-2 years)</option>
-                      <option value="mid">Mid-Level (2-5 years)</option>
-                      <option value="senior">Senior (5+ years)</option>
-                      <option value="lead">Lead / Architect</option>
+                      <option className="bg-black" value="" disabled>Select Level</option>
+                      <option className="bg-black" value="junior">Junior (0-2 years)</option>
+                      <option className="bg-black" value="mid">Mid-Level (2-5 years)</option>
+                      <option className="bg-black" value="senior">Senior (5+ years)</option>
+                      <option className="bg-black" value="lead">Lead / Architect</option>
                     </select>
                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-5 text-slate-500">
                       <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -323,7 +323,7 @@ const CareersApply: React.FC<CareersApplyProps> = ({ navigateToContact }) => {
 
               {/* Row 4: Portfolio/LinkedIn */}
               <div className="space-y-2">
-                <label className="block text-[14px] font-semibold tracking-wider text-slate-300 uppercase">
+                <label className="block text-[14px] font-semibold tracking-wider text-white uppercase">
                   Portfolio / Linkedin Link
                 </label>
                 <input 
@@ -331,14 +331,14 @@ const CareersApply: React.FC<CareersApplyProps> = ({ navigateToContact }) => {
                   placeholder="https://yourportfolio.com or linkedin.com/in/you" 
                   value={portfolio}
                   onChange={(e) => setPortfolio(e.target.value)}
-                  className="w-full bg-[#0a0c10]/60 border border-slate-800/80 rounded-xl px-5 py-4 text-[15px] text-white placeholder-slate-600 focus:outline-none focus:border-[#e2942b] focus:ring-1 focus:ring-[#e2942b] transition-all" 
+                  className="w-full bg-black/60 border border-white/20 rounded-xl px-5 py-4 text-[15px] text-white placeholder-slate-600 focus:outline-none focus:border-[#e2942b] focus:ring-1 focus:ring-[#e2942b] transition-all" 
                   disabled={status === 'submitting'}
                 />
               </div>
 
               {/* Row 5: Upload Resume Drag and Drop */}
               <div className="space-y-2">
-                <label className="block text-[14px] font-semibold tracking-wider text-slate-300 uppercase">
+                <label className="block text-[14px] font-semibold tracking-wider text-white uppercase">
                   Upload Resume
                 </label>
                 <div 
@@ -350,7 +350,7 @@ const CareersApply: React.FC<CareersApplyProps> = ({ navigateToContact }) => {
                   className={`w-full border-2 border-dashed rounded-2xl p-8 flex flex-col items-center justify-center gap-3 cursor-pointer transition-all duration-300 ${
                     dragActive 
                       ? 'border-[#e2942b] bg-[#e2942b]/5' 
-                      : 'border-slate-800/80 bg-[#0a0c10]/40 hover:border-slate-700/80 hover:bg-[#0a0c10]/60'
+                      : 'border-white/20 bg-black/40 hover:border-white/40 hover:bg-black/60'
                   }`}
                 >
                   <input 
@@ -362,7 +362,7 @@ const CareersApply: React.FC<CareersApplyProps> = ({ navigateToContact }) => {
                     disabled={status === 'submitting'}
                   />
                   
-                  <div className="w-12 h-12 rounded-full bg-slate-900/60 flex items-center justify-center text-slate-400">
+                  <div className="w-12 h-12 rounded-full bg-slate-900/60 flex items-center justify-center text-white">
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
                     </svg>
@@ -370,15 +370,15 @@ const CareersApply: React.FC<CareersApplyProps> = ({ navigateToContact }) => {
                   
                   {resume ? (
                     <div className="text-center space-y-1">
-                      <p className="font-sans text-[15px] font-semibold text-slate-200">{resume.name}</p>
-                      <p className="font-sans text-[13px] text-slate-500">{(resume.size / (1024 * 1024)).toFixed(2)} MB</p>
+                      <p className="scroll-reveal-target font-sans text-[15px] font-semibold text-white">{resume.name}</p>
+                      <p className="scroll-reveal-target font-sans text-[13px] text-slate-500">{(resume.size / (1024 * 1024)).toFixed(2)} MB</p>
                     </div>
                   ) : (
                     <div className="text-center space-y-1">
-                      <p className="font-sans text-[15px] font-semibold text-slate-300">
+                      <p className="scroll-reveal-target font-sans text-[15px] font-semibold text-white">
                         Drop your resume here, or <span className="text-[#e2942b] hover:underline">click to browse</span>
                       </p>
-                      <p className="font-sans text-[13px] text-slate-500">PDF, DOC, DOCX - max 5MB</p>
+                      <p className="scroll-reveal-target font-sans text-[13px] text-slate-500">PDF, DOC, DOCX - max 5MB</p>
                     </div>
                   )}
                 </div>
@@ -386,7 +386,7 @@ const CareersApply: React.FC<CareersApplyProps> = ({ navigateToContact }) => {
 
               {/* Row 6: Message Textarea */}
               <div className="space-y-2">
-                <label className="block text-[14px] font-semibold tracking-wider text-slate-300 uppercase">
+                <label className="block text-[14px] font-semibold tracking-wider text-white uppercase">
                   Message
                 </label>
                 <textarea 
@@ -394,7 +394,7 @@ const CareersApply: React.FC<CareersApplyProps> = ({ navigateToContact }) => {
                   placeholder="Tell us a bit yourself and why you want to join Galletrix..." 
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className="w-full bg-[#0a0c10]/60 border border-slate-800/80 rounded-xl px-5 py-4 text-[15px] text-white placeholder-slate-600 focus:outline-none focus:border-[#e2942b] focus:ring-1 focus:ring-[#e2942b] transition-all resize-none" 
+                  className="w-full bg-black/60 border border-white/20 rounded-xl px-5 py-4 text-[15px] text-white placeholder-slate-600 focus:outline-none focus:border-[#e2942b] focus:ring-1 focus:ring-[#e2942b] transition-all resize-none" 
                   disabled={status === 'submitting'}
                 />
               </div>
@@ -417,7 +417,7 @@ const CareersApply: React.FC<CareersApplyProps> = ({ navigateToContact }) => {
                 <button 
                   type="submit" 
                   disabled={status === 'submitting'}
-                  className="w-full max-w-sm bg-[#e2942b] hover:bg-[#cc6f2a] text-white py-4.5 rounded-full text-[16px] font-semibold flex items-center justify-center transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] cursor-pointer shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full max-w-sm bg-[#cc6f2a] hover:bg-[#b86120] text-white py-4.5 rounded-full text-[16px] font-semibold flex items-center justify-center transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] cursor-pointer shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <span>{status === 'submitting' ? 'Submitting...' : 'Submit Application'}</span>
                 </button>
@@ -430,19 +430,19 @@ const CareersApply: React.FC<CareersApplyProps> = ({ navigateToContact }) => {
       </section>
 
       {/* Page 3: Get In Touch Section (as in screenshot) */}
-      <section id="careers-apply-get-in-touch" className="w-full bg-white text-[#07080a] py-24 md:py-32 flex flex-col items-center justify-center border-t border-slate-200">
+      <section id="careers-apply-get-in-touch" className="w-full bg-white text-[#07080a] py-16 md:py-32 flex flex-col items-center justify-center border-t border-slate-200">
         <div className="max-w-4xl mx-auto px-6 flex flex-col items-center text-center animate-fade-in">
-          <span className="text-[15px] font-semibold tracking-wide text-slate-500 mb-5 uppercase font-sans">
+          <span className="text-[15px] font-semibold tracking-wide text-white/50 mb-5 uppercase font-sans">
             Get In Touch
           </span>
           
-          <h2 className="font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-bold leading-[1.15] text-[#07080a] tracking-tight mb-8 max-w-3xl">
+          <h2 className="scroll-reveal-target font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-bold leading-[1.15] text-[#07080a] tracking-tight mb-8 max-w-3xl">
             Ready to transform <br />
             your business <br />
-            <span className="text-[#1b5ea3] font-medium">digitally?</span>
+            <span className="text-white font-medium">digitally?</span>
           </h2>
           
-          <p className="font-sans text-[16px] sm:text-[18px] md:text-[20px] leading-relaxed text-slate-500 max-w-2xl mb-10">
+          <p className="scroll-reveal-target font-sans text-[16px] sm:text-[18px] md:text-[20px] leading-relaxed text-slate-500 max-w-2xl mb-10">
             Let us architect the digital infrastructure your business deserves.
           </p>
 

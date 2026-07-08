@@ -36,7 +36,7 @@ const testimonialsData = [
     initials: "MR",
     name: "Meera Reddy",
     company: "Logix Solutions",
-    color: "bg-[#1b5ea3]"
+    color: "bg-black border border-white/20"
   },
   {
     quote: "Outstanding web application development. The user experience is flawless, and it has significantly boosted our customer engagement.",
@@ -144,7 +144,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
   return (
     <>
       {/* Page 1: Hero Section (v.mp4) */}
-      <section id="other-page" className="w-full h-screen relative bg-[#07080a] flex items-center justify-center overflow-hidden animate-fade-in">
+      <section id="other-page" className="w-full h-screen relative bg-black flex items-center justify-center overflow-hidden animate-fade-in">
         {/* Background Video */}
         <div className="absolute inset-0 z-0">
           <video 
@@ -205,10 +205,10 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
       </section>
 
       {/* Page 2: Who We Are Section */}
-      <section id="other-page-2" className="w-full bg-black py-24 md:py-32 lg:py-40 border-t border-slate-900/60 min-h-screen flex items-center">
+      <section id="other-page-2" className="w-full bg-black py-16 md:py-32 lg:py-40 border-t border-slate-900/60 min-h-screen flex items-center">
         <div className="max-w-7xl mx-auto px-6 md:px-12 w-full flex flex-col items-start animate-fade-in">
           {/* Heading */}
-          <h2 className="font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-medium leading-[1.12] text-white tracking-tight mb-6">
+          <h2 className="scroll-reveal-target font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-medium leading-[1.12] text-white tracking-tight mb-6">
             WHO WE ARE
           </h2>
 
@@ -218,7 +218,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
           </div>
 
           {/* Description Paragraph */}
-          <p className="font-sans text-[16px] sm:text-[18px] md:text-[20px] leading-[1.7] text-slate-300 max-w-6xl mb-20">
+          <p className="scroll-reveal-target font-sans text-[16px] sm:text-[18px] md:text-[20px] leading-[1.7] text-white max-w-6xl mb-20">
             Galletrix is built with a vision to transform business operations through intelligent digital solutions. We help companies automate workflows, improve productivity, and grow with reliable ERP, CRM, web, mobile, and automation systems.
           </p>
 
@@ -226,7 +226,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center w-full">
             {/* Left Side: Why Choose Us & Pills */}
             <div className="lg:col-span-6 flex flex-col items-start w-full">
-              <h3 className="font-sans text-[22px] md:text-[26px] font-semibold text-white tracking-tight mb-8">
+              <h3 className="scroll-reveal-target font-sans text-[22px] md:text-[26px] font-semibold text-white tracking-tight mb-8">
                 Why Choose Us ?
               </h3>
 
@@ -238,7 +238,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
                 ].map((text, idx) => (
                   <div 
                     key={idx} 
-                    className="border border-slate-700/60 bg-black/40 px-6 py-4.5 rounded-xl text-[16px] font-medium text-slate-300 transition-all duration-300 hover:border-[#cc6f2a]/60 hover:text-white"
+                    className="border border-slate-700/60 bg-black/40 px-6 py-4.5 rounded-xl text-[16px] font-medium text-white transition-all duration-300 hover:border-[#cc6f2a]/60 hover:text-white"
                   >
                     {text}
                   </div>
@@ -248,7 +248,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
 
             {/* Right Side: Image g1.png */}
             <div className="lg:col-span-6 flex justify-center w-full">
-              <img 
+              <img loading="lazy" 
                 src={g1Img} 
                 alt="Why Choose Galletrix - Innovation in Hand" 
                 className="w-full max-w-lg h-auto object-cover rounded-[28px] shadow-2xl"
@@ -259,23 +259,23 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
       </section>
 
       {/* Page 3: Real Business Problems Section */}
-      <section id="other-page-3" className="w-full bg-[#07080a] border-t border-slate-900/60 relative">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 w-full pt-24 md:pt-32 pb-12">
+      <section id="other-page-3" className="w-full bg-black border-t border-slate-900/60 relative">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 w-full pt-16 md:pt-32 pb-12">
           {/* Heading - scrolls normally */}
-          <h2 className="font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[60px] font-medium leading-[1.12] text-white tracking-tight shrink-0">
+          <h2 className="scroll-reveal-target font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[60px] font-medium leading-[1.12] text-white tracking-tight shrink-0">
             Built to solve real business problems
           </h2>
         </div>
 
         {/* Scroll Track for Sticky Mockup Container */}
-        <div ref={trackRef} className="w-full h-[250vh] relative px-6 md:px-12 pb-24">
+        <div ref={trackRef} className="w-full h-[120vh] md:h-[250vh] relative px-6 md:px-12 pb-16 md:pb-24">
           {/* The Pinned Container - controlled height to prevent taking up the whole screen */}
           <div 
             ref={stickyContainerRef} 
-            className="w-full max-w-6xl mx-auto relative h-[65vh] md:h-[85vh] max-h-[850px] rounded-[24px] md:rounded-[32px] overflow-hidden border border-slate-800/60 shadow-2xl bg-[#07080a] will-change-transform"
+            className="w-full max-w-6xl mx-auto relative h-[65vh] md:h-[85vh] max-h-[850px] rounded-[24px] md:rounded-[32px] overflow-hidden border border-white/20 shadow-2xl bg-black will-change-transform"
           >
             {/* Image 1 */}
-            <img 
+            <img loading="lazy" 
               ref={img1Ref}
               src={l3Img} 
               alt="Built to solve real business problems" 
@@ -283,7 +283,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
             />
             
             {/* Image 2 (Overlays Image 1) */}
-            <img 
+            <img loading="lazy" 
               ref={img2Ref}
               src={g3Img} 
               alt="Workflow Solution" 
@@ -307,10 +307,10 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
       </section>
 
       {/* Page 6: Enterprise Solutions Card Grid Section */}
-      <section id="other-page-6" className="w-full relative bg-[#07080a] py-24 md:py-32 border-t border-slate-900/60 min-h-screen flex items-center overflow-hidden">
+      <section id="other-page-6" className="w-full relative bg-black py-16 md:py-32 border-t border-slate-900/60 min-h-screen flex items-center overflow-hidden">
         {/* Blurred background solutions image overlay */}
-        <div className="absolute inset-0 z-0 opacity-[0.05] pointer-events-none select-none">
-          <img 
+        <div className="absolute inset-0 z-0 opacity-10 pointer-events-none select-none">
+          <img loading="lazy" 
             src={g2Img} 
             alt="" 
             className="w-full h-full object-cover filter blur-[4px]"
@@ -319,12 +319,12 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full flex flex-col items-start animate-fade-in">
           {/* Subtitle */}
-          <span className="font-sans text-[15px] font-medium tracking-wide text-slate-400 mb-5">
+          <span className="font-sans text-[15px] font-medium tracking-wide text-white/50 mb-5">
             What We Do
           </span>
           
           {/* Heading */}
-          <h2 className="font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-medium leading-[1.12] text-white tracking-tight mb-20">
+          <h2 className="scroll-reveal-target font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-medium leading-[1.12] text-white tracking-tight mb-20">
             Enterprise Solutions, Engineered
           </h2>
 
@@ -334,17 +334,17 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
             <a 
               href="#erp"
               onClick={() => setView('erp')}
-              className="border border-slate-800/80 bg-slate-950/20 p-8 md:p-10 rounded-[24px] flex flex-col justify-start hover:border-[#cc6f2a]/60 hover:scale-[1.02] hover:bg-slate-900/40 hover:shadow-2xl hover:shadow-[#cc6f2a]/5 transition-all duration-300 text-left cursor-pointer group/card"
+              className="border border-white/20 bg-black/20 p-8 md:p-10 rounded-[24px] flex flex-col justify-start hover:border-[#cc6f2a]/60 hover:scale-[1.02] hover:bg-black/40 hover:shadow-2xl hover:shadow-[#cc6f2a]/5 transition-all duration-300 text-left cursor-pointer group/card"
             >
-              <div className="text-slate-300 mb-6 transition-transform group-hover/card:scale-105 duration-300">
-                <svg className="w-6 h-6 text-slate-200 group-hover/card:text-white transition-colors duration-200" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <div className="text-white mb-6 transition-transform group-hover/card:scale-105 duration-300">
+                <svg className="w-6 h-6 text-white group-hover/card:text-white transition-colors duration-200" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4 7c0-1.657 3.582-3 8-3s8 1.343 8 3M4 7c0 1.657 3.582 3 8 3s8-1.343 8-3M4 7v10c0 1.657 3.582 3 8 3s8-1.343 8-3V7M4 12c0 1.657 3.582 3 8 3s8-1.343 8-3" />
                 </svg>
               </div>
-              <h3 className="font-sans text-[20px] md:text-[22px] font-semibold text-white tracking-tight mb-4 transition-colors group-hover/card:text-white">
+              <h3 className="scroll-reveal-target font-sans text-[20px] md:text-[22px] font-semibold text-white tracking-tight mb-4 transition-colors group-hover/card:text-white">
                 ERP Solutions
               </h3>
-              <p className="font-sans text-[14px] sm:text-[15px] leading-[1.65] text-slate-400 group-hover/card:text-slate-300 transition-colors duration-200">
+              <p className="scroll-reveal-target font-sans text-[14px] sm:text-[15px] leading-[1.65] text-white group-hover/card:text-white transition-colors duration-200">
                 Unified enterprise resource planning systems that integrate every facet of your operations into a single, intelligent platform.
               </p>
             </a>
@@ -353,17 +353,17 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
             <a 
               href="#automation"
               onClick={() => setView('automation')}
-              className="border border-slate-800/80 bg-slate-950/20 p-8 md:p-10 rounded-[24px] flex flex-col justify-start hover:border-[#cc6f2a]/60 hover:scale-[1.02] hover:bg-slate-900/40 hover:shadow-2xl hover:shadow-[#cc6f2a]/5 transition-all duration-300 text-left cursor-pointer group/card"
+              className="border border-white/20 bg-black/20 p-8 md:p-10 rounded-[24px] flex flex-col justify-start hover:border-[#cc6f2a]/60 hover:scale-[1.02] hover:bg-black/40 hover:shadow-2xl hover:shadow-[#cc6f2a]/5 transition-all duration-300 text-left cursor-pointer group/card"
             >
-              <div className="text-slate-300 mb-6 transition-transform group-hover/card:scale-105 duration-300">
-                <svg className="w-6 h-6 text-slate-200 group-hover/card:text-white transition-colors duration-200" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <div className="text-white mb-6 transition-transform group-hover/card:scale-105 duration-300">
+                <svg className="w-6 h-6 text-white group-hover/card:text-white transition-colors duration-200" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v4M12 10H5v4M12 10h7v4M12 10v4M10 2h4v4h-4zM3 14h4v4H3zM10 14h4v4h-4zM17 14h4v4h-4z" />
                 </svg>
               </div>
-              <h3 className="font-sans text-[20px] md:text-[22px] font-semibold text-white tracking-tight mb-4 transition-colors group-hover/card:text-white">
+              <h3 className="scroll-reveal-target font-sans text-[20px] md:text-[22px] font-semibold text-white tracking-tight mb-4 transition-colors group-hover/card:text-white">
                 Business Automation
               </h3>
-              <p className="font-sans text-[14px] sm:text-[15px] leading-[1.65] text-slate-400 group-hover/card:text-slate-300 transition-colors duration-200">
+              <p className="scroll-reveal-target font-sans text-[14px] sm:text-[15px] leading-[1.65] text-white group-hover/card:text-white transition-colors duration-200">
                 Eliminate manual processes with intelligent automation that adapts to your workflows and scales with your growth.
               </p>
             </a>
@@ -372,18 +372,18 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
             <a 
               href="#web"
               onClick={() => setView('web')}
-              className="border border-slate-800/80 bg-slate-950/20 p-8 md:p-10 rounded-[24px] flex flex-col justify-start hover:border-[#cc6f2a]/60 hover:scale-[1.02] hover:bg-slate-900/40 hover:shadow-2xl hover:shadow-[#cc6f2a]/5 transition-all duration-300 text-left cursor-pointer group/card"
+              className="border border-white/20 bg-black/20 p-8 md:p-10 rounded-[24px] flex flex-col justify-start hover:border-[#cc6f2a]/60 hover:scale-[1.02] hover:bg-black/40 hover:shadow-2xl hover:shadow-[#cc6f2a]/5 transition-all duration-300 text-left cursor-pointer group/card"
             >
-              <div className="text-slate-300 mb-6 transition-transform group-hover/card:scale-105 duration-300">
-                <svg className="w-6 h-6 text-slate-200 group-hover/card:text-white transition-colors duration-200" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <div className="text-white mb-6 transition-transform group-hover/card:scale-105 duration-300">
+                <svg className="w-6 h-6 text-white group-hover/card:text-white transition-colors duration-200" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                   <circle cx="12" cy="12" r="10" />
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
                 </svg>
               </div>
-              <h3 className="font-sans text-[20px] md:text-[22px] font-semibold text-white tracking-tight mb-4 transition-colors group-hover/card:text-white">
+              <h3 className="scroll-reveal-target font-sans text-[20px] md:text-[22px] font-semibold text-white tracking-tight mb-4 transition-colors group-hover/card:text-white">
                 Web Application Development
               </h3>
-              <p className="font-sans text-[14px] sm:text-[15px] leading-[1.65] text-slate-400 group-hover/card:text-slate-300 transition-colors duration-200">
+              <p className="scroll-reveal-target font-sans text-[14px] sm:text-[15px] leading-[1.65] text-white group-hover/card:text-white transition-colors duration-200">
                 Custom-built, high-performance web applications designed for scalability, security, and exceptional user experience.
               </p>
             </a>
@@ -392,17 +392,17 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
             <a 
               href="#dashboard"
               onClick={() => setView('dashboard')}
-              className="border border-slate-800/80 bg-slate-950/20 p-8 md:p-10 rounded-[24px] flex flex-col justify-start hover:border-[#cc6f2a]/60 hover:scale-[1.02] hover:bg-slate-900/40 hover:shadow-2xl hover:shadow-[#cc6f2a]/5 transition-all duration-300 text-left cursor-pointer group/card"
+              className="border border-white/20 bg-black/20 p-8 md:p-10 rounded-[24px] flex flex-col justify-start hover:border-[#cc6f2a]/60 hover:scale-[1.02] hover:bg-black/40 hover:shadow-2xl hover:shadow-[#cc6f2a]/5 transition-all duration-300 text-left cursor-pointer group/card"
             >
-              <div className="text-slate-300 mb-6 transition-transform group-hover/card:scale-105 duration-300">
-                <svg className="w-6 h-6 text-slate-200 group-hover/card:text-white transition-colors duration-200" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <div className="text-white mb-6 transition-transform group-hover/card:scale-105 duration-300">
+                <svg className="w-6 h-6 text-white group-hover/card:text-white transition-colors duration-200" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M18 20V10M12 20V4M6 20v-6" />
                 </svg>
               </div>
-              <h3 className="font-sans text-[20px] md:text-[22px] font-semibold text-white tracking-tight mb-4 transition-colors group-hover/card:text-white">
+              <h3 className="scroll-reveal-target font-sans text-[20px] md:text-[22px] font-semibold text-white tracking-tight mb-4 transition-colors group-hover/card:text-white">
                 Dashboard & Analytics
               </h3>
-              <p className="font-sans text-[14px] sm:text-[15px] leading-[1.65] text-slate-400 group-hover/card:text-slate-300 transition-colors duration-200">
+              <p className="scroll-reveal-target font-sans text-[14px] sm:text-[15px] leading-[1.65] text-white group-hover/card:text-white transition-colors duration-200">
                 Real-time data visualization and business intelligence tools that transform raw data into actionable insights.
               </p>
             </a>
@@ -411,17 +411,17 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
             <a 
               href="#marketing"
               onClick={() => setView('marketing')}
-              className="border border-slate-800/80 bg-slate-950/20 p-8 md:p-10 rounded-[24px] flex flex-col justify-start hover:border-[#cc6f2a]/60 hover:scale-[1.02] hover:bg-slate-900/40 hover:shadow-2xl hover:shadow-[#cc6f2a]/5 transition-all duration-300 text-left cursor-pointer group/card"
+              className="border border-white/20 bg-black/20 p-8 md:p-10 rounded-[24px] flex flex-col justify-start hover:border-[#cc6f2a]/60 hover:scale-[1.02] hover:bg-black/40 hover:shadow-2xl hover:shadow-[#cc6f2a]/5 transition-all duration-300 text-left cursor-pointer group/card"
             >
-              <div className="text-slate-300 mb-6 transition-transform group-hover/card:scale-105 duration-300">
-                <svg className="w-6 h-6 text-slate-200 group-hover/card:text-white transition-colors duration-200" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <div className="text-white mb-6 transition-transform group-hover/card:scale-105 duration-300">
+                <svg className="w-6 h-6 text-white group-hover/card:text-white transition-colors duration-200" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 12h3l3-9 4 18 3-12h5" />
                 </svg>
               </div>
-              <h3 className="font-sans text-[20px] md:text-[22px] font-semibold text-white tracking-tight mb-4 transition-colors group-hover/card:text-white">
+              <h3 className="scroll-reveal-target font-sans text-[20px] md:text-[22px] font-semibold text-white tracking-tight mb-4 transition-colors group-hover/card:text-white">
                 Digital Marketing
               </h3>
-              <p className="font-sans text-[14px] sm:text-[15px] leading-[1.65] text-slate-400 group-hover/card:text-slate-300 transition-colors duration-200">
+              <p className="scroll-reveal-target font-sans text-[14px] sm:text-[15px] leading-[1.65] text-white group-hover/card:text-white transition-colors duration-200">
                 Streamline complex business processes with visual workflow builders and automated task orchestration.
               </p>
             </a>
@@ -430,17 +430,17 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
             <a 
               href="#uiux"
               onClick={() => setView('uiux')}
-              className="border border-slate-800/80 bg-slate-950/20 p-8 md:p-10 rounded-[24px] flex flex-col justify-start hover:border-[#cc6f2a]/60 hover:scale-[1.02] hover:bg-slate-900/40 hover:shadow-2xl hover:shadow-[#cc6f2a]/5 transition-all duration-300 text-left cursor-pointer group/card"
+              className="border border-white/20 bg-black/20 p-8 md:p-10 rounded-[24px] flex flex-col justify-start hover:border-[#cc6f2a]/60 hover:scale-[1.02] hover:bg-black/40 hover:shadow-2xl hover:shadow-[#cc6f2a]/5 transition-all duration-300 text-left cursor-pointer group/card"
             >
-              <div className="text-slate-300 mb-6 transition-transform group-hover/card:scale-105 duration-300">
-                <svg className="w-6 h-6 text-slate-200 group-hover/card:text-white transition-colors duration-200" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <div className="text-white mb-6 transition-transform group-hover/card:scale-105 duration-300">
+                <svg className="w-6 h-6 text-white group-hover/card:text-white transition-colors duration-200" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4 7c0-1.657 3.582-3 8-3s8 1.343 8 3M4 7c0 1.657 3.582 3 8 3s8-1.343 8-3M4 7v10c0 1.657 3.582 3 8 3s8-1.343 8-3V7M4 12c0 1.657 3.582 3 8 3s8-1.343 8-3" />
                 </svg>
               </div>
-              <h3 className="font-sans text-[20px] md:text-[22px] font-semibold text-white tracking-tight mb-4 transition-colors group-hover/card:text-white">
+              <h3 className="scroll-reveal-target font-sans text-[20px] md:text-[22px] font-semibold text-white tracking-tight mb-4 transition-colors group-hover/card:text-white">
                 UIUX Design
               </h3>
-              <p className="font-sans text-[14px] sm:text-[15px] leading-[1.65] text-slate-400 group-hover/card:text-slate-300 transition-colors duration-200">
+              <p className="scroll-reveal-target font-sans text-[14px] sm:text-[15px] leading-[1.65] text-white group-hover/card:text-white transition-colors duration-200">
                 End-to-end digital transformation strategies that modernize legacy systems and unlock new business potential.
               </p>
             </a>
@@ -449,7 +449,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
       </section>
 
       {/* Page 7: Snapshots & Partner Section */}
-      <section id="other-page-7" className="w-full bg-[#07080a] py-24 md:py-32 lg:py-40 border-t border-slate-900/60 min-h-screen flex items-center">
+      <section id="other-page-7" className="w-full bg-black py-16 md:py-32 lg:py-40 border-t border-slate-900/60 min-h-screen flex items-center">
         <div className="max-w-7xl mx-auto px-6 md:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch animate-fade-in">
           
           {/* Left Side: White Snapshots Card */}
@@ -457,7 +457,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
             <span className="font-serif text-[24px] md:text-[28px] text-slate-500 mb-2">
               A snapshot of
             </span>
-            <h2 className="font-serif text-[28px] md:text-[38px] font-bold text-[#07080a] mb-16 text-center">
+            <h2 className="scroll-reveal-target font-serif text-[28px] md:text-[38px] font-bold text-[#07080a] mb-16 text-center">
               What We deliver
             </h2>
 
@@ -475,10 +475,10 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
                 <svg className="w-6 h-6 text-slate-700 mb-1" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4 7c0-1.657 3.582-3 8-3s8 1.343 8 3M4 7c0 1.657 3.582 3 8 3s8-1.343 8-3M4 7v10c0 1.657 3.582 3 8 3s8-1.343 8-3V7M4 12c0 1.657 3.582 3 8 3s8-1.343 8-3" />
                 </svg>
-                <h3 className="font-serif text-[18px] md:text-[20px] font-semibold text-[#07080a]">
+                <h3 className="scroll-reveal-target font-serif text-[18px] md:text-[20px] font-semibold text-[#07080a]">
                   ERP & CRM
                 </h3>
-                <p className="font-sans text-[13px] md:text-[14px] font-medium text-slate-500">
+                <p className="scroll-reveal-target font-sans text-[13px] md:text-[14px] font-medium text-slate-500">
                   Business Systems
                 </p>
               </div>
@@ -489,10 +489,10 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
                   <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01" />
                 </svg>
-                <h3 className="font-serif text-[18px] md:text-[20px] font-semibold text-[#07080a]">
+                <h3 className="scroll-reveal-target font-serif text-[18px] md:text-[20px] font-semibold text-[#07080a]">
                   Web & Mobile
                 </h3>
-                <p className="font-sans text-[13px] md:text-[14px] font-medium text-slate-500">
+                <p className="scroll-reveal-target font-sans text-[13px] md:text-[14px] font-medium text-slate-500">
                   Digital Products
                 </p>
               </div>
@@ -503,10 +503,10 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-                <h3 className="font-serif text-[18px] md:text-[20px] font-semibold text-[#07080a]">
+                <h3 className="scroll-reveal-target font-serif text-[18px] md:text-[20px] font-semibold text-[#07080a]">
                   Automation
                 </h3>
-                <p className="font-sans text-[13px] md:text-[14px] font-medium text-slate-500">
+                <p className="scroll-reveal-target font-sans text-[13px] md:text-[14px] font-medium text-slate-500">
                   Workflow Efficiency
                 </p>
               </div>
@@ -516,10 +516,10 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
                 <svg className="w-6 h-6 text-slate-700 mb-1" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M18 20V10M12 20V4M6 20v-6" />
                 </svg>
-                <h3 className="font-serif text-[18px] md:text-[20px] font-semibold text-[#07080a]">
+                <h3 className="scroll-reveal-target font-serif text-[18px] md:text-[20px] font-semibold text-[#07080a]">
                   Analytics
                 </h3>
-                <p className="font-sans text-[13px] md:text-[14px] font-medium text-slate-500">
+                <p className="scroll-reveal-target font-sans text-[13px] md:text-[14px] font-medium text-slate-500">
                   Actionable insights
                 </p>
               </div>
@@ -530,7 +530,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
           <div className="relative rounded-[32px] overflow-hidden p-8 md:p-12 flex flex-col justify-between shadow-2xl text-white min-h-[500px] lg:min-h-0">
             {/* Background Image g0.png */}
             <div className="absolute inset-0 z-0">
-              <img 
+              <img loading="lazy" 
                 src={g0Img} 
                 alt="" 
                 className="w-full h-full object-cover object-center"
@@ -541,10 +541,10 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
             {/* Content (Title, Description, CTA Buttons) */}
             <div className="relative z-10 flex flex-col justify-between h-full space-y-8">
               <div className="space-y-6">
-                <h2 className="font-serif text-[28px] md:text-[38px] lg:text-[42px] font-medium leading-[1.2] text-white tracking-tight">
+                <h2 className="scroll-reveal-target font-serif text-[28px] md:text-[38px] lg:text-[42px] font-medium leading-[1.2] text-white tracking-tight">
                   Looking for a trusted technology partner ? Let's build smarter syystems together.
                 </h2>
-                <p className="font-sans text-[15px] md:text-[16px] leading-[1.65] text-slate-200/90 max-w-lg">
+                <p className="scroll-reveal-target font-sans text-[15px] md:text-[16px] leading-[1.65] text-white/90 max-w-lg">
                   Galletrix delivers ERP, CRM, Website, mobile app, and automation solutions that help businesses simplify operations and grow with confidence.
                 </p>
               </div>
@@ -577,15 +577,15 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
       </section>
 
       {/* Page 8: Selected Work Projects Section */}
-      <section id="other-page-8" className="w-full bg-[#07080a] py-24 md:py-32 border-t border-slate-900/60 min-h-screen flex items-center">
+      <section id="other-page-8" className="w-full bg-black py-16 md:py-32 border-t border-slate-900/60 min-h-screen flex items-center">
         <div className="max-w-7xl mx-auto px-6 md:px-12 w-full flex flex-col items-start animate-fade-in">
           {/* Header Row */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between w-full mb-20">
             <div className="space-y-4">
-              <span className="font-sans text-[15px] font-medium tracking-wide text-slate-400">
+              <span className="font-sans text-[15px] font-medium tracking-wide text-white">
                 Selected Work
               </span>
-              <h2 className="font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-medium leading-[1.12] text-white tracking-tight">
+              <h2 className="scroll-reveal-target font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-medium leading-[1.12] text-white tracking-tight">
                 Projects That Define Us
               </h2>
             </div>
@@ -593,7 +593,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
             <a 
               href="#works" 
               onClick={() => setView('works')}
-              className="flex items-center gap-2 text-[15px] font-semibold text-slate-300 hover:text-white transition-colors duration-200 mt-4 sm:mt-0 cursor-pointer group"
+              className="flex items-center gap-2 text-[15px] font-semibold text-white hover:text-white transition-colors duration-200 mt-4 sm:mt-0 cursor-pointer group"
             >
               <span>View All Work</span>
               <svg className="w-5 h-5 transition-transform group-hover:translate-x-1 duration-200" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
@@ -609,22 +609,22 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
                 key={proj.id}
                 href="#works" 
                 onClick={() => setView('works')}
-                className="border border-slate-800/80 bg-slate-950/20 p-8 md:p-10 rounded-[24px] flex flex-col justify-between hover:border-[#cc6f2a]/60 hover:scale-[1.02] hover:bg-slate-900/40 hover:shadow-2xl hover:shadow-[#cc6f2a]/5 transition-all duration-300 min-h-[340px] text-left cursor-pointer group/card"
+                className="border border-white/20 bg-black p-8 md:p-10 rounded-[24px] flex flex-col justify-between hover:border-[#cc6f2a]/60 hover:scale-[1.02] hover:bg-slate-900/40 hover:shadow-2xl hover:shadow-[#cc6f2a]/5 transition-all duration-300 min-h-[340px] text-left cursor-pointer group/card"
               >
                 <div className="space-y-6">
                   <span className="text-[12px] font-bold uppercase tracking-widest text-[#cc6f2a]">
                     {proj.tag}
                   </span>
-                  <h3 className="font-serif text-[24px] font-medium text-white tracking-tight leading-snug">
+                  <h3 className="scroll-reveal-target font-serif text-[24px] font-medium text-white tracking-tight leading-snug">
                     {proj.title}
                   </h3>
-                  <p className="font-sans text-[14px] sm:text-[15px] leading-[1.65] text-slate-400">
+                  <p className="scroll-reveal-target font-sans text-[14px] sm:text-[15px] leading-[1.65] text-white">
                     {proj.description}
                   </p>
                 </div>
                 <div className="pt-8">
                   <div 
-                    className="flex items-center gap-2 text-[14px] font-bold text-slate-300 group-hover/card:text-white transition-colors duration-200"
+                    className="flex items-center gap-2 text-[14px] font-bold text-white group-hover/card:text-white transition-colors duration-200"
                   >
                     <span>View Case Study</span>
                     <svg className="w-4 h-4 transition-transform group-hover/card:translate-x-1 duration-200" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
@@ -639,14 +639,14 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
       </section>
 
       {/* Page 9: Testimonials Section */}
-      <section id="other-page-9" className="w-full bg-[#07080a] py-24 md:py-32 border-t border-slate-900/60 min-h-screen flex items-center">
+      <section id="other-page-9" className="w-full bg-black py-16 md:py-32 border-t border-slate-900/60 min-h-screen flex items-center">
         <div className="max-w-7xl mx-auto px-6 md:px-12 w-full flex flex-col items-start animate-fade-in">
           {/* Header Row */}
           <div className="flex flex-col items-start space-y-4 mb-16">
             <span className="font-sans text-[15px] font-semibold tracking-wide text-white">
               Testimonials
             </span>
-            <h2 className="font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-medium leading-[1.12] text-white tracking-tight">
+            <h2 className="scroll-reveal-target font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-medium leading-[1.12] text-white tracking-tight">
               What Our Clients Say
             </h2>
           </div>
@@ -674,7 +674,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
                   </div>
 
                   {/* Testimonial text */}
-                  <p className="font-sans text-[15px] sm:text-[16px] leading-[1.65] text-slate-700">
+                  <p className="scroll-reveal-target font-sans text-[15px] sm:text-[16px] leading-[1.65] text-slate-700">
                     “{t.quote}”
                   </p>
                 </div>
@@ -691,7 +691,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
                     <span className="text-[16px] font-semibold text-[#07080a]">
                       {t.name}
                     </span>
-                    <span className="text-[13px] font-medium text-slate-400">
+                    <span className="text-[13px] font-medium text-white">
                       {t.company}
                     </span>
                   </div>
@@ -705,17 +705,17 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
       {/* CTA Section - Get In Touch */}
       <section className="w-full min-h-[calc(100vh-6rem)] bg-white text-slate-900 flex flex-col justify-center items-center py-12">
         <div className="max-w-4xl mx-auto px-6 flex flex-col items-center text-center">
-          <span className="text-[15px] font-semibold tracking-wide text-slate-500 mb-5 uppercase font-sans">
+          <span className="text-[15px] font-semibold tracking-wide text-white/50 mb-5 uppercase font-sans">
             Get In Touch
           </span>
           
-          <h2 className="font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-medium leading-[1.15] text-slate-900 tracking-tight mb-6 max-w-3xl">
+          <h2 className="scroll-reveal-target font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-medium leading-[1.15] text-slate-900 tracking-tight mb-6 max-w-3xl">
             Ready to transform <br />
             your business <br />
-            <span className="text-[#1b5ea3] font-medium">digitally?</span>
+            <span className="text-white font-medium">digitally?</span>
           </h2>
           
-          <p className="font-sans text-[16px] sm:text-[17px] leading-relaxed text-slate-500 max-w-2xl mb-10">
+          <p className="scroll-reveal-target font-sans text-[16px] sm:text-[17px] leading-relaxed text-slate-500 max-w-2xl mb-10">
             Let us architect the digital infrastructure your business deserves.
           </p>
           

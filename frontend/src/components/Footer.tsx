@@ -9,7 +9,7 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ setView, navigateToContact }) => {
   return (
-    <footer className="w-full bg-[#07080a] border-t border-[#0091ff] pt-20 pb-16">
+    <footer className="w-full bg-black border-t border-[#0091ff] pt-20 pb-16">
       <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">

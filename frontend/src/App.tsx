@@ -1,30 +1,31 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, lazy, Suspense } from 'react'
 import type { ViewState } from './types'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import About from './pages/About'
-import Works from './pages/Works'
-import Industry from './pages/Industry'
-import Contact from './pages/Contact'
-import Services from './pages/Services'
-import Erp from './pages/Erp'
-import Automation from './pages/Automation'
-import Web from './pages/Web'
-import Dashboard from './pages/Dashboard'
-import Marketing from './pages/Marketing'
-import UIUX from './pages/UIUX'
-import Careers from './pages/Careers'
-import Other from './pages/Other'
-import ManpowerHR from './pages/ManpowerHR'
-import HRRecruitment from './pages/HRRecruitment'
-import LogisticsSupplyChain from './pages/LogisticsSupplyChain'
-import Healthcare from './pages/Healthcare'
-import Education from './pages/Education'
-import Retail from './pages/Retail'
-import Finance from './pages/Finance'
-import CorporateOperations from './pages/CorporateOperations'
-import CareersApply from './pages/CareersApply'
-import AdminLogin from './pages/AdminLogin'
+
+const About = lazy(() => import('./pages/About'))
+const Works = lazy(() => import('./pages/Works'))
+const Industry = lazy(() => import('./pages/Industry'))
+const Contact = lazy(() => import('./pages/Contact'))
+const Services = lazy(() => import('./pages/Services'))
+const Erp = lazy(() => import('./pages/Erp'))
+const Automation = lazy(() => import('./pages/Automation'))
+const Web = lazy(() => import('./pages/Web'))
+const Dashboard = lazy(() => import('./pages/Dashboard'))
+const Marketing = lazy(() => import('./pages/Marketing'))
+const UIUX = lazy(() => import('./pages/UIUX'))
+const Careers = lazy(() => import('./pages/Careers'))
+const Other = lazy(() => import('./pages/Other'))
+const ManpowerHR = lazy(() => import('./pages/ManpowerHR'))
+const HRRecruitment = lazy(() => import('./pages/HRRecruitment'))
+const LogisticsSupplyChain = lazy(() => import('./pages/LogisticsSupplyChain'))
+const Healthcare = lazy(() => import('./pages/Healthcare'))
+const Education = lazy(() => import('./pages/Education'))
+const Retail = lazy(() => import('./pages/Retail'))
+const Finance = lazy(() => import('./pages/Finance'))
+const CorporateOperations = lazy(() => import('./pages/CorporateOperations'))
+const CareersApply = lazy(() => import('./pages/CareersApply'))
+const AdminLogin = lazy(() => import('./pages/AdminLogin'))
 
 function App() {
   const [view, setView] = useState<ViewState>('other')
@@ -60,16 +61,16 @@ function App() {
       const hash = window.location.hash
       const path = window.location.pathname
 
-      if (path === '/admin' || path === '/admin/') {
-        if (!isInitial && hash && hash !== '#admin' && hash !== '#/admin') {
+      if (path === '/gallet' || path === '/gallet/') {
+        if (!isInitial && hash && hash !== '#gallet' && hash !== '#/gallet') {
           window.history.pushState(null, '', '/' + hash)
-        } else if (hash === '#admin' || hash === '#/admin' || !hash) {
+        } else if (hash === '#gallet' || hash === '#/gallet' || !hash) {
           setView('admin')
           return
         }
       }
 
-      if (hash.startsWith('#admin') || hash.startsWith('#/admin')) {
+      if (hash.startsWith('#gallet') || hash.startsWith('#/gallet')) {
         setView('admin')
       } else if (hash.startsWith('#industry')) {
         setView('industry')
@@ -162,34 +163,61 @@ function App() {
     }
   }, [view])
 
+  // Global Animation Engine
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('scroll-revealed')
+        }
+      })
+    }, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' })
+
+    const observeElements = () => {
+      const targets = document.querySelectorAll('.scroll-reveal-target:not(.scroll-revealed)')
+      targets.forEach(t => observer.observe(t))
+    }
+
+    observeElements()
+    const mutationObserver = new MutationObserver(() => observeElements())
+    mutationObserver.observe(document.body, { childList: true, subtree: true })
+
+    return () => {
+      observer.disconnect()
+      mutationObserver.disconnect()
+    }
+  }, [])
+
   return (
     <div className="min-h-screen bg-[#07080a] text-slate-100 font-sans flex flex-col justify-between overflow-x-hidden">
       <Navbar view={view} setView={setView} navigateToContact={navigateToContact} />
 
-      <main className="w-full flex flex-col items-center">
-        {view === 'about' && <About navigateToContact={navigateToContact} />}
-        {view === 'works' && <Works navigateToContact={navigateToContact} />}
-        {view === 'industry' && <Industry navigateToContact={navigateToContact} />}
-        {view === 'manpower-hr' && <ManpowerHR navigateToContact={navigateToContact} />}
-        {view === 'hr-recruitment' && <HRRecruitment navigateToContact={navigateToContact} />}
-        {view === 'logistics-supply-chain' && <LogisticsSupplyChain navigateToContact={navigateToContact} />}
-        {view === 'healthcare' && <Healthcare navigateToContact={navigateToContact} />}
-        {view === 'education' && <Education navigateToContact={navigateToContact} />}
-        {view === 'retail' && <Retail navigateToContact={navigateToContact} />}
-        {view === 'finance' && <Finance navigateToContact={navigateToContact} />}
-        {view === 'corporate-operations' && <CorporateOperations navigateToContact={navigateToContact} />}
-        {view === 'contact' && <Contact navigateToContact={navigateToContact} />}
-        {view === 'services' && <Services view={view} setView={setView} navigateToContact={navigateToContact} />}
-        {view === 'erp' && <Erp navigateToContact={navigateToContact} />}
-        {view === 'automation' && <Automation navigateToContact={navigateToContact} />}
-        {view === 'web' && <Web navigateToContact={navigateToContact} />}
-        {view === 'dashboard' && <Dashboard navigateToContact={navigateToContact} />}
-        {view === 'marketing' && <Marketing navigateToContact={navigateToContact} />}
-        {view === 'uiux' && <UIUX navigateToContact={navigateToContact} />}
-        {view === 'careers' && <Careers navigateToContact={navigateToContact} />}
-        {view === 'careers-apply' && <CareersApply navigateToContact={navigateToContact} />}
-        {view === 'other' && <Other setView={setView} navigateToContact={navigateToContact} />}
-        {view === 'admin' && <AdminLogin navigateToContact={navigateToContact} />}
+      <main className="w-full flex flex-col items-center min-h-[50vh]">
+        <Suspense fallback={<div className="w-full h-[50vh] flex items-center justify-center bg-[#07080a] text-white/50 text-[15px]">Loading content...</div>}>
+          {view === 'about' && <About navigateToContact={navigateToContact} />}
+          {view === 'works' && <Works navigateToContact={navigateToContact} />}
+          {view === 'industry' && <Industry navigateToContact={navigateToContact} />}
+          {view === 'manpower-hr' && <ManpowerHR navigateToContact={navigateToContact} />}
+          {view === 'hr-recruitment' && <HRRecruitment navigateToContact={navigateToContact} />}
+          {view === 'logistics-supply-chain' && <LogisticsSupplyChain navigateToContact={navigateToContact} />}
+          {view === 'healthcare' && <Healthcare navigateToContact={navigateToContact} />}
+          {view === 'education' && <Education navigateToContact={navigateToContact} />}
+          {view === 'retail' && <Retail navigateToContact={navigateToContact} />}
+          {view === 'finance' && <Finance navigateToContact={navigateToContact} />}
+          {view === 'corporate-operations' && <CorporateOperations navigateToContact={navigateToContact} />}
+          {view === 'contact' && <Contact navigateToContact={navigateToContact} />}
+          {view === 'services' && <Services view={view} setView={setView} navigateToContact={navigateToContact} />}
+          {view === 'erp' && <Erp navigateToContact={navigateToContact} />}
+          {view === 'automation' && <Automation navigateToContact={navigateToContact} />}
+          {view === 'web' && <Web navigateToContact={navigateToContact} />}
+          {view === 'dashboard' && <Dashboard navigateToContact={navigateToContact} />}
+          {view === 'marketing' && <Marketing navigateToContact={navigateToContact} />}
+          {view === 'uiux' && <UIUX navigateToContact={navigateToContact} />}
+          {view === 'careers' && <Careers navigateToContact={navigateToContact} />}
+          {view === 'careers-apply' && <CareersApply navigateToContact={navigateToContact} />}
+          {view === 'other' && <Other setView={setView} navigateToContact={navigateToContact} />}
+          {view === 'admin' && <AdminLogin navigateToContact={navigateToContact} />}
+        </Suspense>
       </main>
 
       {view !== 'admin' && <Footer setView={setView} navigateToContact={navigateToContact} />}

@@ -9,10 +9,10 @@ const Careers: React.FC<CareersProps> = ({ navigateToContact }) => {
   return (
     <>
       {/* Careers Section with desktop background image overlay */}
-      <section id="careers" className="w-full mt-24 relative min-h-[calc(100vh-6rem)] bg-[#07080a] flex flex-col justify-center">
+      <section id="careers" className="w-full mt-24 relative min-h-[calc(100vh-6rem)] bg-black flex flex-col justify-center">
         {/* Desktop Background Image */}
-        <div className="absolute inset-0 hidden lg:block">
-          <img 
+        <div className="absolute inset-0 hidden lg:block opacity-40 pointer-events-none select-none">
+          <img loading="lazy" 
             src={careersImg} 
             alt="Galletrix Careers" 
             className="w-full h-full object-cover object-center"
@@ -22,24 +22,24 @@ const Careers: React.FC<CareersProps> = ({ navigateToContact }) => {
         {/* Text Content */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 py-12 flex flex-col items-start">
           {/* Subtitle */}
-          <span className="text-[15px] font-medium tracking-wide text-slate-400 mb-5">
+          <span className="text-[15px] font-medium tracking-wide text-white/50 mb-5">
             Careers at Galletrix
           </span>
 
           {/* Heading */}
-          <h1 className="font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-bold leading-[1.12] text-white tracking-tight mb-8 max-w-4xl">
+          <h1 className="scroll-reveal-target font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-bold leading-[1.12] text-white tracking-tight mb-8 max-w-4xl">
             Join Our Team
           </h1>
 
           {/* Description */}
-          <p className="font-sans text-[16px] sm:text-[18px] md:text-[19px] leading-[1.65] text-slate-400 max-w-3xl mb-14">
+          <p className="scroll-reveal-target font-sans text-[16px] sm:text-[18px] md:text-[19px] leading-[1.65] text-white max-w-3xl mb-14">
             We are looking for passionate individuals to help us build intelligent digital solutions. Explore our open positions and find where you fit in.
           </p>
         </div>
 
         {/* Mobile Block Image */}
         <div className="w-full lg:hidden">
-          <img 
+          <img loading="lazy" 
             src={careersImg} 
             alt="Galletrix Careers" 
             className="w-full h-auto object-cover"
@@ -48,15 +48,15 @@ const Careers: React.FC<CareersProps> = ({ navigateToContact }) => {
       </section>
 
       {/* Careers Page 2: Why Work With Us Section */}
-      <section id="careers-page-2" className="w-full bg-[#07080a] py-16 md:py-24 border-t border-slate-900/60">
+      <section id="careers-page-2" className="w-full bg-black py-16 md:py-12 md:py-24 border-t border-slate-900/60">
         <div className="max-w-7xl mx-auto px-6 md:px-12 w-full flex flex-col items-center">
           
           {/* Subtitle & Heading */}
           <div className="w-full text-left mb-20 animate-fade-in">
-            <span className="font-sans text-[15px] font-semibold tracking-wide text-slate-400 mb-4 uppercase block">
+            <span className="font-sans text-[15px] font-semibold tracking-wide text-white/50 mb-4 uppercase block">
               Benefits
             </span>
-            <h2 className="font-serif text-[42px] sm:text-[52px] font-medium leading-[1.15] text-white tracking-tight">
+            <h2 className="scroll-reveal-target font-serif text-[42px] sm:text-[52px] font-medium leading-[1.15] text-white tracking-tight">
               Why Work With Us
             </h2>
           </div>
@@ -65,29 +65,29 @@ const Careers: React.FC<CareersProps> = ({ navigateToContact }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-12 w-full animate-fade-in">
             {/* Item 1 */}
             <div className="flex flex-col text-left">
-              <h3 className="font-sans text-[18px] sm:text-[20px] font-semibold text-white tracking-tight mb-4">Real World Projects</h3>
-              <p className="font-sans text-[15px] leading-relaxed text-slate-400">
+              <h3 className="scroll-reveal-target font-sans text-[18px] sm:text-[20px] font-semibold text-white tracking-tight mb-4">Real World Projects</h3>
+              <p className="scroll-reveal-target font-sans text-[15px] leading-relaxed text-white">
                 Work on impactful products, from enterprise CRM to internal dashboards.
               </p>
             </div>
             {/* Item 2 */}
             <div className="flex flex-col text-left">
-              <h3 className="font-sans text-[18px] sm:text-[20px] font-semibold text-white tracking-tight mb-4">Learning Culture</h3>
-              <p className="font-sans text-[15px] leading-relaxed text-slate-400">
+              <h3 className="scroll-reveal-target font-sans text-[18px] sm:text-[20px] font-semibold text-white tracking-tight mb-4">Learning Culture</h3>
+              <p className="scroll-reveal-target font-sans text-[15px] leading-relaxed text-white">
                 Improve your skills through mentorship, workshops, and courses.
               </p>
             </div>
             {/* Item 3 */}
             <div className="flex flex-col text-left">
-              <h3 className="font-sans text-[18px] sm:text-[20px] font-semibold text-white tracking-tight mb-4">Creative Environment</h3>
-              <p className="font-sans text-[15px] leading-relaxed text-slate-400">
+              <h3 className="scroll-reveal-target font-sans text-[18px] sm:text-[20px] font-semibold text-white tracking-tight mb-4">Creative Environment</h3>
+              <p className="scroll-reveal-target font-sans text-[15px] leading-relaxed text-white">
                 Bring ideas to life through design, development, and innovation without limits.
               </p>
             </div>
             {/* Item 4 */}
             <div className="flex flex-col text-left">
-              <h3 className="font-sans text-[18px] sm:text-[20px] font-semibold text-white tracking-tight mb-4">Growth Opportunities</h3>
-              <p className="font-sans text-[15px] leading-relaxed text-slate-400">
+              <h3 className="scroll-reveal-target font-sans text-[18px] sm:text-[20px] font-semibold text-white tracking-tight mb-4">Growth Opportunities</h3>
+              <p className="scroll-reveal-target font-sans text-[15px] leading-relaxed text-white">
                 Build your career with projects that challenge, stretch, and develop your expertise.
               </p>
             </div>
@@ -96,20 +96,20 @@ const Careers: React.FC<CareersProps> = ({ navigateToContact }) => {
       </section>
 
       {/* Careers Page 3: Life at Galletrix */}
-      <section id="careers-page-3" className="w-full bg-[#07080a] py-16 md:py-24 border-t border-slate-900/60">
+      <section id="careers-page-3" className="w-full bg-black py-16 md:py-12 md:py-24 border-t border-slate-900/60">
         <div className="max-w-7xl mx-auto px-6 md:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-20 animate-fade-in">
           {/* Left Column */}
           <div className="flex flex-col justify-center">
-            <span className="font-sans text-[15px] font-semibold tracking-wide text-slate-400 mb-4 uppercase">
+            <span className="font-sans text-[15px] font-semibold tracking-wide text-white/50 mb-4 uppercase">
               Culture
             </span>
-            <h2 className="font-serif text-[42px] sm:text-[52px] font-medium leading-[1.15] text-white tracking-tight mb-8">
+            <h2 className="scroll-reveal-target font-serif text-[42px] sm:text-[52px] font-medium leading-[1.15] text-white tracking-tight mb-8">
               Life at Galletrix
             </h2>
-            <p className="font-sans text-[18px] sm:text-[19px] leading-[1.6] text-white font-medium mb-6 max-w-lg">
+            <p className="scroll-reveal-target font-sans text-[18px] sm:text-[19px] leading-[1.6] text-white font-medium mb-6 max-w-lg">
               Collaboration, creativity, and continuous learning.
             </p>
-            <p className="font-sans text-[15px] leading-relaxed text-slate-400 max-w-lg">
+            <p className="scroll-reveal-target font-sans text-[15px] leading-relaxed text-white max-w-lg">
               We believe in building meaningful digital products through teamwork, problem-solving, and continuous improvement. Our team works together to create solutions that are simple, scalable, and business focused.
             </p>
           </div>
@@ -117,8 +117,8 @@ const Careers: React.FC<CareersProps> = ({ navigateToContact }) => {
           {/* Right Column: Pill Cards */}
           <div className="flex flex-col justify-center gap-6">
             {/* Card 1 */}
-            <div className="border border-[#022e54]/80 bg-black/40 p-6 rounded-[24px] flex items-center gap-6 hover:border-blue-800/40 hover:bg-black/60 transition-all duration-300">
-              <div className="w-12 h-12 rounded-[14px] bg-[#02223c]/60 flex items-center justify-center text-[#539be2] shrink-0">
+            <div className="border border-white/20 bg-black/40 p-6 rounded-[24px] flex items-center gap-6 hover:border-[#cc6f2a]/40 hover:bg-black/60 transition-all duration-300">
+              <div className="w-12 h-12 rounded-[14px] bg-white/10 flex items-center justify-center text-white shrink-0">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
                 </svg>
@@ -126,8 +126,8 @@ const Careers: React.FC<CareersProps> = ({ navigateToContact }) => {
               <span className="font-sans text-[17px] sm:text-[18px] font-semibold text-white tracking-tight">Collaborative Team</span>
             </div>
             {/* Card 2 */}
-            <div className="border border-[#022e54]/80 bg-black/40 p-6 rounded-[24px] flex items-center gap-6 hover:border-blue-800/40 hover:bg-black/60 transition-all duration-300">
-              <div className="w-12 h-12 rounded-[14px] bg-[#02223c]/60 flex items-center justify-center text-[#539be2] shrink-0">
+            <div className="border border-white/20 bg-black/40 p-6 rounded-[24px] flex items-center gap-6 hover:border-[#cc6f2a]/40 hover:bg-black/60 transition-all duration-300">
+              <div className="w-12 h-12 rounded-[14px] bg-white/10 flex items-center justify-center text-white shrink-0">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
@@ -135,8 +135,8 @@ const Careers: React.FC<CareersProps> = ({ navigateToContact }) => {
               <span className="font-sans text-[17px] sm:text-[18px] font-semibold text-white tracking-tight">Modern Work Culture</span>
             </div>
             {/* Card 3 */}
-            <div className="border border-[#022e54]/80 bg-black/40 p-6 rounded-[24px] flex items-center gap-6 hover:border-blue-800/40 hover:bg-black/60 transition-all duration-300">
-              <div className="w-12 h-12 rounded-[14px] bg-[#02223c]/60 flex items-center justify-center text-[#539be2] shrink-0">
+            <div className="border border-white/20 bg-black/40 p-6 rounded-[24px] flex items-center gap-6 hover:border-[#cc6f2a]/40 hover:bg-black/60 transition-all duration-300">
+              <div className="w-12 h-12 rounded-[14px] bg-white/10 flex items-center justify-center text-white shrink-0">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
@@ -148,14 +148,14 @@ const Careers: React.FC<CareersProps> = ({ navigateToContact }) => {
       </section>
 
       {/* Careers Page 4: Hiring Process Timeline */}
-      <section id="careers-page-4" className="w-full bg-[#07080a] py-16 md:py-24 border-t border-slate-900/60">
+      <section id="careers-page-4" className="w-full bg-black py-16 md:py-12 md:py-24 border-t border-slate-900/60">
         <div className="max-w-7xl mx-auto px-6 md:px-12 w-full flex flex-col justify-between items-center animate-fade-in">
           {/* Upper Half: Timeline Heading */}
           <div className="flex flex-col items-center text-center mb-24">
-            <span className="font-sans text-[15px] font-semibold tracking-wide text-slate-400 mb-4 uppercase">
+            <span className="font-sans text-[15px] font-semibold tracking-wide text-white/50 mb-4 uppercase">
               Hiring Process
             </span>
-            <h2 className="font-serif text-[42px] sm:text-[52px] font-medium leading-[1.15] text-white tracking-tight">
+            <h2 className="scroll-reveal-target font-serif text-[42px] sm:text-[52px] font-medium leading-[1.15] text-white tracking-tight">
               What We Look For
             </h2>
           </div>
@@ -175,16 +175,16 @@ const Careers: React.FC<CareersProps> = ({ navigateToContact }) => {
               ].map((item, idx) => (
                 <div key={idx} className="flex flex-col items-center text-center space-y-6">
                   {/* Step Number Circle Indicator */}
-                  <div className="w-11 h-11 rounded-full border border-[#539be2]/60 bg-[#07080a] flex items-center justify-center text-[#539be2] font-semibold text-[16px] shadow-[0_0_15px_rgba(83,155,226,0.15)] select-none">
+                  <div className="w-11 h-11 rounded-full border border-white/20 bg-black flex items-center justify-center text-white font-semibold text-[16px] shadow-[0_0_15px_rgba(255,255,255,0.05)] select-none">
                     {item.step}
                   </div>
 
                   {/* Text Pill Box */}
-                  <div className="w-full border border-[#022e54]/80 bg-black/40 px-5 py-6 rounded-[18px] min-h-[140px] flex flex-col items-center justify-start hover:border-blue-800/40 hover:bg-black/60 transition-all duration-300">
+                  <div className="w-full border border-white/20 bg-black/40 px-5 py-6 rounded-[18px] min-h-[140px] flex flex-col items-center justify-start hover:border-[#cc6f2a]/40 hover:bg-black/60 transition-all duration-300">
                     <h4 className="font-sans text-[16px] sm:text-[17px] font-semibold text-white tracking-tight mb-2">
                       {item.title}
                     </h4>
-                    <p className="font-sans text-[13px] sm:text-[14px] leading-relaxed font-medium text-slate-300">
+                    <p className="scroll-reveal-target font-sans text-[13px] sm:text-[14px] leading-relaxed font-medium text-white">
                       {item.text}
                     </p>
                   </div>
@@ -195,10 +195,10 @@ const Careers: React.FC<CareersProps> = ({ navigateToContact }) => {
 
           {/* Lower Half: What We Value Grid */}
           <div className="flex flex-col items-center text-center mb-16 w-full">
-            <span className="font-sans text-[15px] font-semibold tracking-wide text-slate-400 mb-4 uppercase">
+            <span className="font-sans text-[15px] font-semibold tracking-wide text-white/50 mb-4 uppercase">
               What We Value
             </span>
-            <h2 className="font-serif text-[42px] sm:text-[52px] font-medium leading-[1.15] text-white tracking-tight mb-16">
+            <h2 className="scroll-reveal-target font-serif text-[42px] sm:text-[52px] font-medium leading-[1.15] text-white tracking-tight mb-16">
               What We Look For
             </h2>
 
@@ -214,14 +214,14 @@ const Careers: React.FC<CareersProps> = ({ navigateToContact }) => {
               ].map((value, i) => (
                 <div 
                   key={i} 
-                  className="border border-[#022e54]/80 bg-black/40 px-6 py-5 rounded-[18px] flex items-center gap-4 hover:border-blue-800/40 hover:bg-black/60 transition-all duration-300"
+                  className="border border-white/20 bg-black/40 px-6 py-5 rounded-[18px] flex items-center gap-4 hover:border-[#cc6f2a]/40 hover:bg-black/60 transition-all duration-300"
                 >
                   {/* Checkmark outline SVG */}
-                  <svg className="w-6 h-6 text-[#539be2] flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                  <svg className="w-6 h-6 text-white flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                     <circle cx="12" cy="12" r="10" />
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75" />
                   </svg>
-                  <span className="font-sans text-[16px] sm:text-[17px] font-medium text-slate-200">
+                  <span className="font-sans text-[16px] sm:text-[17px] font-medium text-white">
                     {value}
                   </span>
                 </div>
@@ -233,7 +233,7 @@ const Careers: React.FC<CareersProps> = ({ navigateToContact }) => {
               onClick={() => {
                 window.location.hash = '#careers-apply'
               }}
-              className="bg-[#e2942b] hover:bg-[#cc6f2a] text-white px-16 py-4 rounded-full text-[15px] font-semibold flex items-center justify-center transition-colors cursor-pointer shadow-lg w-full max-w-sm"
+              className="bg-[#cc6f2a] hover:bg-[#b86120] text-white px-16 py-4 rounded-full text-[15px] font-semibold flex items-center justify-center transition-colors cursor-pointer shadow-md w-full max-w-sm"
             >
               Apply Now
             </button>
@@ -244,23 +244,23 @@ const Careers: React.FC<CareersProps> = ({ navigateToContact }) => {
       {/* CTA Section - Get In Touch */}
       <section className="w-full min-h-[calc(100vh-6rem)] bg-white text-slate-900 flex flex-col justify-center items-center py-12">
         <div className="max-w-4xl mx-auto px-6 flex flex-col items-center text-center">
-          <span className="text-[15px] font-semibold tracking-wide text-slate-500 mb-5 uppercase font-sans">
+          <span className="text-[15px] font-semibold tracking-wide text-white/50 mb-5 uppercase font-sans">
             Get In Touch
           </span>
           
-          <h2 className="font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-medium leading-[1.15] text-slate-900 tracking-tight mb-6 max-w-3xl">
+          <h2 className="scroll-reveal-target font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[68px] font-medium leading-[1.15] text-slate-900 tracking-tight mb-6 max-w-3xl">
             Ready to transform <br />
             your career <br />
-            <span className="text-[#1b5ea3] font-medium">with us?</span>
+            <span className="text-white font-medium">with us?</span>
           </h2>
           
-          <p className="font-sans text-[16px] sm:text-[17px] leading-relaxed text-slate-500 max-w-2xl mb-10">
+          <p className="scroll-reveal-target font-sans text-[16px] sm:text-[17px] leading-relaxed text-slate-500 max-w-2xl mb-10">
             Let us help you build a rewarding career at Galletrix.
           </p>
           
           <button 
             onClick={() => navigateToContact(1)}
-            className="bg-[#1b5ea3] hover:bg-blue-800 text-white px-9 py-4 rounded-full text-[15px] font-semibold flex items-center gap-2.5 transition-colors cursor-pointer shadow-md"
+            className="bg-black border border-white/20 hover:bg-slate-900 text-white px-9 py-4 rounded-full text-[15px] font-semibold flex items-center gap-2.5 transition-colors cursor-pointer shadow-md"
           >
             Contact Us
             <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
