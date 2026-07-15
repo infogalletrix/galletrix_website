@@ -3,6 +3,9 @@ import type { ViewState } from '../types'
 import { getProjects } from '../utils/projectData'
 import type { Project } from '../utils/projectData'
 import vMp4 from '../assets/v.mp4'
+import vMobileMp4 from '../assets/v_mobile.mp4'
+import vWebm from '../assets/v.webm'
+import vMobileWebm from '../assets/v_mobile.webm'
 import g1Img from '../assets/g1.png'
 import g2Img from '../assets/g2.png'
 import g3Img from '../assets/g3.png'
@@ -67,40 +70,28 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
       if (!trackRef.current || !stickyContainerRef.current) return;
       
       const trackRect = trackRef.current.getBoundingClientRect();
-      const stickyHeight = stickyContainerRef.current.offsetHeight;
-      const windowH = window.innerHeight;
+      const stickyRect = stickyContainerRef.current.getBoundingClientRect();
       
-      // Pin when the card is perfectly centered in the viewport
-      let pinOffset = (windowH - stickyHeight) / 2;
-      // Ensure it never pins higher than the navbar (approx 100px) so the top is always visible
-      pinOffset = Math.max(100, pinOffset);
-      
+      const maxDistance = trackRect.height - stickyRect.height;
       let progress = 0;
       
-      if (trackRect.top <= pinOffset) {
-        const maxTranslate = trackRect.height - stickyHeight;
-        const scrollDistance = pinOffset - trackRect.top;
-        
-        const translate = Math.max(0, Math.min(maxTranslate, scrollDistance));
-        // Use translate3d to force GPU acceleration
-        stickyContainerRef.current.style.transform = `translate3d(0, ${translate}px, 0)`;
-        
-        progress = maxTranslate > 0 ? translate / maxTranslate : 0;
-      } else {
-        stickyContainerRef.current.style.transform = `translate3d(0, 0px, 0)`;
+      if (maxDistance > 0) {
+        progress = (stickyRect.top - trackRect.top) / maxDistance;
       }
+      
+      progress = Math.max(0, Math.min(1, progress));
       
       // Add dead zones so the user can see the pinned card before the animation starts
       if (img2Ref.current) {
-        // img2 slides up between 10% and 50% of the scroll track
-        const p2 = Math.min(1, Math.max(0, (progress - 0.10) / 0.40));
+        // img2 slides up between 10% and 40% of the scroll track
+        const p2 = Math.min(1, Math.max(0, (progress - 0.10) / 0.30));
         img2Ref.current.style.transform = `translate3d(0, ${(1 - p2) * 100}%, 0)`;
         img2Ref.current.style.opacity = p2 > 0 ? "1" : "0";
       }
       
       if (vid3Ref.current) {
-        // vid3 slides up between 55% and 95% of the scroll track
-        const p3 = Math.min(1, Math.max(0, (progress - 0.55) / 0.40));
+        // vid3 slides up between 45% and 75% of the scroll track
+        const p3 = Math.min(1, Math.max(0, (progress - 0.45) / 0.30));
         vid3Ref.current.style.transform = `translate3d(0, ${(1 - p3) * 100}%, 0)`;
         vid3Ref.current.style.opacity = p3 > 0 ? "1" : "0";
       }
@@ -146,15 +137,31 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
       {/* Page 1: Hero Section (v.mp4) */}
       <section id="other-page" className="w-full h-screen relative bg-black flex items-center justify-center overflow-hidden animate-fade-in">
         {/* Background Video */}
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 bg-black">
+          {/* Desktop Video */}
           <video 
-            src={vMp4} 
             autoPlay 
             loop 
             muted 
             playsInline 
-            className="w-full h-full object-cover opacity-10"
-          />
+            preload="metadata"
+            className="hidden md:block w-full h-full object-cover opacity-30"
+          >
+            <source src={vWebm} type="video/webm" />
+            <source src={vMp4} type="video/mp4" />
+          </video>
+          {/* Mobile Video */}
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline 
+            preload="metadata"
+            className="block md:hidden w-full h-full object-cover opacity-30"
+          >
+            <source src={vMobileWebm} type="video/webm" />
+            <source src={vMobileMp4} type="video/mp4" />
+          </video>
         </div>
         
         {/* Overlay Content */}
@@ -268,11 +275,11 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
         </div>
 
         {/* Scroll Track for Sticky Mockup Container */}
-        <div ref={trackRef} className="w-full h-[120vh] md:h-[250vh] relative px-6 md:px-12 pb-16 md:pb-24">
+        <div ref={trackRef} className="w-full h-[90svh] md:h-[300svh] relative px-6 md:px-12 pb-16 md:pb-24">
           {/* The Pinned Container - controlled height to prevent taking up the whole screen */}
           <div 
             ref={stickyContainerRef} 
-            className="w-full max-w-6xl mx-auto relative aspect-video md:aspect-auto md:h-[85vh] max-h-[850px] rounded-[24px] md:rounded-[32px] overflow-hidden border border-white/20 shadow-2xl bg-black will-change-transform"
+            className="w-full max-w-6xl mx-auto relative isolate z-10 [mask-image:linear-gradient(white,white)] [-webkit-mask-image:-webkit-linear-gradient(white,white)] aspect-video md:aspect-auto md:h-[80svh] max-h-[850px] rounded-[24px] md:rounded-[32px] overflow-hidden border border-white/20 shadow-2xl bg-black sticky top-24 md:top-24"
           >
             {/* Image 1 */}
             <img loading="lazy" 
@@ -691,7 +698,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
                     <span className="text-[16px] font-semibold text-[#07080a]">
                       {t.name}
                     </span>
-                    <span className="text-[13px] font-medium text-white">
+                    <span className="text-[13px] font-medium text-slate-500">
                       {t.company}
                     </span>
                   </div>

@@ -189,7 +189,7 @@ function App() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-[#07080a] text-slate-100 font-sans flex flex-col justify-between overflow-x-hidden">
+    <div className="min-h-screen bg-[#07080a] text-slate-100 font-sans flex flex-col justify-between overflow-clip">
       <Navbar view={view} setView={setView} navigateToContact={navigateToContact} />
 
       <main className="w-full flex flex-col items-center min-h-[50vh]">
