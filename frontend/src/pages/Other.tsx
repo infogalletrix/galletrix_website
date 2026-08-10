@@ -8,10 +8,7 @@ import vWebm from '../assets/v.webm'
 import vMobileWebm from '../assets/v_mobile.webm'
 import g1Img from '../assets/g1.png'
 import g2Img from '../assets/g2.png'
-import g3Img from '../assets/g3.png'
-import maVid from '../assets/ma.mp4'
 import g0Img from '../assets/g0.png'
-import l3Img from '../assets/l3.png'
 
 interface OtherProps {
   setView: (view: ViewState) => void;
@@ -56,61 +53,6 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
   const [textIndex, setTextIndex] = useState(0)
   const [fade, setFade] = useState(true)
   const [isLoaded, setIsLoaded] = useState(false)
-
-  // Scroll-linked sticky refs
-  const trackRef = useRef<HTMLDivElement>(null)
-  const stickyContainerRef = useRef<HTMLDivElement>(null)
-  const img1Ref = useRef<HTMLImageElement>(null)
-  const img2Ref = useRef<HTMLImageElement>(null)
-  const vid3Ref = useRef<HTMLVideoElement>(null)
-
-  useEffect(() => {
-    let ticking = false;
-
-    const updateScroll = () => {
-      if (!trackRef.current || !stickyContainerRef.current) return;
-      
-      const trackRect = trackRef.current.getBoundingClientRect();
-      const stickyRect = stickyContainerRef.current.getBoundingClientRect();
-      
-      const maxDistance = trackRect.height - stickyRect.height;
-      let progress = 0;
-      
-      if (maxDistance > 0) {
-        progress = (stickyRect.top - trackRect.top) / maxDistance;
-      }
-      
-      progress = Math.max(0, Math.min(1, progress));
-      
-      // Add dead zones so the user can see the pinned card before the animation starts
-      if (img2Ref.current) {
-        // img2 slides up between 10% and 40% of the scroll track
-        const p2 = Math.min(1, Math.max(0, (progress - 0.10) / 0.30));
-        img2Ref.current.style.transform = `translate3d(0, ${(1 - p2) * 100}%, 0)`;
-        img2Ref.current.style.opacity = p2 > 0 ? "1" : "0";
-      }
-      
-      if (vid3Ref.current) {
-        // vid3 slides up between 45% and 75% of the scroll track
-        const p3 = Math.min(1, Math.max(0, (progress - 0.45) / 0.30));
-        vid3Ref.current.style.transform = `translate3d(0, ${(1 - p3) * 100}%, 0)`;
-        vid3Ref.current.style.opacity = p3 > 0 ? "1" : "0";
-      }
-      
-      ticking = false;
-    };
-
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(updateScroll);
-        ticking = true;
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    updateScroll() // initial check
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   useEffect(() => {
     const allProjects = getProjects()
@@ -263,54 +205,6 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
                 className="w-full max-w-lg h-auto object-cover rounded-[28px] shadow-2xl"
               />
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Page 3: Real Business Problems Section */}
-      <section id="other-page-3" className="w-full bg-black border-t border-slate-900/60 relative">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 w-full pt-16 md:pt-32 pb-12">
-          {/* Heading - scrolls normally */}
-          <h2 className="scroll-reveal-target font-serif text-[32px] sm:text-[42px] md:text-[52px] lg:text-[60px] font-medium leading-[1.12] text-white tracking-tight shrink-0">
-            Built to solve real business problems
-          </h2>
-        </div>
-
-        {/* Scroll Track for Sticky Mockup Container */}
-        <div ref={trackRef} className="w-full h-[90svh] md:h-[300svh] relative px-6 md:px-12 pb-16 md:pb-24">
-          {/* The Pinned Container - controlled height to prevent taking up the whole screen */}
-          <div 
-            ref={stickyContainerRef} 
-            className="w-full max-w-6xl mx-auto relative isolate z-10 [mask-image:linear-gradient(white,white)] [-webkit-mask-image:-webkit-linear-gradient(white,white)] aspect-video md:aspect-auto md:h-[80svh] max-h-[850px] rounded-[24px] md:rounded-[32px] overflow-hidden border border-white/20 shadow-2xl bg-black sticky top-24 md:top-24"
-          >
-            {/* Image 1 */}
-            <img loading="lazy" 
-              ref={img1Ref}
-              src={l3Img} 
-              alt="Built to solve real business problems" 
-              className="absolute inset-0 w-full h-full object-cover object-center z-10"
-            />
-            
-            {/* Image 2 (Overlays Image 1) */}
-            <img loading="lazy" 
-              ref={img2Ref}
-              src={g3Img} 
-              alt="Workflow Solution" 
-              className="absolute inset-0 w-full h-full object-cover object-center z-20 will-change-transform"
-              style={{ transform: 'translate3d(0, 100%, 0)', opacity: 0 }}
-            />
-
-            {/* Video 3 (Overlays Image 2) */}
-            <video 
-              ref={vid3Ref}
-              src={maVid} 
-              autoPlay 
-              loop 
-              muted 
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover object-center z-30 will-change-transform"
-              style={{ transform: 'translate3d(0, 100%, 0)', opacity: 0 }}
-            />
           </div>
         </div>
       </section>
