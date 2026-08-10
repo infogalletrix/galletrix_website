@@ -23,7 +23,8 @@ const subheadings = [
   <React.Fragment key="3"><span className="text-[#cc6f2a] transition-colors duration-700">Web Application</span> Development</React.Fragment>,
   <React.Fragment key="4"><span className="text-[#cc6f2a] transition-colors duration-700">Mobile App</span> Development</React.Fragment>,
   <React.Fragment key="5"><span className="text-[#cc6f2a] transition-colors duration-700">ERP & CRM</span> Solutions</React.Fragment>,
-  <React.Fragment key="6"><span className="text-[#cc6f2a] transition-colors duration-700">Digital</span> Marketing</React.Fragment>
+  <React.Fragment key="6"><span className="text-[#cc6f2a] transition-colors duration-700">Digital</span> Marketing</React.Fragment>,
+  <React.Fragment key="7"><span className="text-[#cc6f2a] transition-colors duration-700">Data Analysis &</span> Responsive Reports</React.Fragment>
 ]
 
 const testimonialsData = [
@@ -241,6 +242,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
                 {[
                   "Scalable ERP & CRM Systems",
                   "Clean Web & App Experiences",
+                  "Data Analysis & Responsive Reports",
                   "Reliable Digital Support"
                 ].map((text, idx) => (
                   <div 
@@ -449,6 +451,25 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
               </h3>
               <p className="scroll-reveal-target font-sans text-[14px] sm:text-[15px] leading-[1.65] text-white group-hover/card:text-white transition-colors duration-200">
                 End-to-end digital transformation strategies that modernize legacy systems and unlock new business potential.
+              </p>
+            </a>
+
+            {/* Card 7: Data Analysis & Reports */}
+            <a 
+              href="#dashboard"
+              onClick={() => setView('dashboard')}
+              className="border border-white/20 bg-black/20 p-8 md:p-10 rounded-[24px] flex flex-col justify-start hover:border-[#cc6f2a]/60 hover:scale-[1.02] hover:bg-black/40 hover:shadow-2xl hover:shadow-[#cc6f2a]/5 transition-all duration-300 text-left cursor-pointer group/card"
+            >
+              <div className="text-white mb-6 transition-transform group-hover/card:scale-105 duration-300">
+                <svg className="w-6 h-6 text-white group-hover/card:text-white transition-colors duration-200" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+              </div>
+              <h3 className="scroll-reveal-target font-sans text-[20px] md:text-[22px] font-semibold text-white tracking-tight mb-4 transition-colors group-hover/card:text-white">
+                Data Analysis & Responsive Reports
+              </h3>
+              <p className="scroll-reveal-target font-sans text-[14px] sm:text-[15px] leading-[1.65] text-white group-hover/card:text-white transition-colors duration-200">
+                Transform complex data into clear, actionable insights with our dynamic and responsive reporting solutions.
               </p>
             </a>
           </div>
