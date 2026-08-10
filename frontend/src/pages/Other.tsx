@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import type { ViewState } from '../types'
 import { getProjects } from '../utils/projectData'
 import type { Project } from '../utils/projectData'
