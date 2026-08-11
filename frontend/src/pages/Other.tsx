@@ -15,14 +15,7 @@ interface OtherProps {
   navigateToContact: (page: 1 | 2 | 3) => void;
 }
 
-const subheadings = [
-  <React.Fragment key="2"><span className="text-[#cc6f2a] transition-colors duration-700">UI/UX</span> Design</React.Fragment>,
-  <React.Fragment key="3"><span className="text-[#cc6f2a] transition-colors duration-700">Web Application</span> Development</React.Fragment>,
-  <React.Fragment key="4"><span className="text-[#cc6f2a] transition-colors duration-700">Mobile App</span> Development</React.Fragment>,
-  <React.Fragment key="5"><span className="text-[#cc6f2a] transition-colors duration-700">ERP & CRM</span> Solutions</React.Fragment>,
-  <React.Fragment key="6"><span className="text-[#cc6f2a] transition-colors duration-700">Digital</span> Marketing</React.Fragment>,
-  <React.Fragment key="7"><span className="text-[#cc6f2a] transition-colors duration-700">Data Analysis &</span> Responsive Reports</React.Fragment>
-]
+
 
 const testimonialsData = [
   {
@@ -50,8 +43,7 @@ const testimonialsData = [
 
 const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
   const [projects, setProjects] = useState<Project[]>([])
-  const [textIndex, setTextIndex] = useState(0)
-  const [fade, setFade] = useState(true)
+
   const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
@@ -65,14 +57,6 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
 
   useEffect(() => {
     setIsLoaded(true)
-    const interval = setInterval(() => {
-      setFade(false)
-      setTimeout(() => {
-        setTextIndex((prev) => (prev + 1) % subheadings.length)
-        setFade(true)
-      }, 500)
-    }, 3000)
-    return () => clearInterval(interval)
   }, [])
 
   return (
