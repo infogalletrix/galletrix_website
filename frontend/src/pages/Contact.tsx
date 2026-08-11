@@ -136,7 +136,7 @@ const Contact: React.FC<ContactProps> = () => {
       </section>
 
       {/* Page 2: Send Message Form Section */}
-      <section id="contact-page-2" className="w-full bg-black py-8 border-t border-slate-900/60 min-h-[calc(100vh-6rem)] flex flex-col justify-center items-center">
+      <section id="contact-page-2" className="scroll-mt-24 w-full bg-black py-8 border-t border-slate-900/60 min-h-[calc(100vh-6rem)] flex flex-col justify-center items-center">
         <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start w-full">
           
           {/* Left Side: Info and Cards */}

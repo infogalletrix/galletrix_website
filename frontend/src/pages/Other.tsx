@@ -108,28 +108,22 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
         </div>
         
         {/* Overlay Content */}
-        <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 mt-16 w-full max-w-6xl mx-auto">
+        <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 w-full max-w-6xl mx-auto">
           {/* Core Heading */}
           <div className="w-full mb-4">
-            <h1 className={`text-[36px] sm:text-[48px] md:text-[64px] lg:text-[80px] font-['Space_Grotesk'] font-bold text-white tracking-tighter leading-[1.1] transition-all duration-1000 ease-out delay-100 ${
-              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+            <h1 className={`text-center text-[36px] sm:text-[48px] md:text-[64px] lg:text-[80px] font-['Space_Grotesk'] font-bold text-white tracking-tighter leading-[1.1] transition-all duration-[1200ms] ease-out ${
+              isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-[60px]'
             }`}>
               We build systems that <br className="hidden sm:block" />
               <span className="text-[#cc6f2a]">move business forward</span>
             </h1>
           </div>
 
-          {/* Animated Subheading Text */}
-          <div className="h-16 md:h-20 flex items-center justify-center w-full mt-2">
-            <h2 className={`text-[24px] sm:text-[32px] md:text-[40px] font-sans font-medium text-white/80 transition-all duration-700 ease-in-out ${
-              fade ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-6 scale-95'
-            }`}>
-              {subheadings[textIndex]}
-            </h2>
-          </div>
           
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-5 mt-32 md:mt-40 w-full transition-opacity duration-1000 ease-in delay-300 opacity-100">
+          <div className={`flex flex-col sm:flex-row items-center justify-center gap-5 mt-12 md:mt-16 w-full transition-all duration-[1200ms] ease-out delay-[400ms] ${
+            isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-[60px]'
+          }`}>
             <a 
               href="#services"
               onClick={(e) => {
