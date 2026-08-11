@@ -88,7 +88,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
             muted 
             playsInline 
             preload="metadata"
-            className="hidden md:block w-full h-full object-cover opacity-30"
+            className="hidden md:block w-full h-full object-cover opacity-10"
           >
             <source src={vWebm} type="video/webm" />
             <source src={vMp4} type="video/mp4" />
@@ -100,7 +100,7 @@ const Other: React.FC<OtherProps> = ({ setView, navigateToContact }) => {
             muted 
             playsInline 
             preload="metadata"
-            className="block md:hidden w-full h-full object-cover opacity-30"
+            className="block md:hidden w-full h-full object-cover opacity-10"
           >
             <source src={vMobileWebm} type="video/webm" />
             <source src={vMobileMp4} type="video/mp4" />
