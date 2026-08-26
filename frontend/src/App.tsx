@@ -26,6 +26,7 @@ const Finance = lazy(() => import('./pages/Finance'))
 const CorporateOperations = lazy(() => import('./pages/CorporateOperations'))
 const CareersApply = lazy(() => import('./pages/CareersApply'))
 const AdminLogin = lazy(() => import('./pages/AdminLogin'))
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
 
 function App() {
   const [view, setView] = useState<ViewState>('other')
@@ -68,6 +69,11 @@ function App() {
           setView('admin')
           return
         }
+      }
+
+      if (path === '/privacy-policy' || path === '/privacy-policy/') {
+        setView('privacy-policy')
+        return
       }
 
       if (hash.startsWith('#gallet') || hash.startsWith('#/gallet')) {
@@ -126,6 +132,8 @@ function App() {
         setView('marketing')
       } else if (hash.startsWith('#uiux')) {
         setView('uiux')
+      } else if (hash.startsWith('#privacy-policy')) {
+        setView('privacy-policy')
       } else if (hash === '' || hash === '#' || hash === '#other') {
         setView('other')
       } else {
@@ -217,6 +225,7 @@ function App() {
           {view === 'careers-apply' && <CareersApply navigateToContact={navigateToContact} />}
           {view === 'other' && <Other setView={setView} navigateToContact={navigateToContact} />}
           {view === 'admin' && <AdminLogin navigateToContact={navigateToContact} />}
+          {view === 'privacy-policy' && <PrivacyPolicy />}
         </Suspense>
       </main>
 

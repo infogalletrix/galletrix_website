@@ -89,7 +89,7 @@ const Footer: React.FC<FooterProps> = ({ setView, navigateToContact }) => {
               <ul className="space-y-3.5">
                 <li><a href="#case-studies" className="text-slate-400 text-[14px] hover:text-white transition-colors duration-200">Case Studies</a></li>
                 <li><a href="#services" onClick={() => setView('services')} className="text-slate-400 text-[14px] hover:text-white transition-colors duration-200">Services</a></li>
-                <li><a href="#privacy-policy" className="text-slate-400 text-[14px] hover:text-white transition-colors duration-200">Privacy Policy</a></li>
+                <li><a href="/privacy-policy" className="text-slate-400 text-[14px] hover:text-white transition-colors duration-200">Privacy Policy</a></li>
                 <li><a href="#support" className="text-slate-400 text-[14px] hover:text-white transition-colors duration-200">Support</a></li>
               </ul>
             </div>
