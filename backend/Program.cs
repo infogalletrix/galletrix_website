@@ -82,5 +82,25 @@ catch (Exception ex)
 app.UseAuthorization();
 app.MapControllers();
 
+app.MapPost("/api/reset-database", async (string password, AppDbContext dbContext, IConfiguration config) =>
+{
+    var securePassword = config["ResetPassword"] ?? "SecureReset123!";
+    if (password != securePassword)
+    {
+        return Results.Unauthorized();
+    }
+
+    try
+    {
+        await dbContext.Database.EnsureDeletedAsync();
+        await dbContext.Database.EnsureCreatedAsync();
+        return Results.Ok(new { message = "Database reset successfully." });
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem($"Error: {ex.Message}");
+    }
+});
+
 var url = Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? "http://0.0.0.0:5007";
 app.Run(url);
