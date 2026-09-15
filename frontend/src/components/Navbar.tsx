@@ -1,5 +1,5 @@
 import React from 'react'
-import logoImg from '../assets/letter_logo_nav.png'
+import logoImg from '../assets/logog.png'
 import type { ViewState } from '../types'
 
 interface NavbarProps {
