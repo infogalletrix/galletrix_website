@@ -108,5 +108,19 @@ namespace backend.Controllers
 
             return Ok(submissions);
         }
+
+        // DELETE: api/contact/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteSubmission(int id)
+        {
+            var submission = await _context.ContactSubmissions.FindAsync(id);
+            if (submission == null)
+            {
+                return NotFound(new { message = "Submission not found." });
+            }
+            _context.ContactSubmissions.Remove(submission);
+            await _context.SaveChangesAsync();
+            return Ok(new { message = "Submission deleted successfully." });
+        }
     }
 }

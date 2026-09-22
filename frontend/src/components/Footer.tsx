@@ -61,6 +61,7 @@ const Footer: React.FC<FooterProps> = ({ setView, navigateToContact }) => {
                 SOLUTIONS
               </h3>
               <ul className="space-y-3.5">
+                <li><a href="#products" onClick={() => setView('products')} className="text-slate-400 text-[14px] hover:text-white transition-colors duration-200">Products</a></li>
                 <li><a href="#erp" className="text-slate-400 text-[14px] hover:text-white transition-colors duration-200">ERP Systems</a></li>
                 <li><a href="#automation" className="text-slate-400 text-[14px] hover:text-white transition-colors duration-200">Automation</a></li>
                 <li><a href="#web-development" className="text-slate-400 text-[14px] hover:text-white transition-colors duration-200">Web Development</a></li>
@@ -75,6 +76,7 @@ const Footer: React.FC<FooterProps> = ({ setView, navigateToContact }) => {
               </h3>
               <ul className="space-y-3.5">
                 <li><a href="#about" onClick={() => setView('about')} className="text-slate-400 text-[14px] hover:text-white transition-colors duration-200">About Us</a></li>
+                <li><a href="#products" onClick={() => setView('products')} className="text-slate-400 text-[14px] hover:text-white transition-colors duration-200">Products</a></li>
                 <li><a href="#works" onClick={() => setView('works')} className="text-slate-400 text-[14px] hover:text-white transition-colors duration-200">Our Work</a></li>
                 <li><a href="#industry" onClick={() => setView('industry')} className="text-slate-400 text-[14px] hover:text-white transition-colors duration-200">Industries</a></li>
                 <li><a href="#contact" onClick={(e) => { e.preventDefault(); navigateToContact(1); }} className="text-slate-400 text-[14px] hover:text-white transition-colors duration-200">Contact</a></li>

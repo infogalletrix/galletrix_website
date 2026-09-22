@@ -138,6 +138,56 @@ namespace backend.Controllers
 
             return Ok(new { message = "Application submitted successfully!", id = submission.Id });
         }
+
+        // GET: api/careers
+        [HttpGet]
+        public async Task<IActionResult> GetApplications()
+        {
+            var applications = await _context.CareerSubmissions
+                .OrderByDescending(s => s.SubmittedAt)
+                .Select(s => new {
+                    s.Id,
+                    s.FullName,
+                    s.Email,
+                    s.Phone,
+                    s.Position,
+                    s.Experience,
+                    s.Portfolio,
+                    s.Message,
+                    s.ResumeFileName,
+                    s.SubmittedAt
+                })
+                .ToListAsync();
+
+            return Ok(applications);
+        }
+
+        // GET: api/careers/{id}/resume
+        [HttpGet("{id}/resume")]
+        public async Task<IActionResult> DownloadResume(int id)
+        {
+            var submission = await _context.CareerSubmissions.FindAsync(id);
+            if (submission == null)
+            {
+                return NotFound(new { message = "Application not found." });
+            }
+
+            return File(submission.ResumeData, submission.ResumeContentType, submission.ResumeFileName);
+        }
+
+        // DELETE: api/careers/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteApplication(int id)
+        {
+            var submission = await _context.CareerSubmissions.FindAsync(id);
+            if (submission == null)
+            {
+                return NotFound(new { message = "Application not found." });
+            }
+            _context.CareerSubmissions.Remove(submission);
+            await _context.SaveChangesAsync();
+            return Ok(new { message = "Application deleted successfully." });
+        }
     }
 
     public class CareerApplicationDto

@@ -454,6 +454,16 @@ const Navbar: React.FC<NavbarProps> = ({ view, setView, navigateToContact }) => 
           </div>
 
           <a 
+            href="#products" 
+            onClick={() => setView('products')}
+            className={`text-[15px] font-medium transition-colors duration-200 ${
+              view === 'products' ? 'text-[#cc6f2a]' : 'text-slate-300 hover:text-white'
+            }`}
+          >
+            Products
+          </a>
+
+          <a 
             href="#works" 
             onClick={() => setView('works')}
             className={`text-[15px] font-medium transition-colors duration-200 ${
@@ -595,6 +605,17 @@ const Navbar: React.FC<NavbarProps> = ({ view, setView, navigateToContact }) => 
                   <a href="#corporate-operations" onClick={() => handleMobileNav('corporate-operations')} className={`text-[16px] font-medium transition-colors py-1 ${view === 'corporate-operations' ? 'text-[#cc6f2a]' : 'text-slate-400 hover:text-white'}`}>Corporate Operations</a>
                 </div>
               )}
+            </div>
+
+            {/* Products */}
+            <div>
+              <a 
+                href="#products" 
+                onClick={() => handleMobileNav('products')}
+                className={`block text-[18px] font-semibold py-2 hover:text-[#cc6f2a] transition-colors ${view === 'products' ? 'text-[#cc6f2a]' : 'text-slate-100'}`}
+              >
+                Products
+              </a>
             </div>
 
             {/* Works */}

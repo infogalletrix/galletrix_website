@@ -27,6 +27,7 @@ const CorporateOperations = lazy(() => import('./pages/CorporateOperations'))
 const CareersApply = lazy(() => import('./pages/CareersApply'))
 const AdminLogin = lazy(() => import('./pages/AdminLogin'))
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
+const Products = lazy(() => import('./pages/Products'))
 
 function App() {
   const [view, setView] = useState<ViewState>('other')
@@ -134,6 +135,8 @@ function App() {
         setView('uiux')
       } else if (hash.startsWith('#privacy-policy')) {
         setView('privacy-policy')
+      } else if (hash.startsWith('#products')) {
+        setView('products')
       } else if (hash === '' || hash === '#' || hash === '#other') {
         setView('other')
       } else {
@@ -226,6 +229,7 @@ function App() {
           {view === 'other' && <Other setView={setView} navigateToContact={navigateToContact} />}
           {view === 'admin' && <AdminLogin navigateToContact={navigateToContact} />}
           {view === 'privacy-policy' && <PrivacyPolicy />}
+          {view === 'products' && <Products navigateToContact={navigateToContact} />}
         </Suspense>
       </main>
 
